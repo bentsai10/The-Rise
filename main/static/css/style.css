@@ -194,12 +194,76 @@
   align-items: flex-start;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    padding-right: 2px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  */
+    background-color:#d8d8d8;
+}
+
+progress{
+    background-color: pink !important;
+}
+    progress.amplitude-song-played-progress {
+        background-color: pink !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 5px;
+        display: block;
+        cursor: pointer;
+        border-radius: 3px;
+        height: 8px;
+        border: none; }
+
+.response_progress {
+    background-color: blue !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    display: block;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 8px;
+    border: none; }
+  
+  progress[value]::-webkit-progress-bar {
+    background-color: #cccbcb;
+    border-radius: 3px; }
+  
+  progress[value]::-moz-progress-bar {
+    background-color: #90FCF9;
+    border-radius: 3px; }
+    
+    progress.response_progress[value]::-moz-progress-bar {
+        background-color: #3425E9;
+        border-radius: 3px; }
+  
+  progress[value]::-webkit-progress-value {
+    background-color: #90FCF9;
+    border-radius: 3px; }
+    
+    progress.response_progress[value]::-webkit-progress-value {
+        background-color: #3425E9;
+        border-radius: 3px; }
+
 .spaces_block {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: scroll;
+  overflow-y: auto;
   width: 20%;
   height: 100%;
   margin-right: 0vw;
@@ -372,7 +436,7 @@
         }
   
     .discussion_posts_block {
-        overflow: scroll;
+        overflow-y: auto;
         width: 100%;
         height: 85%;
         padding: 1em 0.5em 1em 1.5em;
@@ -645,7 +709,7 @@
 
 .song-artist {
   margin-top: 0px;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.3em;
   font-family: 'Gothic A1', sans-serif;
   color: #fff;
   font-size: 1rem;
@@ -663,6 +727,7 @@
   border-style: solid;
   border-width: 1px;
   border-color: hsla(0, 0%, 100%, 0.75);
+  /* border-color: pink; */
 }
 
 .amplitude-song-played-progress.response_progress {
@@ -704,7 +769,7 @@
 }
 
     .discussion_link.response_banner_link {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
     }
 
     .discussion_link.response_text {
@@ -748,6 +813,13 @@
     margin-bottom: 0em;
     background-color: #90fcf9;
     }
+    .amplitude-play-pause.amplitude-playing {
+        width: 2.25em;
+        height: 2.25em;
+        margin-right: 0em;
+        margin-bottom: 0em;
+        background-color: #90fcf9;
+    }
 
         .amplitude-play-pause.amplitude-paused.response_banner_play {
         width: 2.5em;
@@ -757,14 +829,28 @@
         padding-top: 0em;
         background-color: #fff;
         }
+        .amplitude-play-pause.amplitude-playing.response_banner_play {
+            width: 2.5em;
+            height: 2.5em;
+            margin-top: 0.5em;
+            margin-bottom: 0em;
+            padding-top: 0em;
+            background-color: #fff;
+        }
 
         .amplitude-play-pause.amplitude-paused.response_play {
         background-color: #3425e9;
+        }
+        .amplitude-play-pause.amplitude-playing.response_play {
+            background-color: #3425e9;
         }
 
 .play {
   width: 40%;
   margin-left: 0.25em;
+}
+.pause{
+    width: 40%;
 }
 
 .discussion_buttons {
@@ -1048,8 +1134,8 @@
   padding-bottom: 0.125em;
 }
 
-.duration {
-  margin-top: 0.75em;
+.duration, .current-time {
+  margin-top: 0.5em;
   margin-bottom: 0px;
   font-family: Mulish, sans-serif;
   color: hsla(0, 0%, 100%, 0.6);
@@ -1057,14 +1143,32 @@
   line-height: 0.8rem;
   font-weight: 400;
 }
-
-    .duration.response_text {
+.response-duration, .response-current-time {
+    margin-top: 0.5em;
+    margin-bottom: 0px;
+    font-family: Mulish, sans-serif;
     color: rgba(0, 0, 0, 0.4);
-    }
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+    font-weight: 400;
+  }
+
 
     .duration.banner_duration {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
+    }
+    .amplitude-current-minutes.response_text{
+        color: rgba(0, 0, 0, 0.4);
+    }
+    .amplitude-current-seconds.response_text{
+        color: rgba(0, 0, 0, 0.4);
+    }
+    .amplitude-duration-minutes.response_text{
+        color: rgba(0, 0, 0, 0.4);
+    }
+    .amplitude-duration-seconds.response_text{
+        color: rgba(0, 0, 0, 0.4);
     }
 
 .response_banner_middle {
@@ -1117,7 +1221,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: scroll;
+  overflow-y: auto;
   width: 100%;
   height: 100%;
   margin-top: 0em;
@@ -1406,7 +1510,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: scroll;
+  overflow-y: auto;
   width: 26%;
   height: 100%;
   margin-left: 0px;
@@ -1495,7 +1599,7 @@
 }
 
 .discussion_form {
-  overflow: scroll;
+  overflow-y: auto;
   width: 100%;
   height: 100%;
   padding-right: 1.5em;
@@ -1604,7 +1708,8 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: scroll;
+  flex-direction: column-reverse;
+  overflow-y: auto;
   width: 100%;
   height: 100%;
   padding-top: 0em;
@@ -1932,6 +2037,7 @@
   .song-artist.banner_song_artist {
     font-size: 1rem;
     line-height: 1rem;
+    margin-bottom: .3em;
   }
 
   .discussion_link {
@@ -2267,6 +2373,7 @@
   .song-artist.banner_song_artist {
     font-size: 1.2rem;
     line-height: 1.2rem;
+    margin-bottom: .1em;
   }
 
   .discussion_link {
@@ -2275,7 +2382,7 @@
   }
 
   .discussion_link.response_banner_link {
-    margin-top: 0.75em;
+    margin-top: 0.3em;
     font-size: 0.7rem;
     line-height: 0.7rem;
   }
@@ -2294,8 +2401,16 @@
     width: 3em;
     height: 3em;
   }
+  .amplitude-play-pause.amplitude-playing {
+    width: 3em;
+    height: 3em;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
+    width: 3.5em;
+    height: 3.5em;
+  }
+  .amplitude-play-pause.amplitude-playing.response_banner_play {
     width: 3.5em;
     height: 3.5em;
   }
@@ -2343,12 +2458,12 @@
     width: 3em;
   }
 
-  .duration {
-    margin-top: 0.5em;
+  .duration, .current-time {
+    margin-top: 0.3em;
   }
 
   .duration.banner_duration {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
   }
 
   .response_banner_middle {
@@ -2570,6 +2685,7 @@
   .song-artist.banner_song_artist {
     font-size: 1rem;
     line-height: 1rem;
+    margin-bottom: .3em;
   }
 
   .time_posted {
@@ -2601,8 +2717,16 @@
     width: 4em;
     height: 4em;
   }
+  .amplitude-play-pause.amplitude-playing {
+    width: 4em;
+    height: 4em;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
+    width: 4em;
+    height: 4em;
+  }
+  .amplitude-play-pause.amplitude-playing.response_banner_play {
     width: 4em;
     height: 4em;
   }
@@ -2654,7 +2778,7 @@
     width: 3em;
   }
 
-  .duration {
+  .duration, .current-time {
     font-size: 1rem;
     line-height: 1rem;
   }
@@ -3080,6 +3204,7 @@
   .song-artist.banner_song_artist {
     font-size: 1.2rem;
     line-height: 1.2rem;
+    margin-bottom: .3em;
   }
 
   .time_posted {
@@ -3113,13 +3238,26 @@
     height: 3em;
     cursor: pointer;
   }
+  .amplitude-play-pause.amplitude-playing {
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
     width: 3.5em;
     height: 3.5em;
   }
+  .amplitude-play-pause.amplitude-playing.response_banner_play {
+    width: 3.5em;
+    height: 3.5em;
+  }
 
   .amplitude-play-pause.amplitude-paused.chat_play {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .amplitude-play-pause.amplitude-playing.chat_play {
     width: 2.5em;
     height: 2.5em;
   }
@@ -3295,14 +3433,14 @@
     align-items: center;
   }
 
-  .duration {
+  .duration, .current-time {
     font-size: 1rem;
     line-height: 1rem;
   }
 
   .duration.banner_duration {
-    font-size: 0.7rem;
-    line-height: 0.7rem;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
   }
 
   .response_banner_middle {
@@ -3841,6 +3979,7 @@
   .song-artist.banner_song_artist {
     font-size: 1.2rem;
     line-height: 1.2rem;
+    margin-bottom: .3em;
   }
 
   .discussion_link {
@@ -3862,8 +4001,16 @@
     width: 3em;
     height: 3em;
   }
+  .amplitude-play-pause.amplitude-playing {
+    width: 3em;
+    height: 3em;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_play {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .amplitude-play-pause.amplitude-playing.response_play {
     width: 2.5em;
     height: 2.5em;
   }
@@ -4010,7 +4157,7 @@
 
   .chats_block {
     display: none;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .post_discussion_block {
@@ -4018,7 +4165,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .image {
@@ -4030,7 +4177,8 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    overflow: scroll;
+    flex-direction: column-reverse;
+    overflow-y: auto;
     width: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -4133,7 +4281,7 @@
 
   .spaces_block {
     display: none;
-    overflow: scroll;
+    overflow-y: auto;
     height: 73%;
   }
 
@@ -4280,6 +4428,7 @@
   .song-artist.banner_song_artist {
     font-size: 1rem;
     line-height: 1rem;
+    margin-bottom: .3em;
   }
 
   .discussion_link {
@@ -4301,6 +4450,10 @@
     width: 2.75em;
     height: 2.75em;
   }
+  .amplitude-play-pause.amplitude-playing {
+    width: 2.75em;
+    height: 2.75em;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
     width: 2.5em;
@@ -4311,6 +4464,11 @@
     width: 2.25em;
     height: 2.25em;
   }
+  .amplitude-play-pause.amplitude-playing.response_play {
+    width: 2.25em;
+    height: 2.25em;
+  }
+  
 
   .play.play_response {
     margin-left: 0.3em;
@@ -4424,7 +4582,7 @@
   }
 
   .response_posts_block {
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .response_middle {
