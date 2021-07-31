@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Login</title>
+        <title>Add About</title>
         {% load static %}
         <meta content="Login" property="og:title">
         <meta content="Login" property="twitter:title">
@@ -62,7 +62,7 @@
         <div class="main_login_block">
             <img src="static/img/logo.png" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="login_logo">
             <div class="form-block">
-                <form id="login_form" name="login_form" class="login_form" action = "http://localhost:8000/process_login" method = "POST">
+                <form id="verification_form" name="verification_form" class="login_form" method = "POST" action = "http://localhost:8000/process_verification">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
@@ -71,13 +71,9 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                    <label for="phone_number" class="login_label">Phone Number</label>
-                    <input type="tel" class="login_text_field w-input" maxlength="256" name="phone_number" id="phone_number" required placeholder = "+16171234567">
-                    <label for="password" class="login_label">Password</label>
-                    <input type="password" class="login_text_field w-input" maxlength="256" name="password" id="password" required>
-                    <label for="confirm_password" class="login_label">Confirm Password</label>
-                    <input type="password" class="login_text_field w-input" maxlength="256" name="confirm_password" id="confirm_password" placeholder = "only if 1st time logging in">
-                    <input type="submit" value="Login" class="submit-button w-button">
+                    <label for="verification_code" class="login_label">About</label>
+                    <input type="text" class="login_text_field w-input" maxlength="6" name="verification_code" id="verification_code" required>
+                    <input type="submit" value="Verify" class="submit-button w-button">
                 </form>
             </div>
         </div>
