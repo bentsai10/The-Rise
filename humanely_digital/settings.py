@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'humanely_digital.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default' : {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME' : 'HUMANELY_DIGITAL_DB',
+        'USER' : 'postgres', 
+        'PASSWORD': secrets.POSTGRES_PW,
+        'HOST' : 'localhost',
+        'PORT' : '5432',
     }
 }
 
@@ -113,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

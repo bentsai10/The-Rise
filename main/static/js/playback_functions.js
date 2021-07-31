@@ -55,7 +55,6 @@ $(document).ready(function(){
         preload: "metadata",
         callbacks: {
             song_change: function(){
-                console.log(Amplitude.getActivePlaylistMetadata());
                 let activeID = Amplitude.getActivePlaylistMetadata().active_index;
                 let prev_item_c;
                 let item_c;
