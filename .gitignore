@@ -1,2 +1,8 @@
 main/static/audio/
 main/static/img/
+humanely_digital/secrets.py
+main/secrets.py
+db.sqlite3
+bfg.jar
+media/
+

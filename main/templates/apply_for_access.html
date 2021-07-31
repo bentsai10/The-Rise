@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Login</title>
+        <title>Apply for Access</title>
         {% load static %}
         <meta content="Login" property="og:title">
         <meta content="Login" property="twitter:title">
@@ -58,22 +58,32 @@
         </script>
         
     </head>
-    <body class="body">
-        <div class="main_login_block">
-            <img src="static/img/logo.png" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="" class="login_logo">
-            <div class="form-block">
-                <form id="register_form" name="register_form" class="login_form">
-                    <label for="first_name" class="login_label">First Name</label>
-                    <input type="text" class="login_text_field w-input" maxlength="256" name="first_name" id="first_name" required>
+    <body class="body access">
+        <div class="main_login_block access">
+            <img src="static/img/logo.png" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="login_logo">
+            <div class="access-form-block">
+                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "http://localhost:8000/process_apply" method = "POST">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <ul class = "error_list">
+                        {% for message in messages %}
+                        <li class = "error_item">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <label for="first_name" class="login_label" >First Name</label>
+                    <input type="text" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="first_name" id="first_name" required >
                     <label for="last_name" class="login_label">Last Name</label>
-                    <input type="text" class="login_text_field w-input" maxlength="256" name="last_name" id="last_name" required>
-                    <label for="email" class="login_label">Email</label>
-                    <input type="email" class="login_text_field w-input" maxlength="256" name="email" id="email" required>
-                    <label for="phone_number" class="login_label">Phone Number</label>
-                    <input type="tel" class="login_text_field w-input" maxlength="256" name="phone_number" id="phone_number" required>
-                    <label for="password" class="login_label">Master Password</label>
-                    <input type="password" class="login_text_field w-input" maxlength="256" name="password" id="password" required>
-                    <input type="submit" value="Register" class="submit-button w-button">
+                    <input type="text" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="last_name" id="last_name" required>
+                    <label for="email" class="login_label">University Email</label>
+                    <input type="email" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="email" id="email">
+                    <label for="phone_number" class="login_label">Phone Number (for 2-step verification)</label>
+                    <input type="tel" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="phone_number" id="phone_number" placeholder = "+16171234567" required>
+                    <label for="essay" class="login_label">How will this space be of value to you and how will you be of value to it?</label>
+                    <textarea name="essay" required autocomplete = "off"></textarea>
+                    <label for="referral" class="login_label w-textarea">Who referred you?</label>
+                    <input type="text" autocomplete = "off"class="login_text_field w-input" maxlength="256" name="referral" id="referral" required>
+                    <input type="submit" value="Apply" class="submit-button w-button">
                 </form>
             </div>
         </div>

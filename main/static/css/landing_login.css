@@ -35,6 +35,10 @@ body {
   -ms-flex-align: center;
   align-items: center;
   background-color: #3425e9;
+  padding: 1em;
+}
+.body.access{
+    height:auto;
 }
 
 .utility-page-wrap {
@@ -92,7 +96,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: auto;
   padding-top: 0em;
   padding-bottom: 0em;
   -webkit-box-orient: horizontal;
@@ -426,9 +430,47 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
+.main_login_block.access{
+    height: auto;
+}
 
 .form-block {
   width: 25em;
+}
+
+input::-webkit-input-placeholder {
+    color: black; 
+    opacity: 0.5; 
+}
+
+.access-form-block {
+    width: 40em;
+}
+
+textarea{
+    width: 100%;
+    border-radius: 20px;
+    height: 8em;
+    margin-bottom: 1em;
+    font-family: 'Gothic A1', sans-serif;
+    color: #3425e9;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: 300;
+    padding: .5em;
+}
+
+.error_list{
+    list-style-type: circle; 
+    margin-left: -20px;
+}
+
+.error_item{
+    color: #90FCF9; 
+    font-size: 1rem; 
+    font-weight: 1.5rem;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
 }
 
 @media screen and (min-width: 1280px) {
@@ -521,6 +563,9 @@ body {
 
   .form-block {
     width: 25em;
+  }
+  .access-form-block {
+    width: 40em;
   }
 }
 
@@ -805,6 +850,9 @@ body {
   .form-block {
     width: 25em;
   }
+  .access-form-block {
+    width: 40em;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -893,6 +941,9 @@ body {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+  .access-form-block {
+    width: 30em;
   }
 }
 
@@ -1160,7 +1211,7 @@ body {
     width: 15em;
   }
 
-  .form-block {
+  .form-block, .access-form-block {
     width: 20em;
   }
 }
