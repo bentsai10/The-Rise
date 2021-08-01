@@ -5,6 +5,9 @@ import phonenumbers, bcrypt
 
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
 def home(request):
     if not 'logged_user' in request.session:
         return redirect('/login')
