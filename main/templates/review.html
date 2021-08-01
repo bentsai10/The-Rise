@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Apply for Access</title>
+        <title>Review Applications</title>
         {% load static %}
         <meta content="Login" property="og:title">
         <meta content="Login" property="twitter:title">
@@ -61,8 +61,10 @@
     <body class="body access">
         <div class="main_login_block access">
             <img src="static/img/logo.png" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="login_logo">
+            {% if applicant %}
             <div class="access-form-block">
-                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "http://localhost:8000/process_apply" method = "POST">
+                <h1 class = "applicant_name">{{applicant.first_name}} {{applicant.last_name}}</h1>
+                <form autocomplete = "off" id="review_form" name="review_form" class="access_form" action = "http://localhost:8000/process_approve" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
@@ -71,21 +73,30 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                    <label for="first_name" class="login_label" >First Name</label>
-                    <input type="text" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="first_name" id="first_name" required >
-                    <label for="last_name" class="login_label">Last Name</label>
-                    <input type="text" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="last_name" id="last_name" required>
-                    <label for="email" class="login_label">University Email</label>
-                    <input type="email" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="email" id="email" required>
-                    <label for="phone_number" class="login_label">Phone Number (for 2-step verification)</label>
-                    <input type="tel" autocomplete = "off" class="login_text_field w-input" maxlength="256" name="phone_number" id="phone_number" placeholder = "+16171234567" required>
+                    <input type="hidden" name="id" value = "{{applicant.id}}">
                     <label for="essay" class="login_label">How will this space be of value to you and how will you be of value to it?</label>
-                    <textarea name="essay" required autocomplete = "off"></textarea>
+                    <textarea name="essay" autocomplete = "off" readonly>{{applicant.essay}}</textarea>
                     <label for="referral" class="login_label w-textarea">Who referred you?</label>
-                    <input type="text" autocomplete = "off"class="login_text_field w-input" maxlength="256" name="referral" id="referral" required>
-                    <input type="submit" value="Apply" class="submit-button w-button">
+                    <input type="text" autocomplete = "off"class="login_text_field w-input" maxlength="256" name="referral" id="referral" value = "{{applicant.referral}}" readonly>
+                    <input type="submit" value="Accept" class="submit-button w-button">
                 </form>
             </div>
+            <div class = "review_button_block">
+                <div class = "review_button_left">
+                    {% if previous_user %}
+                    <a href="http://localhost:8000/review/{{previous_user.id}}" class = "submit-button w-button previous-btn">Previous</a>
+                    {% endif %}
+                </div>
+                <div class = "review_button_right">
+                    {% if next_user %}
+                    <a href="http://localhost:8000/review/{{next_user.id}}" class = "submit-button w-button next-btn">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+                <h1 class = "applicant_name">No applications to review</h1>
+            {% endif %}
+
         </div>
         <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>

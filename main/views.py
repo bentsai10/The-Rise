@@ -128,3 +128,55 @@ def logout(request):
         del request.session['logged_last_name']
         
     return redirect('/login')
+
+def review_redir(request):
+    #prevent access to those not logged in or don't have permission
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    if User.objects.get(id = request.session['logged_user']).permissions < 1:
+        return redirect('home')
+    #generic link, so get the latest unapproved application from users
+    if User.objects.filter(status = False).all().count() > 0:
+        min = User.objects.filter(status = False).all().first().id
+        return redirect('/review/{}'.format(min))
+    # accounts for case no applications left
+    else:
+        context = {
+            'empty': True
+        }
+        return render(request, 'review.html', context)
+
+def review(request, num):
+    #prevent access to those not logged in or don't have permission
+    if 'logged_user' not in request.session: 
+        return redirect('/login')
+    if User.objects.get(id = request.session['logged_user']).permissions < 1:
+        return redirect('home')
+        
+    #if user id doesn't exist or already been approved, redirect
+    if User.objects.filter(id = num).all().count() < 1:
+        return redirect('/review')
+    
+    user = User.objects.get(id = num)
+    if user.status == True:
+        return redirect('/review')
+    
+    context = {
+        'applicant': user
+    }
+    greater_than = User.objects.filter(status = False, id__gt = user.id).all()
+    less_than = User.objects.filter(status = False, id__lt = user.id).all()
+    if greater_than.count() > 0:
+        context['next_user'] = greater_than.first()
+    if less_than.count() > 0:
+        context['previous_user'] = less_than.last()
+    return render(request, 'review.html', context)
+
+def process_approve(request):
+    if request.method == 'GET':
+        return redirect('/review')
+    id = request.POST['id']
+    user = User.objects.get(id = id)
+    user.status = True
+    user.save()
+    return redirect('/review')

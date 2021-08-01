@@ -507,6 +507,34 @@ textarea{
     font-weight: 300;
 }
 
+.applicant_name{
+    color: #90FCF9; 
+    font-size: 2rem; 
+    font-weight: 2.5rem;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
+}
+
+.review_button_block{
+    margin-top:10em;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.review_button_left, .review_button_right{
+    width: 50%;
+    display: flex;
+}
+
+.review_button_right{
+    justify-content: flex-end;
+}
+
+.review_button_left{
+    justify-content: flex-start;
+}
+
 @media screen and (min-width: 1280px) {
   .main_block {
     height: 92%;
@@ -743,6 +771,9 @@ textarea{
   .email_block {
     margin-bottom: 2em;
   }
+  .review_button_block{
+    width: 40%;
+    }
 }
 
 @media screen and (max-width: 991px) {

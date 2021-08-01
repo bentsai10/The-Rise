@@ -12,5 +12,9 @@ urlpatterns = [
     path('process_verification', views.process_verification),
     path('add_about', views.add_about),
     path('process_edit_profile', views.process_edit_profile),
-    path('logout', views.logout)
+    path('logout', views.logout), 
+    path('review', views.review_redir),
+    path('review/<int:num>', views.review),
+    path('process_approve', views.process_approve)
+
 ]
