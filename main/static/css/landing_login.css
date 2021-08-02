@@ -651,9 +651,48 @@ textarea{
   .form-block {
     width: 25em;
   }
+
   .access-form-block {
     width: 40em;
   }
+
+  #profile_picture_field{
+      display:flex;
+      flex-direction: column;
+      margin-bottom: 2em;
+      height: auto;
+      width: 100%;
+  }
+
+  #profile_pic_block{
+      display: flex;
+      justify-content: center;
+      height: auto;
+      width: 100%;
+  }
+
+  #profile_pic_preview{
+      border-radius: 50%;
+      border: 2px solid white;
+      width: 50%;
+      margin-bottom: 1em;
+  }
+
+  #file{
+      display:none;
+  }
+
+  #title{
+    width: 100%;
+    color: #3425e9;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    margin-bottom: 1em;
+    border-radius: 20px;
+    height: auto;
+    padding: .5em;
+  }
+
 }
 
 @media screen and (min-width: 1920px) {

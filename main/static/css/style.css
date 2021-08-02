@@ -90,8 +90,8 @@
 
     .profile_thumbnail {
     width: 2.5em;
-    height: auto;
-    max-width: none;
+    height: 2.5em;
+    cursor: pointer;
     margin-right: 1vw;
     border: 1px solid #fff;
     border-radius: 50px;
@@ -477,7 +477,7 @@ progress{
                 display: -webkit-flex;
                 display: -ms-flexbox;
                 display: flex;
-                height: 100%;
+                height: 60%;
                 padding: 0vw 1em 0.5em;
                 -webkit-box-pack: justify;
                 -webkit-justify-content: space-between;
@@ -1318,6 +1318,7 @@ progress{
 
 .profile_pic {
   width: 12em;
+  height: 12em;
   margin-bottom: 1em;
   border-style: solid;
   border-width: 2px;
@@ -1333,6 +1334,22 @@ progress{
   font-size: 2.5rem;
   line-height: 2.5rem;
   font-weight: 400;
+}
+
+.edit-profile-button {
+    margin-top: 0.3em;
+    padding: 0.3em 1em;
+    float: right;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px 0 #707070;
+    font-family: 'Gothic A1', sans-serif;
+    color: #3425e9;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 300;
+    text-align: center;
+    cursor: pointer;
 }
 
 .heading {
@@ -1489,7 +1506,7 @@ progress{
 .network_profile_image {
   width: 5em;
   margin-right: 1em;
-  border-top: 2px solid #3425e9;
+  border: 2px solid #3425e9;
   border-radius: 50%;
   opacity: 1;
 }
@@ -2198,6 +2215,7 @@ progress{
 
   .profile_thumbnail {
     width: 4em;
+    height: 4em;
   }
 
   .network_heading {
@@ -2568,9 +2586,6 @@ progress{
     color: #fff;
   }
 
-  .profile_thumbnail {
-    max-width: none;
-  }
 
   .responses_block {
     display: -webkit-box;
@@ -2867,7 +2882,7 @@ progress{
 
   .profile_thumbnail {
     width: 2.75em;
-    cursor: pointer;
+    height: 2.75em;
   }
 
   .network_block {
@@ -4224,6 +4239,10 @@ progress{
     padding-left: 1em;
     background-color: #fff;
   }
+  .edit-profile-button {
+    font-size: .8rem;
+    line-height: 1.5rem;
+   }
 }
 
 @media screen and (max-width: 479px) {
@@ -4239,6 +4258,7 @@ progress{
 
   .profile_thumbnail {
     width: 2.25em;
+    height: 2.25em;
   }
 
   .network_block {
@@ -4707,6 +4727,10 @@ progress{
     align-items: center;
     background-color: #fff;
   }
+  .edit-profile-button {
+    font-size: .8rem;
+    line-height: 1.5rem;
+   }
 }
 
 /* Mulish font stuff */

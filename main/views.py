@@ -69,8 +69,7 @@ def process_verification(request):
             request.session['logged_first_name'] = user.first_name
             request.session['logged_last_name'] = user.last_name
             if 'first' in request.session:
-                del request.session['first']
-                return redirect('/about')
+                return redirect('/edit_profile')
             else:
                 return redirect('/home')
 
@@ -115,11 +114,67 @@ def process_login(request):
             return redirect('/verification')          
 
 
-def add_about(request):
-    return render(request, 'add_about.html')
+def edit_profile(request):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    context = {
+        'user': User.objects.get(id = request.session['logged_user'])
+    }
+    return render(request, 'edit_profile.html', context)
 
 def process_edit_profile(request):
-    pass
+    if request.method == 'GET':
+        return redirect('/edit_profile')
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    else:
+        errors = User.objects.edit_profile_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/edit_profile')
+        else:
+            user = User.objects.get(id = request.session['logged_user'])
+            if request.POST['year']:
+                user.year = request.POST['year'].strip()
+            else:
+                user.year = ""
+
+            if request.POST['department1']:
+                department1 = ""
+                department1_raw = request.POST['department1'].strip().split(' ')
+                for i in range(len(department1_raw)):
+                    department1 += department1_raw[i][0].upper() + department1_raw[i][1:].lower()
+                    if i != len(department1_raw) - 1:
+                        department1 += " "
+                user.department1 = department1
+
+            if request.POST['department2']:
+                department2 = ""
+                department2_raw = request.POST['department2'].strip().split(' ')
+                for i in range(len(department2_raw)):
+                    department2 += department2_raw[i][0].upper() + department2_raw[i][1:].lower()
+                    if i != len(department2_raw) - 1:
+                        department2 += " "
+                user.department2 = department2
+
+            if request.POST['department2'] and not request.POST['department1']:
+                user.department1 = user.department2
+                user.department2 = ""
+
+            if 'title' in request.POST:
+                title = request.POST['title'].strip()
+                title = title[0].upper() + title[1:].lower()
+                user.title = title
+                
+            if len(request.FILES) > 0:
+                user = User.objects.get(id = request.session['logged_user'])
+                user.profile_picture = request.FILES.getlist('profile_picture')[0]
+            print(len(request.FILES))
+            user.save()
+            if 'first' in request.session:
+                return redirect('/home')
+            return redirect('/my_profile')
 
 def logout(request):
     if 'logged_user' in request.session:
@@ -180,3 +235,23 @@ def process_approve(request):
     user.status = True
     user.save()
     return redirect('/review')
+
+def profile(request, num):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    if User.objects.filter(id = num).all().count() < 1:
+        return redirect('/home')
+    if num == request.session['logged_user']:
+        return redirect('/my_profile')
+    context = {
+        'user': User.objects.get(id = num)
+    }
+    return render(request, 'profile.html', context)
+
+def my_profile(request):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    context = {
+        'user': User.objects.get(id = request.session['logged_user'])
+    }
+    return render(request, 'profile.html', context)

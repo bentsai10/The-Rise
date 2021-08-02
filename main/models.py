@@ -51,6 +51,7 @@ class UserManager(models.Manager):
             errors['email'] = ("Please register with your school/work email! Check our platform availability for your school/company at humanelydigital.com")
             return errors
         return errors
+
     def apply_validator(self, postData):
         errors = {}
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -82,6 +83,23 @@ class UserManager(models.Manager):
             errors['referral'] = "Please let us know what brought you here (2+ characters)"
         return errors
 
+    def edit_profile_validator(self, postData):
+        errors = {}
+        valid_titles = ['student', 'professor', 'alumni', 'faculty', 'other']
+        if postData['year']:
+            if len(postData['year'].strip()) != 4:
+                errors['year'] = "Invalid class year"
+        if postData['department1']:
+            if len(postData['department1'].strip()) < 3:
+                errors['department1'] = "Department name must be at least 3 characters"
+        if postData['department2']:
+            if len(postData['department2'].strip()) < 3:
+                errors['department1'] = "Department names must be at least 3 characters"
+        if 'title' in postData:
+            if postData['title'].strip().lower() not in valid_titles:
+                errors['title'] = "Not a valid title. Please email us at humanelydigital@gmail.com if you'd like a personalized title"
+        return errors
+
 class User(models.Model):
     class Meta:
         db_table = 'users'
@@ -93,7 +111,7 @@ class User(models.Model):
     essay = models.TextField() #response to application question
     referral = models.CharField(max_length = 255) #track referral person
     password = models.CharField(max_length = 255, blank = True)
-    year = models.CharField(max_length = 255, blank = True) #e.g. senior
+    year = models.CharField(max_length = 4, blank = True) #e.g. 2022
     department1 = models.CharField(max_length = 255, blank = True) #e.g. computer science
     department2 = models.CharField(max_length = 255, blank = True) #e.g. finance
     title = models.CharField(max_length = 255, blank = True) #e.g. Student, Account Executive, etc.
