@@ -17,5 +17,5 @@ urlpatterns = [
     path('review/<int:num>', views.review),
     path('process_approve', views.process_approve),
     path('my_profile', views.my_profile), 
-    path('profile/<int:num>', views.profile)
+    path('profile_<int:num>', views.profile)
 ]

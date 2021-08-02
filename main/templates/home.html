@@ -62,7 +62,7 @@
         <div class="nav">
             <a href="http://localhost:8000/logout" class="link">Humanely Digital</a>
             <a href="http://localhost:8000/my_profile" class="profile_banner_link_block w-inline-block">
-                <img src="static/img/profile_placehold.png" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
+                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
                 <h1 class="profile_banner">Ben Tsai</h1>
             </a>
         </div>
@@ -81,7 +81,7 @@
                     <div data-w-id="9d16b2c2-3987-fd64-8985-b6f2593045d3" class="search_space_block w-form">
                         <form id="email-form-3" name="email-form-3" data-name="Email Form 3" class="search_form">
                             <input type="text" class="search_text_field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="Search" id="name-3">
-                            <img src="static/img/blue_plus.svg" loading="lazy" data-w-id="77552425-143d-95e3-5d10-f1450f000108" alt="blue plus symbol icon" class="sidebar sidebar_close_small">
+                            <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" data-w-id="77552425-143d-95e3-5d10-f1450f000108" alt="blue plus symbol icon" class="sidebar sidebar_close_small">
                         </form>
                         <div class="w-form-done">
                             <div>Thank you! Your submission has been received!</div>
@@ -94,15 +94,15 @@
                         <div class="main_banner_block_left w-clearfix">
                             <h2 class="space_header">Startups</h2>
                             <a href="http://localhost:8000/#" class="favorite_button w-inline-block">
-                                <img src="static/img/star.svg" loading="lazy" width="22" alt="star icon" class="star">
+                                <img src="{% static 'img/star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
                             </a>
                         </div>
                     </div>
                     <div data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0383" class="main_banner_block response_banner player w-clearfix">
                         <a href="http://localhost:8000/#" class="back_arrow_link_block w-inline-block">
-                            <img src="static/img/arrow.svg" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
+                            <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
                         </a>
-                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_banner">
+                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_banner">
                         <div class="response_banner_middle">
                             <h1 class="song-title banner_song_title">The Social Dilemma</h1>
                             <h2 class="song-artist banner_song_artist">Ben Tsai</h2>
@@ -116,8 +116,8 @@
                         <div class="reponse_banner_right w-clearfix">
                             <h4 class="time_posted">6m</h4>
                             <div class="amplitude-play-pause amplitude-paused response_banner_play" data-amplitude-song-index="0" data-amplitude-playlist="1">
-                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play banner_play play-0">
-                                <img src="static/img/blue_pause.svg" loading="lazy" width="15" alt="blue pause button" class="pause banner_pause pause-0" style = "display:none;">
+                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play banner_play play-0">
+                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause banner_pause pause-0" style = "display:none;">
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                             <div class="discussion_post">
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                         <div class="discussion_top_middle">
                                             <h2 class="song-artist">Ben Tsai</h2>
                                             <progress class="amplitude-song-played-progress progress-0" data-amplitude-song-index="0" data-amplitude-playlist="1"></progress>
@@ -177,8 +177,8 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h4 class="time_posted">6m</h4>
                                             <div class=" amplitude-play-pause"  data-amplitude-song-index="0" data-amplitude-playlist="1">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play play-0">
-                                                <img src="static/img/blue_pause.svg" loading="lazy" width="15" alt="blue pause button" class="pause pause-0" style = "display:none;">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-0">
+                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-0" style = "display:none;">
                                             </div>
                                         </div>
                                     </div>
@@ -190,17 +190,17 @@
                                 <div class="discussion_buttons">
                                     <div class="participant_cap">
                                         <h2 class="cap_heading">8/10</h2>
-                                        <img src="static/img/filled_person.svg" loading="lazy" width="11" alt="blue person icon" class="person">
+                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
                                     <a href="http://localhost:8000/#" class="bookmark_link_block w-inline-block">
-                                        <img src="static/img/empty_bookmark.svg" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                     </a>
                                 </div>
                             </div>
                             <div class="discussion_post">
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                         <div class="discussion_top_middle">
                                             <h2 class="song-artist">Ben Tsai</h2>
                                             <progress class="amplitude-song-played-progress progress-5" data-amplitude-song-index="5" data-amplitude-playlist="1"></progress>
@@ -212,8 +212,8 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h4 class="time_posted">6m</h4>
                                             <div class="amplitude-play-pause"  data-amplitude-song-index="5" data-amplitude-playlist="1">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play play-5">
-                                                <img src="static/img/blue_pause.svg" loading="lazy" width="15" alt="blue pause button" class="pause pause-5" style = "display:none;">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-5">
+                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-5" style = "display:none;">
                                             </div>
                                         </div>
                                     </div>
@@ -225,17 +225,17 @@
                                 <div class="discussion_buttons">
                                     <div class="participant_cap">
                                         <h2 class="cap_heading">8/10</h2>
-                                        <img src="static/img/filled_person.svg" loading="lazy" width="11" alt="blue person icon" class="person">
+                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
                                     <a href="http://localhost:8000/#" class="bookmark_link_block w-inline-block">
-                                        <img src="static/img/empty_bookmark.svg" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                     </a>
                                 </div>
                             </div>
                             <div class="discussion_post">
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                         <div class="discussion_top_middle">
                                             <h2 class="song-artist">Ben Tsai</h2>
                                             <progress class="amplitude-song-played-progress progress-6" data-amplitude-song-index="6" data-amplitude-playlist="1"></progress>
@@ -247,8 +247,8 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h4 class="time_posted">6m</h4>
                                             <div class="amplitude-play-pause"  data-amplitude-song-index="6" data-amplitude-playlist="1">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play play-6">
-                                                <img src="static/img/blue_pause.svg" loading="lazy" width="15" alt="blue pause button" class="pause pause-6" style = "display:none;">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-6">
+                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-6" style = "display:none;">
                                             </div>
                                         </div>
                                     </div>
@@ -260,26 +260,26 @@
                                 <div class="discussion_buttons">
                                     <div class="participant_cap">
                                         <h2 class="cap_heading">8/10</h2>
-                                        <img src="static/img/filled_person.svg" loading="lazy" width="11" alt="blue person icon" class="person">
+                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
                                     <a href="http://localhost:8000/#" class="bookmark_link_block w-inline-block">
-                                        <img src="static/img/empty_bookmark.svg" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <a data-w-id="f246c375-2497-eba0-dd5e-a066414a2e85" href="http://localhost:8000/#" class="plus_discussion_button w-inline-block">
-                            <img src="static/img/cyan_plus.svg" loading="lazy" alt="cyan plus icon" class="plus">
+                            <img src="{% static 'img/cyan_plus.svg' %}" loading="lazy" alt="cyan plus icon" class="plus">
                         </a>
                         <a data-w-id="050b5eb0-d993-264e-acb1-226d4e466683" href="http://localhost:8000/#" class="plus_discussion_button small w-inline-block">
-                            <img src="static/img/cyan_plus.svg" loading="lazy" alt="cyan plus icon" class="plus">
+                            <img src="{% static 'img/cyan_plus.svg' %}" loading="lazy" alt="cyan plus icon" class="plus">
                         </a>
                     </div>
                     <div data-w-id="b189bfc2-387a-5bd3-bc41-add55944b24a" class="responses_block">
                         <div class="response_posts_block">
                             <div class="response_post">
                                 <div class="response">
-                                    <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                     <div class="response_middle">
                                         <h3 class="song-artist response_text">Ben Tsai</h3>
                                         <progress class="amplitude-song-played-progress response_progress progress-1" data-amplitude-song-index="1" data-amplitude-playlist="1" ></progress>
@@ -291,18 +291,18 @@
                                     <div class="reponse_banner_right w-clearfix">
                                         <h5 class="time_posted response_text">6m</h5>
                                         <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="1" data-amplitude-playlist="1">
-                                            <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play play_response play-1">
-                                            <img src="static/img/cyan_pause.svg" loading="lazy" width="15" alt="cyan pause button" class="pause pause-1" style = "display:none;">
+                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-1">
+                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-1" style = "display:none;">
                                         </div>
                                     </div>
                                 </div>
                                 <a href="http://localhost:8000/#" class="group_button w-inline-block">
-                                    <img src="static/img/empty_person.svg" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
+                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
                             <div class="response_post">
                                 <div class="response">
-                                    <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                     <div class="response_middle">
                                         <h3 class="song-artist response_text">Ben Tsai</h3>
                                         <progress class="amplitude-song-played-progress response_progress progress-2" data-amplitude-song-index="2" data-amplitude-playlist="1"></progress>
@@ -314,18 +314,18 @@
                                     <div class="reponse_banner_right w-clearfix">
                                         <h5 class="time_posted response_text">6m</h5>
                                         <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="2" data-amplitude-playlist="1">
-                                            <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play play_response play-2">
-                                            <img src="static/img/cyan_pause.svg" loading="lazy" width="15" alt="cyan pause button" class="pause pause-2" style = "display:none;">
+                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-2">
+                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-2" style = "display:none;">
                                         </div>
                                     </div>
                                 </div>
                                 <a href="http://localhost:8000/#" class="group_button w-inline-block">
-                                    <img src="static/img/empty_person.svg" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
+                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
                             <div class="response_post">
                                 <div class="response">
-                                    <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                     <div class="response_middle">
                                         <h3 class="song-artist response_text">Ben Tsai</h3>
                                         <progress class="amplitude-song-played-progress response_progress progress-3" data-amplitude-song-index="3" data-amplitude-playlist="1"></progress>
@@ -337,18 +337,18 @@
                                     <div class="reponse_banner_right w-clearfix">
                                         <h5 class="time_posted response_text">6m</h5>
                                         <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="3" data-amplitude-playlist="1">
-                                            <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play play_response play-3">
-                                            <img src="static/img/cyan_pause.svg" loading="lazy" width="15" alt="cyan pause button" class="pause pause-3" style = "display:none;">
+                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-3">
+                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-3" style = "display:none;">
                                         </div>
                                     </div>
                                 </div>
                                 <a href="http://localhost:8000/#" class="group_button w-inline-block">
-                                    <img src="static/img/empty_person.svg" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
+                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
                             <div class="response_post">
                                 <div class="response">
-                                    <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
                                     <div class="response_middle">
                                         <h3 class="song-artist response_text">Ben Tsai</h3>
                                         <progress class="amplitude-song-played-progress response_progress progress-4" data-amplitude-song-index="4" data-amplitude-playlist="1"></progress>
@@ -360,21 +360,21 @@
                                     <div class="reponse_banner_right w-clearfix">
                                         <h5 class="time_posted response_text">6m</h5>
                                         <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="4" data-amplitude-playlist="1">
-                                            <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play play_response play-4">
-                                            <img src="static/img/cyan_pause.svg" loading="lazy" width="15" alt="cyan pause button" class="pause pause-4" style = "display:none;">
+                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-4">
+                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-4" style = "display:none;">
                                         </div>
                                     </div>
                                 </div>
                                 <a href="http://localhost:8000/#" class="group_button w-inline-block">
-                                    <img src="static/img/empty_person.svg" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
+                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
                         </div>
                         <a data-w-id="40b1f191-81fa-9a7d-248e-3f1edf9fac6e" href="http://localhost:8000/#" class="plus_response_button w-inline-block">
-                            <img src="static/img/blue_plus.svg" loading="lazy" alt="blue plus symbol icon" class="plus">
+                            <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
                         <a data-w-id="5ca1c486-45c2-3b7c-a48c-dfa9976605a5" href="http://localhost:8000/#" class="plus_response_button small w-inline-block">
-                            <img src="static/img/blue_plus.svg" loading="lazy" alt="blue plus symbol icon" class="plus">
+                            <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
                     </div>
                     <div data-w-id="d92ad075-ab3e-254a-0e3c-973a7a5405d2" class="discussion_form_block">
@@ -388,13 +388,13 @@
                                 </div>
                                 <label for="email" class="discussion_form_label">Supporting Link</label>
                                 <div class="input_block">
-                                    <img src="static/img/link.svg" loading="lazy" alt="blue link icon" class="image">
+                                    <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
                                     <div class="recording_input"></div>
                                 </div>
                                 <label for="email" class="discussion_form_label">Voice Recording</label>
                                 <div class="input_block">
                                     <a href="http://localhost:8000/#" class="microphone_block discussion_form_mic_button w-inline-block">
-                                        <img src="static/img/mic.svg" loading="lazy" width="37" alt="white microphone icon" class="mic">
+                                        <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
                                     </a>
                                     <div class="recording_input"></div>
                                 </div>
@@ -440,10 +440,10 @@
                             <h2 class="chat_heading chat_heading_selected">Kant Fans</h2>
                             <h3 class="shared_discussion_header shared_discussion_header_selected">Shared Discussion:<br>Young Adults' Favorite Philosopher</h3>
                             <div class="participants_block">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
                             </div>
                         </div>
                         <div class="chat w-clearfix">
@@ -451,10 +451,10 @@
                             <h2 class="chat_heading">Kant Fans</h2>
                             <h3 class="shared_discussion_header">Shared Discussion:<br>Young Adults' Favorite Philosopher</h3>
                             <div class="participants_block">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
                             </div>
                         </div>
                         <div class="chat w-clearfix">
@@ -462,10 +462,10 @@
                             <h2 class="chat_heading">Kant Fans</h2>
                             <h3 class="shared_discussion_header">Shared Discussion:<br>Young Adults' Favorite Philosopher</h3>
                             <div class="participants_block">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
                             </div>
                         </div>
                         <div class="chat w-clearfix">
@@ -473,10 +473,10 @@
                             <h2 class="chat_heading">Kant Fans</h2>
                             <h3 class="shared_discussion_header">Shared Discussion:<br>Young Adults' Favorite Philosopher</h3>
                             <div class="participants_block">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
                             </div>
                         </div>
                         <div class="chat w-clearfix">
@@ -484,10 +484,10 @@
                             <h2 class="chat_heading">Kant Fans</h2>
                             <h3 class="shared_discussion_header">Shared Discussion:<br>Young Adults' Favorite Philosopher</h3>
                             <div class="participants_block">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
-                                <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="album_art participant_pic">
                             </div>
                         </div>
                     </div>
@@ -496,7 +496,7 @@
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist response_text">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -505,7 +505,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted response_text">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused response_play chat_play">
-                                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play">
+                                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -514,7 +514,7 @@
                             <div class="chat_message sent_message">
                                 <div class="sent_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress"></div>
@@ -523,7 +523,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused chat_play">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -532,7 +532,7 @@
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist response_text">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -541,7 +541,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted response_text">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused response_play chat_play">
-                                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play">
+                                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -550,7 +550,7 @@
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist response_text">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -559,7 +559,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted response_text">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused response_play chat_play">
-                                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play">
+                                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -571,7 +571,7 @@
                             <div class="chat_message sent_message">
                                 <div class="sent_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress"></div>
@@ -580,7 +580,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused chat_play">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -592,7 +592,7 @@
                             <div class="chat_message sent_message">
                                 <div class="sent_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress"></div>
@@ -601,7 +601,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused chat_play">
-                                                <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -610,7 +610,7 @@
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist response_text">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -619,7 +619,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted response_text">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused response_play chat_play">
-                                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play">
+                                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -628,7 +628,7 @@
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
                                     <div class="discussion_top">
-                                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
+                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art chat_album_art">
                                         <div class="discussion_top_middle chat">
                                             <h4 class="song-artist response_text">Ben Tsai</h4>
                                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -637,7 +637,7 @@
                                         <div class="discussion_top_right w-clearfix">
                                             <h6 class="time_posted response_text">6m</h6>
                                             <div class="amplitude-play-pause amplitude-paused response_play chat_play">
-                                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play">
+                                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play">
                                             </div>
                                         </div>
                                     </div>
@@ -645,7 +645,7 @@
                             </div>
                         </div>
                         <a href="http://localhost:8000/#" class="microphone_block w-inline-block">
-                            <img src="static/img/mic.svg" loading="lazy" alt="white microphone icon" class="mic">
+                            <img src="{% static 'img/mic.svg' %}" loading="lazy" alt="white microphone icon" class="mic">
                         </a>
                     </div>
                 </div>

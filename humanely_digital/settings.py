@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -74,13 +76,6 @@ WSGI_APPLICATION = 'humanely_digital.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default' : {
@@ -130,7 +125,19 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
+
+#S3 buckets config
+
+AWS_ACCESS_KEY_ID = secrets.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = secrets.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = 'humanely-test-bucket-1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+STATIC_URL = '/https://humanely-test-bucket-1.s3.amazonaws.com/static/'
+DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
+STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'

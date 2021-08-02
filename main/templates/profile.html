@@ -56,7 +56,11 @@
         <div class="nav">
             <a href="http://localhost:8000/home" class="link">Humanely Digital</a>
             <a href="#" class="profile_banner_link_block w-inline-block">
-                <img src="static/img/profile_placehold.png" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
+                {% if user.profile_picture %}
+                <img src="{{user.profile_picture.url}}" loading="lazy" alt="profile picture" class="profile_thumbnail">
+                {% else %}
+                <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" alt="placeholder profile picture" class="profile_thumbnail">
+                {% endif %}
                 <h1 class="profile_banner">Ben Tsai</h1>
             </a>
         </div>
@@ -70,7 +74,7 @@
             {% if user.profile_picture %}
             <img src="{{user.profile_picture.url}}" loading="lazy" alt="profile picture" class="profile_pic">
             {% else %}
-            <img src="static/img/linkedin_icon.png" loading="lazy" alt="placeholder profile picture" class="profile_pic">
+            <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" alt="placeholder profile picture" class="profile_pic">
             {% endif %}
             <h1 class="profile_name">{{user.first_name}} {{user.last_name}}</h1>
             {% if user.permissions == 1 %}
@@ -87,7 +91,7 @@
                 <h1 class="activity_header">Listening to</h1>
                 <div class="listening_to_block">
                     <div class="response response_profile">
-                        <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_profile">
+                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_profile">
                         <div class="response_middle">
                             <h2 class="song-artist response_text profile_song_artist">Ben Tsai</h2>
                             <div class="amplitude-song-played-progress response_progress"></div>
@@ -96,7 +100,7 @@
                         <div class="reponse_banner_right w-clearfix">
                             <h4 class="time_posted response_text">6m</h4>
                             <div class="amplitude-play-pause amplitude-paused response_play">
-                                <img src="static/img/cyan_play.svg" loading="lazy" width="15" alt="cyan play button" class="play play_response">
+                                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response">
                             </div>
                         </div>
                     </div>
@@ -109,7 +113,7 @@
                     <div class="discussion_post">
                         <div class="discussion">
                             <div class="discussion_top">
-                                <img src="static/img/profile_placehold.png" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_profile">
+                                <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_profile">
                                 <div class="discussion_top_middle">
                                     <h2 class="song-artist banner_song_artist">Ben Tsai</h2>
                                     <div class="amplitude-song-played-progress"></div>
@@ -118,7 +122,7 @@
                                 <div class="discussion_top_right w-clearfix">
                                     <h4 class="time_posted">6m</h4>
                                     <div class="amplitude-play-pause amplitude-paused">
-                                        <img src="static/img/blue_play.svg" loading="lazy" width="15" alt="blue play button" class="play">
+                                        <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play">
                                     </div>
                                 </div>
                             </div>
@@ -130,10 +134,10 @@
                         <div class="discussion_buttons">
                             <div class="participant_cap">
                                 <h2 class="cap_heading">8/10</h2>
-                                <img src="static/img/filled_person.svg" loading="lazy" width="11" alt="blue person icon" class="person">
+                                <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                             </div>
                             <a href="http://localhost:8000/" class="bookmark_link_block w-inline-block">
-                                <img src="static/img/empty_bookmark.svg" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                             </a>
                         </div>
                     </div>
@@ -143,15 +147,15 @@
                 <h1 class="activity_header">Networking with</h1>
                 <div class="networking_with_block">
                     <a href="http://localhost:8000/" class="network_profile w-inline-block">
-                        <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
+                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Ben Tsai</h1>
                     </a>
                     <a href="http://localhost:8000/" class="network_profile w-inline-block">
-                        <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
+                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Storm Sunderland</h1>
                     </a>
                     <a href="http://localhost:8000/" class="network_profile w-inline-block">
-                        <img src="static/img/profile_placehold.png" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
+                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Eve Blossom</h1>
                     </a>
                 </div>

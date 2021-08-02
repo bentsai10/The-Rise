@@ -480,6 +480,13 @@ input::-webkit-input-placeholder {
 .access-form-block {
     width: 40em;
 }
+#profile_pic_preview{
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 20em;
+    height: 20em;
+    margin-bottom: 1em;
+}
 
 textarea{
     width: 100%;
@@ -674,7 +681,8 @@ textarea{
   #profile_pic_preview{
       border-radius: 50%;
       border: 2px solid white;
-      width: 50%;
+      width: 12.5em;
+      height: 12.5em;
       margin-bottom: 1em;
   }
 
@@ -987,6 +995,10 @@ textarea{
     width: 40em;
   }
   
+  #profile_pic_preview{
+    width: 12.5em;
+    height: 12.5em;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1080,6 +1092,10 @@ textarea{
   .form-block, .access-form-block {
         width: 30em;
   }
+  #profile_pic_preview{
+    width: 15em;
+    height: 15em;
+    }
   
 }
 
@@ -1358,6 +1374,11 @@ textarea{
   .form-block, .access-form-block {
     width: 20em;
   }
+  #profile_pic_preview{
+    width: 10em;
+    height: 10em;
+    }
+  
 }
 @font-face {
   font-family: 'Minion pro';

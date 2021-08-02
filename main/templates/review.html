@@ -60,7 +60,7 @@
     </head>
     <body class="body access">
         <div class="main_login_block access">
-            <img src="static/img/logo.png" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="login_logo">
+            <img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="login_logo">
             {% if applicant %}
             <div class="access-form-block">
                 <h1 class = "applicant_name">{{applicant.first_name}} {{applicant.last_name}}</h1>
