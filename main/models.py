@@ -37,7 +37,6 @@ class UserManager(models.Manager):
             if len(postData['password']) < 8:
                 errors['password'] = "Password must be at least 8 characters"
         if user.password:
-            print(bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt()).decode())
             if not bcrypt.checkpw(postData['password'].encode(), user.password.encode()):
                 errors["password"] = "Incorrect password!"
         return errors

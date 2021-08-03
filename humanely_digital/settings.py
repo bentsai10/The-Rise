@@ -141,3 +141,11 @@ AWS_DEFAULT_ACL = None
 STATIC_URL = '/https://humanely-test-bucket-1.s3.amazonaws.com/static/'
 DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
+
+#Email config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'humanelydigital@gmail.com'
+EMAIL_HOST_PASSWORD = secrets.EMAIL_PASSWORD

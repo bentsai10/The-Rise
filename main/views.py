@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 import phonenumbers, bcrypt
 
 # Create your views here.
@@ -234,6 +236,11 @@ def process_approve(request):
     user = User.objects.get(id = id)
     user.status = True
     user.save()
+    subject = 'Welcome to Humanely Digital!'
+    message = f'Hi {user.first_name},\n\nWelcome to Humanely Digital! We are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and connect with people online. To complete your signup process, head over to http://localhost:8000/login. See you there!\n\nWarmly,\nThe Humanely Digital Team'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [user.email,]
+    send_mail(subject, message, email_from, recipient_list)
     return redirect('/review')
 
 def profile(request, num):
