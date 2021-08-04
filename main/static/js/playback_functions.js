@@ -5,7 +5,7 @@ $(document).ready(function(){
         {
             "name": "Same Energy",
             "artist": "Kid Laroi",
-            "url": "{% static 'audio/energy.mp3' %}",
+            "url": "static/audio/energy.mp3",
             "element": document.createElement("audio"),
         },
         {

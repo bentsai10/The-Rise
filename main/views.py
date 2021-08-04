@@ -175,6 +175,7 @@ def process_edit_profile(request):
             print(len(request.FILES))
             user.save()
             if 'first' in request.session:
+                del request.session['first']
                 return redirect('/home')
             return redirect('/my_profile')
 
@@ -191,7 +192,7 @@ def review_redir(request):
     if 'logged_user' not in request.session:
         return redirect('/login')
     if User.objects.get(id = request.session['logged_user']).permissions < 1:
-        return redirect('home')
+        return redirect('/home')
     #generic link, so get the latest unapproved application from users
     if User.objects.filter(status = False).all().count() > 0:
         min = User.objects.filter(status = False).all().first().id

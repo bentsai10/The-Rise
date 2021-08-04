@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, URLValidator
 import re, phonenumbers, bcrypt, random
 
 # Create your models here.
@@ -135,4 +135,60 @@ class User(models.Model):
         code_str = "".join(str(n) for n in code)
         self.verification_code = code_str
         super().save(*args, **kwargs)
-  
+
+
+class NetworkManager(models.Manager):
+    pass
+
+class Network(models.Model):
+    class Meta:
+        db_table = 'networks'
+    name = models.CharField(max_length = 255)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    options = NetworkManager()
+
+class SpaceManager(models.Manager):
+    pass
+
+class Space(models.Model):
+    class Meta:
+        db_table = 'spaces'
+    name = models.CharField(max_length = 255)
+    network = models.ForeignKey(Network, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    options = SpaceManager()
+
+
+class DiscussionManager(models.Manager):
+    def post_validator(self, postData):
+        errors = {}
+        if len(postData['title'].strip()) < 2:
+            errors['title'] = "Discussion titles need to be at least 2 characters"
+        try:
+            URLValidator(postData['link'])
+        except ValidationError:
+            errors['link'] = "Invalid URL: Check if you have http:// or https:// in front"
+        valid_caps = ['2', '10', '100']
+        if postData['participant_cap'] not in valid_caps:
+            errors['participant_cap'] = 'Invalid participant cap: Choose from 2, 10, 100'
+        if len(postData.FILES) < 1:
+            errors['voice_recording'] = 'No audio file recorded'
+        return errors
+
+
+class Discussion(models.Model):
+    class Meta:
+        db_table = 'discussion_posts'
+    title = models.CharField(max_length = 255)
+    link = models.CharField(max_length = 200)
+    participant_cap = models.IntegerField()
+    participants = models.IntegerField()
+    space = models.ForeignKey(Space, on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    options = DiscussionManager()  

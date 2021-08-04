@@ -12,6 +12,9 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
+/* p{
+    margin-bottom: 0px;
+} */
 .body {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1673,6 +1676,11 @@ progress{
   font-weight: 300;
 }
 
+.discussion_type_radio_button.selected{
+    background-color: #3425e9;
+    color: white;
+}
+
 .input_block {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1984,6 +1992,13 @@ progress{
   align-items: flex-end;
 }
 
+.person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+}
+
+
 @media screen and (min-width: 1280px) {
   .network_button.public_button {
     background-color: #3425e9;
@@ -2200,6 +2215,11 @@ progress{
     -ms-flex-pack: start;
     justify-content: flex-start;
   }
+  .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 @media screen and (min-width: 1440px) {
@@ -2573,6 +2593,11 @@ progress{
   .discussion_form_block {
     display: none;
   }
+  .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 @media screen and (min-width: 1920px) {
@@ -2856,6 +2881,11 @@ progress{
     display: none;
     width: 39%;
   }
+  .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 @media screen and (max-width: 991px) {
@@ -3759,6 +3789,11 @@ progress{
     display: none;
     width: 100%;
   }
+  .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -4243,6 +4278,11 @@ progress{
     font-size: .8rem;
     line-height: 1.5rem;
    }
+   .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -4731,6 +4771,11 @@ progress{
     font-size: .8rem;
     line-height: 1.5rem;
    }
+   .person_button{
+    width: 20%;
+    padding-bottom: 0.125em;
+    margin-left: .5em;
+    }
 }
 
 /* Mulish font stuff */
