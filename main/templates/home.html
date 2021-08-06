@@ -552,9 +552,17 @@
                                 <div class="input_block">
                                     <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block">
                                         <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
+                                        
                                     </a>
-                                    <div class="recording_input"></div>
+                                    <a id = "stop_button" class="microphone_block discussion_form_mic_button w-inline-block">
+                                        <img src="{% static 'img/stop.svg' %}" loading="lazy" width="37" alt="white stop icon" class="mic">
+                                    </a>
+                                    <div class = recording_input id = "recording_input_bar"><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
+                                    <audio class="recording_input" id = "recorded_audio" controls = "true"></audio>
+                                    <label id = "elapsed_duration_display">00:00</label>
+                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small" id = "clear_recording_button">
                                 </div>
+                                <input type="file"  accept="audio/*" name="audio_recording" id="audio_input">
                             </form>
                         </div>
                         <a data-w-id="dcee70d1-f761-ef9b-ec0c-95a7c7f5ae3c" href="http://localhost:8000/home" class="post_button_block w-inline-block">

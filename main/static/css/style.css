@@ -441,7 +441,7 @@ progress{
     .discussion_posts_block {
         overflow-y: auto;
         width: 100%;
-        height: 85%;
+        height: 100%;
         padding: 1em 0.5em 1em 1.5em;
         border-radius: 2px;
     }
@@ -939,11 +939,11 @@ progress{
 }
 
 .plus_discussion_button {
-  position: relative;
+  position: fixed;
   left: auto;
   top: auto;
-  right: 1em;
-  bottom: auto;
+  right: 40.5%;
+  bottom: 2em;
   z-index: 5;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1108,8 +1108,36 @@ progress{
 
 .mic {
   display: block;
-  width: 2.5em;
+  width: 2em;
   margin: 0px;
+  cursor: pointer;
+}
+#stop_button, #audio_input, #recorded_audio{
+    display: none;
+}
+
+.recording_input.recording_progress{
+    width: 0%;
+    height:100%;
+    background-color: #3425e9;
+    border-width: 0em;
+}
+
+#elapsed_duration_display{
+    color: #3425e9;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    margin: 0px;
+    margin-left: 0.5em;
+}
+
+#clear_recording_button{
+    display:none;
+    width: 2em;
+    margin-top: 2px;
+    transform: rotateZ(45deg);
+    cursor: pointer;
 }
 
 .sidebar.sidebar_close_small {
@@ -1700,12 +1728,11 @@ progress{
 }
 
 .recording_input {
-  position: relative;
-  z-index: 2;
+  position: static;
   width: 85%;
   height: 50%;
   border-style: solid;
-  border-width: 0.1em;
+  border-width: initial;
   border-color: #ccc;
   border-radius: 20px;
 }
@@ -1832,10 +1859,10 @@ progress{
 }
 
 .plus_response_button {
-  position: relative;
+  position: fixed;
   left: auto;
   right: 1em;
-  bottom: auto;
+  bottom: 2em;
   z-index: 5;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1860,10 +1887,10 @@ progress{
 }
 
 .post_button_block {
-  position: relative;
+  position: fixed;
   left: auto;
   right: 1em;
-  bottom: auto;
+  bottom: 2em;
   z-index: 5;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1881,10 +1908,12 @@ progress{
   align-items: center;
   border-radius: 20px;
   background-color: #3425e9;
+  text-decoration: none;
 }
 
 .post_button_block.small {
   display: none;
+  text-decoration: none;
 }
 
 .post_heading {
@@ -1998,6 +2027,9 @@ progress{
     margin-left: .5em;
 }
 
+#stop_button{
+    display: none;
+}
 
 @media screen and (min-width: 1280px) {
   .network_button.public_button {
@@ -2099,7 +2131,7 @@ progress{
 
   .plus_discussion_button {
     left: auto;
-    right: 1em;
+    right: 40.5%;
     width: 4rem;
     height: 4rem;
   }
@@ -2493,7 +2525,7 @@ progress{
   }
 
   .mic {
-    width: 3em;
+    width: 2.5em;
   }
 
   .duration, .current-time {
@@ -2686,7 +2718,7 @@ progress{
   }
 
   .discussion_posts_block {
-    height: 83%;
+    height: 100%;
   }
 
   .discussion_post {
@@ -2841,7 +2873,7 @@ progress{
   }
 
   .response_posts_block {
-    height: 93%;
+    height: 100%;
   }
 
   .post_discussion_block {
@@ -3173,7 +3205,7 @@ progress{
 
   .discussion_posts_block {
     display: block;
-    height: 88%;
+    height: 100%;
   }
 
   .discussion_post {
@@ -3332,7 +3364,7 @@ progress{
   }
 
   .star {
-    width: 20%;
+    width: 1.5em;
     margin-top: -0.5em;
     margin-right: 0px;
     cursor: pointer;
@@ -3360,7 +3392,7 @@ progress{
   .plus_discussion_button {
     left: auto;
     right: 40px;
-    bottom: 3%;
+    bottom: 2em;
     z-index: 1;
     display: none;
     width: 5em;
@@ -3370,7 +3402,7 @@ progress{
 
   .plus_discussion_button.small {
     right: 1em;
-    bottom: auto;
+    bottom: 2em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3734,7 +3766,7 @@ progress{
 
   .plus_response_button.small {
     left: auto;
-    z-index: 1;
+    z-index: 5;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3972,7 +4004,7 @@ progress{
   }
 
   .discussion_posts_block {
-    height: 83%;
+    height: 100%;
   }
 
   .discussion_top {
@@ -4432,7 +4464,7 @@ progress{
   }
 
   .discussion_posts_block {
-    height: 85%;
+    height: 100%;
   }
 
   .discussion_post {
@@ -4576,6 +4608,7 @@ progress{
   .plus_discussion_button.small {
     width: 3.5rem;
     height: 3.5rem;
+    bottom: 2em;
   }
 
   .plus {
