@@ -38,12 +38,12 @@ $(document).ready(function(){
 
         let file = new File([data], file_name, {type: "audio/mp3", lastModified: d.getTime()});
         container.items.add(file);
-        console.log(container.items);
         file_input.files = container.files;
     }
 
-    let max_time = 120000;
-    let remaining_time;
+    const time_limit = 120000;
+    let remaining_time = time_limit;
+    let elapsed_time;
 
     let time_date_handling = {
         get_elapsed_duration: function (start_time) {
@@ -61,24 +61,39 @@ $(document).ready(function(){
     }
 
     let start_recording = function(){
+        
         $('#record_button').css('display', 'none');
         $('#stop_button').css('display', 'flex');
         $('#recording_input_bar').css('display', 'block');
         $('#recorded_audio').css('display', 'none');
-        rec.start();
+        if(rec.state == "inactive"){
+            rec.start();
+        }
         let progress = $('#recording_progress_dicussion');
         start_time = new Date();
-        progress.animate({width: '100%'}, 120000, stop_recording_at_limit);
+        if (elapsed_time){
+            start_time.setMinutes(start_time.getMinutes() - elapsed_time.mins);
+            start_time.setSeconds(start_time.getSeconds() - elapsed_time.secs);
+        }
+        progress.animate({width: '100%'}, remaining_time, stop_recording_at_limit);
         elapsed_duration_interval = setInterval(() => {
             $('#elapsed_duration_display').html(time_date_handling.get_elapsed_duration(start_time));
         }, 1000);
     }
 
     let stop_recording = function(){
+        
         if(typeof elapsed_duration_interval != "undefined"){
             clearInterval(elapsed_duration_interval);
             elapsed_duration_interval = undefined;
         }
+        const elapsed_time_text = $('#elapsed_duration_display').html().split(":");
+        const elapsed_time_as_nums = elapsed_time_text.map(num_string => parseInt(num_string));
+        elapsed_time = {
+            mins: elapsed_time_as_nums[0],
+            secs: elapsed_time_as_nums[1],
+        };
+        remaining_time = 120000 - (elapsed_time.mins * 60000 + elapsed_time.secs * 1000);
         let progress = $('#recording_progress_dicussion');
         progress.stop();
         $('#stop_button').css('display', 'none');
@@ -124,9 +139,13 @@ $(document).ready(function(){
         let progress = $('#recording_progress_dicussion');
         progress.css('width', '0%');
         $('#recording_input_bar').css('display', 'block');
-        $('#record_button').click(start_recording);
+        if(remaining_time == 0){
+            $('#record_button').on("click", start_recording);
+        }
         let file_input = document.getElementById('audio_input');
         file_input.files = null;
+        remaining_time = time_limit;
+        elapsed_time = null;
     });
     
 })
