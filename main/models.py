@@ -1,11 +1,16 @@
 from django.db import models
 from django.core.validators import RegexValidator, URLValidator
+from django.core.exceptions import ValidationError
 import re, phonenumbers, bcrypt, random
 
 # Create your models here.
 def upload_to(instance, filename):
     return 'images/profile_pictures/{id}/{filename}'.format(
         id=instance.id, filename=filename)
+
+def discussion_upload_to(instance, filename):
+    return 'audio/discussions/{id}/{filename}'.format(
+        id=instance.poster.id, filename=filename)
 
 class UserManager(models.Manager):
     def verification_validator(self, postData, userID):
@@ -147,7 +152,7 @@ class Network(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-    options = NetworkManager()
+    objects = NetworkManager()
 
 class SpaceManager(models.Manager):
     pass
@@ -156,27 +161,31 @@ class Space(models.Model):
     class Meta:
         db_table = 'spaces'
     name = models.CharField(max_length = 255)
-    network = models.ForeignKey(Network, on_delete=models.CASCADE)
+    network = models.ForeignKey(Network, on_delete=models.CASCADE, default = Network.objects.get(id = 1).id)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-    options = SpaceManager()
+    objects = SpaceManager()
 
 
 class DiscussionManager(models.Manager):
-    def post_validator(self, postData):
+    def post_validator(self, postData, fileData):
         errors = {}
         if len(postData['title'].strip()) < 2:
             errors['title'] = "Discussion titles need to be at least 2 characters"
-        try:
-            URLValidator(postData['link'])
-        except ValidationError:
-            errors['link'] = "Invalid URL: Check if you have http:// or https:// in front"
         valid_caps = ['2', '10', '100']
         if postData['participant_cap'] not in valid_caps:
             errors['participant_cap'] = 'Invalid participant cap: Choose from 2, 10, 100'
-        if len(postData.FILES) < 1:
-            errors['voice_recording'] = 'No audio file recorded'
+        if len(postData['link'].strip()) < 2:
+            errors['link'] = "Links need to be at least 2 characters"
+        else:
+            try:
+                validate = URLValidator()
+                validate(postData['link'].strip())
+            except ValidationError:
+                errors['link'] = "Invalid URL: Check if you have http:// or https:// in front"
+        if len(fileData) < 1:
+                errors['audio'] = "No audio file detected!"
         return errors
 
 
@@ -185,10 +194,13 @@ class Discussion(models.Model):
         db_table = 'discussion_posts'
     title = models.CharField(max_length = 255)
     link = models.CharField(max_length = 200)
+    link_title = models.CharField(max_length = 255)
     participant_cap = models.IntegerField()
-    participants = models.IntegerField()
-    space = models.ForeignKey(Space, on_delete = models.CASCADE)
+    participants = models.IntegerField(default = 1)
+    audio = models.FileField(upload_to = discussion_upload_to, blank=True)
+    poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE, default = User.objects.get(id = 1).id)
+    space = models.ForeignKey(Space, related_name = "discussion_posts", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-    options = DiscussionManager()  
+    objects = DiscussionManager()  

@@ -1,0 +1,39 @@
+{% load static %}
+<form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if messages %}
+    <ul class = "error_list">
+        {% for message in messages %}
+        <li class = "error_item">{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <input type="hidden" name = "title" id = "discussion_title_input">
+    <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input">
+    <label for="discussion_type" class="discussion_form_label">Discussion Type</label>
+    <div class="radio_buttons_block">
+        <a class="discussion_type_radio_button w-button" data-option = "2">2<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_2" class="person_button"></a>
+        <a class="discussion_type_radio_button w-button" data-option = "10">10<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_10" class="person_button"></a>
+        <a class="discussion_type_radio_button w-button" data-option = "100">100<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_100" class="person_button"></a>
+    </div>
+    <label for="link" class="discussion_form_label">Supporting Link</label>
+    <div class="input_block">
+        <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
+        <input type = "text" name = "link" id = "link_input" class="recording_input">
+    </div>
+    <label for="email" class="discussion_form_label">Voice Recording</label>
+    <div class="input_block">
+        <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block">
+            <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
+            
+        </a>
+        <a id = "stop_button" class="microphone_block discussion_form_mic_button w-inline-block">
+            <img src="{% static 'img/stop.svg' %}" loading="lazy" width="37" alt="white stop icon" class="mic">
+        </a>
+        <div class = recording_input id = "recording_input_bar"><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
+        <audio class="recording_input" id = "recorded_audio" controls = "true"></audio>
+        <label id = "elapsed_duration_display">00:00</label>
+        <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small" id = "clear_recording_button">
+    </div>
+    <input type="file"  accept="audio/*" name="audio_recording" id="audio_input">
+</form>

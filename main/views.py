@@ -3,6 +3,8 @@ from .models import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 import phonenumbers, bcrypt
 
 # Create your views here.
@@ -13,7 +15,12 @@ def index(request):
 def home(request):
     if not 'logged_user' in request.session:
         return redirect('/login')
-    return render(request, 'home.html')
+    context = {
+        'spaces': Space.objects.all(),
+        'space': Space.objects.first(),
+        'discussions': Space.objects.first().discussion_posts.all()
+    }
+    return render(request, 'home.html', context)
 
 def apply(request):
     return render(request, 'apply_for_access.html')
@@ -172,7 +179,6 @@ def process_edit_profile(request):
             if len(request.FILES) > 0:
                 user = User.objects.get(id = request.session['logged_user'])
                 user.profile_picture = request.FILES.getlist('profile_picture')[0]
-            print(len(request.FILES))
             user.save()
             if 'first' in request.session:
                 del request.session['first']
@@ -209,7 +215,7 @@ def review(request, num):
     if 'logged_user' not in request.session: 
         return redirect('/login')
     if User.objects.get(id = request.session['logged_user']).permissions < 1:
-        return redirect('home')
+        return redirect('/home')
         
     #if user id doesn't exist or already been approved, redirect
     if User.objects.filter(id = num).all().count() < 1:
@@ -263,3 +269,51 @@ def my_profile(request):
         'user': User.objects.get(id = request.session['logged_user'])
     }
     return render(request, 'profile.html', context)
+
+def add_space(request):
+    #prevent access to those not logged in or don't have permission
+    if 'logged_user' not in request.session: 
+        return redirect('/login')
+    if User.objects.get(id = request.session['logged_user']).permissions < 1:
+        return redirect('/home')
+    return render(request, 'add_space.html')
+
+def process_add_space(request):
+    if request.method == "GET":
+        return redirect('/spaces')
+    name = ""
+    name_raw = request.POST['name'].strip().split(' ')
+    for i in range(len(name_raw)):
+        name += name_raw[i][0].upper() + name_raw[i][1:].lower()
+        if i != len(name_raw) - 1:
+            name += " "
+    Space.objects.create(name = name)
+    return redirect('/home')
+
+
+
+def process_discussion_post (request):
+    if request.method == 'GET':
+        print("here")
+        return redirect('/home')
+    if 'logged_user' not in request.session:
+        print("wut")
+        return redirect('/login')
+    else:
+        errors = Discussion.objects.post_validator(request.POST, request.FILES)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return render(request, 'partials/post_discussion.html')
+        else:
+            title = request.POST['title'].strip()
+            participant_cap = request.POST['participant_cap']
+            link = request.POST['link'].strip()
+            user = User.objects.get(id = request.session['logged_user'])
+
+            link_html = urlopen(link).read()
+            soup = BeautifulSoup(link_html)
+            link_title = soup.title.string
+
+            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = Space.objects.get(id = 3))
+            return redirect('/home')

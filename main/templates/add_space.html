@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Edit Profile</title>
+        <title>Add Space</title>
         {% load static %}
         <meta content="Login" property="og:title">
         <meta content="Login" property="twitter:title">
@@ -61,9 +61,9 @@
     </head>
     <body class="body">
         <div class="main_login_block">
-            <h1 class = "applicant_name">Edit Your Profile</h1>
+            <h1 class = "applicant_name">Add a Space</h1>
             <div class="form-block">
-                <form id=" edit-profile-form" name="edit_profile_form" class="login_form" method = "POST" action = "http://localhost:8000/process_edit_profile" enctype="multipart/form-data">
+                <form id=" add-space-form" name="add_space_form" class="login_form" method = "POST" action = "http://localhost:8000/process_add_space">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
@@ -72,31 +72,9 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                    <div id = "profile_picture_field">
-                        {% if user.profile_picture %}
-                        <p id="profile_pic_block"><img src = '{{user.profile_picture.url}}' id = 'profile_pic_preview'></p>
-                        {% else %}
-                        <p id="profile_pic_block"></p>
-                        {% endif %}
-                        <input type="file"  accept="image/*" name="profile_picture" id="file"  onchange="loadImage(event)">
-                        <label class = "submit-button w-button" for="file">Upload Image</label>
-                    </div>
-                    <label for="year" class="login_label">Year</label>
-                    <input type="number" class="login_text_field w-input" minlength = "4" maxlength="4" name="year" id="year" value = "{{user.year}}">
-                    <label for="department1" class="login_label">Major/Department 1</label>
-                    <input type="text" class="login_text_field w-input" maxlength="255" name="department1" id="department1" value = "{{user.department1}}">
-                    <label for="department2" class="login_label">Major/Department 2</label>
-                    <input type="text" class="login_text_field w-input" maxlength="255" name="department2" id="department2" value = "{{user.department2}}">
-                    <label for="title" class="login_label">Title</label>
-                    <select name="title" id="title">
-                        <option value="" selected disabled hidden>{{user.title}}</option>
-                        <option value="student">Student</option>
-                        <option value="professor">Professor</option>
-                        <option value="faculty">Faculty</option>
-                        <option value="alumni">Alumni</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="submit" value="Save" class="submit-button w-button">
+                    <label for="space" class="login_label">Space Name</label>
+                    <input type="text" class="login_text_field w-input" name="name">
+                    <input type="submit" value="Add" class="submit-button w-button">
                 </form>
             </div>
         </div>

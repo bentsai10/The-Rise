@@ -1,17 +1,32 @@
 $(document).ready(function(){
     
-    $('#discussion_title').on("input", function(){
+    $(document).on('input', '#discussion_title', function(){
         $('#discussion_title_input').val($('#discussion_title').val()); 
     });
 
-    $('.discussion_type_radio_button').click(function(){
+    $(document).on('click', '.discussion_type_radio_button', function(){
         $('.discussion_type_radio_button').removeClass("selected");
-        $('.person_button').attr('src', "https://humanely-test-bucket-1.s3.amazonaws.com/static/img/filled_person.svg?AWSAccessKeyId=AKIAUEMTDJETX2E2IUBE&Signature=5Gr6QWNAs1TwIUBxKTGNxjmNdNo%3D&Expires=1628075595");
+        $('.person_button').attr('src', "{% static 'img/filled_person.svg' %}");
         $(this).addClass("selected");
         let id = "#filled_person_" + $(this).attr('data-option');
-        $(id).attr('src', "https://humanely-test-bucket-1.s3.amazonaws.com/static/img/filled_person_white.svg?AWSAccessKeyId=AKIAUEMTDJETX2E2IUBE&Signature=p7M7SM8j2hLsBM6AT6vW0g2exd4%3D&Expires=1628075595")
+        $(id).attr('src', "{% static 'img/filled_person_white.svg' %}")
+        
         $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
     });
+
+    // $('#discussion_title').on("input", function(){
+    //     $('#discussion_title_input').val($('#discussion_title').val()); 
+    // });
+
+    // $('.discussion_type_radio_button').click(function(){
+    //     $('.discussion_type_radio_button').removeClass("selected");
+    //     $('.person_button').attr('src', "https://humanely-test-bucket-1.s3.us-west-1.amazonaws.com/static/img/filled_person.svg");
+    //     $(this).addClass("selected");
+    //     let id = "#filled_person_" + $(this).attr('data-option');
+    //     $(id).attr('src', "https://humanely-test-bucket-1.s3.us-west-1.amazonaws.com/static/img/filled_person_white.svg")
+        
+    //     $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
+    // });
 
     let audio_snippets = []
 
@@ -39,6 +54,7 @@ $(document).ready(function(){
         let file = new File([data], file_name, {type: "audio/mp3", lastModified: d.getTime()});
         container.items.add(file);
         file_input.files = container.files;
+        console.log(file_input.files)
     }
 
     const time_limit = 120000;
@@ -126,12 +142,12 @@ $(document).ready(function(){
 
 
     let start_time;
-    $('#record_button').click(start_recording);
+    $(document).on('click', '#record_button', start_recording);
 
 
-    $('#stop_button').click(stop_recording);
+    $(document).on('click', '#stop_button', stop_recording);
 
-    $('#clear_recording_button').click(function(){
+    $(document).on('click', '#clear_recording_button', function(){
         audio_snippets = [];
         $('#elapsed_duration_display').html('00:00');
         $('#recorded_audio').css('display', 'none');
@@ -140,7 +156,7 @@ $(document).ready(function(){
         progress.css('width', '0%');
         $('#recording_input_bar').css('display', 'block');
         if(remaining_time == 0){
-            $('#record_button').on("click", start_recording);
+            $(document).on("click", '#record_button', start_recording);
         }
         let file_input = document.getElementById('audio_input');
         file_input.files = null;

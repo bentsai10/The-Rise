@@ -12,9 +12,19 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-/* p{
-    margin-bottom: 0px;
-} */
+
+.error_list{
+    list-style-type: circle; 
+    margin-left: -20px;
+}
+
+.error_item{
+    color: #ccc; 
+    font-size: .8rem; 
+    font-weight: 1rem;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
+}
 .body {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1121,6 +1131,7 @@ progress{
     height:100%;
     background-color: #3425e9;
     border-width: 0em;
+    padding: 0em;
 }
 
 #elapsed_duration_display{
@@ -1737,6 +1748,15 @@ progress{
   border-radius: 20px;
 }
 
+#link_input{
+    
+  padding: .3em .5em;
+  color: #3425e9;
+  font-family: 'Gothic A1', sans-serif;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
 .image {
   width: 3em;
   height: 3em;
@@ -1888,6 +1908,7 @@ progress{
 
 .post_button_block {
   position: fixed;
+  cursor: pointer;
   left: auto;
   right: 1em;
   bottom: 2em;

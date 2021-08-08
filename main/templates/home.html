@@ -1,10 +1,18 @@
+{% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html data-wf-domain="humanelydigi.webflow.io" data-wf-page="60ec4bfb5015ffe0e33bd460" data-wf-site="60ec4bfb5015ff27b83bd45f" data-wf-status="1" class="w-mod-js w-mod-ix wf-gothica1-n2-active wf-gothica1-n3-active js-focus-visible wf-gothica1-n5-active wf-gothica1-n7-active wf-gothica1-n4-active wf-gothica1-n6-active wf-gothica1-n8-active wf-gothica1-n9-active wf-active" data-js-focus-visible="">
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <title>Humanely Digital</title>
-        {% load static %}
+        
+        <!-- <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'img/site.webmanifest' %}"> -->
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <meta content="Webflow" name="generator">
 
@@ -56,167 +64,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="{% static 'js/playback_functions.js' %}"></script> -->
         <script src = "{% static 'js/home.js' %}" type="text/javascript"></script>  
-        <script>
-            $(document).ready(function(){
-                let prevActiveIndex = -1;
-                Amplitude.init({
-                    "songs": [
-                    {
-                        "name": "Same Energy",
-                        "artist": "Kid Laroi",
-                        "url": "{% static 'audio/energy.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "I Like That",
-                        "artist": "Bazzi",
-                        "url": "{% static 'audio/bazzi.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "Attention",
-                        "artist": "Kid Laroi",
-                        "url": "{% static 'audio/attention.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "Hotel",
-                        "artist": "Claire Rosenkranz",
-                        "url": "{% static 'audio/hotel.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "comethru",
-                        "artist": "Jeremy Zucker",
-                        "url": "{% static 'audio/comethru.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "Slow Dancing in a Burning Room",
-                        "artist": "John Mayer",
-                        "url": "{% static 'audio/sdbr.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    {
-                        "name": "IFLY",
-                        "artist": "Bazzi",
-                        "url": "{% static 'audio/ifly.mp3' %}",
-                        "element": document.createElement("audio"),
-                    },
-                    ],
-                    playlists: {
-                        "1": {
-                            songs: [0, 3, 4, 5, 6, 1, 2]
-                        }
-                    },
-                    starting_playlist: "1",
-                    starting_playlist_song: 0,
-                    preload: "metadata",
-                    callbacks: {
-                        song_change: function(){
-                            let activeID = Amplitude.getActivePlaylistMetadata().active_index;
-                            let prev_item_c;
-                            let item_c;
-
-                            if(activeID == null){
-                                Amplitude.setActivePlaylistMetadata("1", {active_index: 0});
-                                activeID = Amplitude.getActivePlaylistMetadata().active_index;
-                            }
-                            if(prevActiveIndex != activeID){
-                                prev_item_c = ".duration-" +  prevActiveIndex;
-                                $(prev_item_c).css("display", "flex");
-                                prev_item_c = ".current-time-" + prevActiveIndex;
-                                $(prev_item_c).css("display", "none");
-                                prev_item_c = ".play-" +  prevActiveIndex;
-                                $(prev_item_c).css("display", "flex");
-                                prev_item_c = ".pause-" + prevActiveIndex;
-                                $(prev_item_c).css("display", "none");
-                            }
-                            item_c = ".duration-" +  activeID;
-                            $(item_c).css("display", "none");
-                            item_c = ".current-time-" + activeID;
-                            $(item_c).css("display", "flex");
-                            item_c = ".play-" +  activeID;
-                            $(item_c).css("display", "none");
-                            item_c = ".pause-" + activeID;
-                            $(item_c).css("display", "flex");
-                            prevActiveIndex = activeID;
-                        },
-                        next:function(){
-                            if(Amplitude.getActivePlaylistMetadata().active_index == 0){
-                                let id = Amplitude.getActivePlaylistMetadata().active_index;
-                                let item_c = ".duration-" +  id;
-                                $(item_c).css("display", "flex");
-                                item_c = ".current-time-" + id;
-                                $(item_c).css("display", "none");
-                                item_c = ".play-" +  id;
-                                $(item_c).css("display", "flex");
-                                item_c = ".pause-" + id;
-                                $(item_c).css("display", "none");
-                                prevActiveIndex = id;
-                            }
-                        }
-                    }
-                });
-
-                for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
-                    var song = Amplitude.getActivePlaylistMetadata().songs[i];
-                    let au = song.element;
-                    au.src = song.url;
-                    au.id = i;
-                    au.preload = "auto";
-                    au.addEventListener('loadedmetadata', function(){
-                        var duration = Math.floor(au.duration);
-                        let mins = Math.floor(duration / 60); 
-                        let secs = duration % 60;
-                        secs = secs.toLocaleString('en-US', {
-                            minimumIntegerDigits: 2,
-                            useGrouping: false
-                        })
-                        let c = ".duration-" + i;
-                        $(c).html(mins + ":" + secs);
-                    },false);
-                }
-
-                $('.amplitude-song-played-progress').click(function(e){
-                    if( Amplitude.getActivePlaylistMetadata().active_index == ($(this).attr('data-amplitude-song-index')) ){
-                        var offset = this.getBoundingClientRect();
-                        var x = e.pageX - offset.left;
-
-                        Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
-                    }
-                });
-
-
-                $('.amplitude-play-pause').click(function(e){
-                    let id = $(this).attr('data-amplitude-song-index');
-                    let item_c;
-
-                    if(Amplitude.getPlayerState() == "playing"){
-                        item_c = ".duration-" +  id;
-                        $(item_c).css("display", "none");
-                        item_c = ".current-time-" + id;
-                        $(item_c).css("display", "flex");
-                        item_c = ".play-" +  id;
-                        $(item_c).css("display", "none");
-                        item_c = ".pause-" + id;
-                        $(item_c).css("display", "flex");
-                    }
-                    else{
-                        item_c = ".play-" +  id;
-                        $(item_c).css("display", "flex");
-                        item_c = ".pause-" + id;
-                        $(item_c).css("display", "none");
-                    }
-                    prevActiveIndex = Amplitude.getActivePlaylistMetadata().active_index;
-                });
-            })
-
-
-
-
-
-        </script>
+        
     </head>
     <body class="body">
         <div class="nav">
@@ -243,12 +91,6 @@
                             <input type="text" class="search_text_field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="Search" id="name-3">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" data-w-id="77552425-143d-95e3-5d10-f1450f000108" alt="blue x symbol icon" class="sidebar sidebar_close_small">
                         </form>
-                        <div class="w-form-done">
-                            <div>Thank you! Your submission has been received!</div>
-                        </div>
-                        <div class="w-form-fail">
-                            <div>Oops! Something went wrong while submitting the form.</div>
-                        </div>
                     </div>
                     <div data-w-id="8ab3bd1c-e710-cbb0-4010-9cfc9a1da5cb" class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
@@ -294,18 +136,14 @@
                         <div class="top_spaces_block">
                             <h1 class="spaces_heading">Top Spaces</h1>
                             <div class="top_spaces">
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Senior Week</a>
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Kairos</a>
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Startups</a>
+                                {% for space in spaces %}
+                                <a href="http://localhost:8000/{{space.network.name}}/{{space.name}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="favorite_spaces_block">
                             <h1 class="spaces_heading">Favorites</h1>
                             <div class="favorite_spaces">
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Postgrad</a>
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Campus News</a>
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Boston</a>
-                                <a href="http://localhost:8000/home" class="space_heading sidebar_close_small">Housing</a>
                             </div>
                         </div>
                     </div>
@@ -316,12 +154,14 @@
                             <a href="http://localhost:8000/home" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
+                            {% for discussion in space.discussion_posts.all %}
+                            {% with user=discussion.poster %}
                             <div class="discussion_post">
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                        <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
                                         <div class="discussion_top_middle">
-                                            <h2 class="song-artist">Ben Tsai</h2>
+                                            <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
                                             <progress class="amplitude-song-played-progress progress-0" data-amplitude-song-index="0" data-amplitude-playlist="1"></progress>
                                             <h3 class="current-time current-time-0" style = "display:none;">
                                                 <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="1"></span>
@@ -329,7 +169,7 @@
                                             <h3 class="duration duration-0"><span class="amplitude-duration-minutes" data-amplitude-song-index="0" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="0" data-amplitude-playlist="1"></span></h3>
                                         </div>
                                         <div class="discussion_top_right w-clearfix">
-                                            <h4 class="time_posted">6m</h4>
+                                            <h4 class="time_posted">{{discussion.created_at|naturaltime}}</h4>
                                             <div class=" amplitude-play-pause"  data-amplitude-song-index="0" data-amplitude-playlist="1">
                                                 <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-0">
                                                 <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-0" style = "display:none;">
@@ -337,13 +177,13 @@
                                         </div>
                                     </div>
                                     <div class="discussion_bottom">
-                                        <h1 class="song-title">The Social Dilemma</h1>
-                                        <a href="http://localhost:8000/home" class="discussion_link">Netflix: The Social Dilemma</a>
+                                        <h1 class="song-title">{{discussion.title}}</h1>
+                                        <a href="{{discussion.link}}" class="discussion_link">{{discussion.link_title}}</a>
                                     </div>
                                 </div>
                                 <div class="discussion_buttons">
                                     <div class="participant_cap">
-                                        <h2 class="cap_heading">8/10</h2>
+                                        <h2 class="cap_heading">{{discussion.participants}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
                                     <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
@@ -351,76 +191,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="discussion_post">
-                                <div class="discussion player">
-                                    <div class="discussion_top">
-                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
-                                        <div class="discussion_top_middle">
-                                            <h2 class="song-artist">Ben Tsai</h2>
-                                            <progress class="amplitude-song-played-progress progress-5" data-amplitude-song-index="5" data-amplitude-playlist="1"></progress>
-                                            <h3 class="current-time current-time-5" style = "display:none;">
-                                                <span class="amplitude-current-minutes" data-amplitude-song-index="5" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="5" data-amplitude-playlist="1"></span>
-                                            </h3>
-                                            <h3 class="duration duration-5" ><span class="amplitude-duration-minutes" data-amplitude-song-index="5" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="5" data-amplitude-playlist="1"></span></h3>
-                                        </div>
-                                        <div class="discussion_top_right w-clearfix">
-                                            <h4 class="time_posted">6m</h4>
-                                            <div class="amplitude-play-pause"  data-amplitude-song-index="5" data-amplitude-playlist="1">
-                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-5">
-                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-5" style = "display:none;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="discussion_bottom">
-                                        <h1 class="song-title">The Social Dilemma</h1>
-                                        <a href="http://localhost:8000/home" class="discussion_link">Netflix: The Social Dilemma</a>
-                                    </div>
-                                </div>
-                                <div class="discussion_buttons">
-                                    <div class="participant_cap">
-                                        <h2 class="cap_heading">8/10</h2>
-                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
-                                    </div>
-                                    <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
-                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="discussion_post">
-                                <div class="discussion player">
-                                    <div class="discussion_top">
-                                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
-                                        <div class="discussion_top_middle">
-                                            <h2 class="song-artist">Ben Tsai</h2>
-                                            <progress class="amplitude-song-played-progress progress-6" data-amplitude-song-index="6" data-amplitude-playlist="1"></progress>
-                                            <h3 class="current-time current-time-6" style = "display:none;">
-                                                <span class="amplitude-current-minutes" data-amplitude-song-index="6" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="6" data-amplitude-playlist="1"></span>
-                                            </h3>
-                                            <h3 class="duration duration-6"><span class="amplitude-duration-minutes" data-amplitude-song-index="6" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="6" data-amplitude-playlist="1"></span></h3>
-                                        </div>
-                                        <div class="discussion_top_right w-clearfix">
-                                            <h4 class="time_posted">6m</h4>
-                                            <div class="amplitude-play-pause"  data-amplitude-song-index="6" data-amplitude-playlist="1">
-                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-6">
-                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-6" style = "display:none;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="discussion_bottom">
-                                        <h1 class="song-title">The Social Dilemma</h1>
-                                        <a href="http://localhost:8000/home" class="discussion_link">Netflix: The Social Dilemma</a>
-                                    </div>
-                                </div>
-                                <div class="discussion_buttons">
-                                    <div class="participant_cap">
-                                        <h2 class="cap_heading">8/10</h2>
-                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
-                                    </div>
-                                    <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
-                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
-                                    </a>
-                                </div>
-                            </div>
+                            {% endwith %}
+                            {% endfor %}
                         </div>
                         <a data-w-id="f246c375-2497-eba0-dd5e-a066414a2e85"  class="plus_discussion_button w-inline-block">
                             <img src="{% static 'img/cyan_plus.svg' %}" loading="lazy" alt="cyan plus icon" class="plus">
@@ -532,23 +304,23 @@
                         </a>
                     </div>
                     <div data-w-id="d92ad075-ab3e-254a-0e3c-973a7a5405d2" class="discussion_form_block">
-                        <div class="post_discussion_block">
-                            <form id="discussion_form" name="discussion_form" class="discussion_form">
+                        <div class="post_discussion_block" id = "post_discussion_block">
+                            <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" name = "title" id = "discussion_title_input">
-                                <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input">
+                                <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input" >
                                 <label for="discussion_type" class="discussion_form_label">Discussion Type</label>
                                 <div class="radio_buttons_block">
                                     <a class="discussion_type_radio_button w-button" data-option = "2">2<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_2" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "10">10<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_10" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "100">100<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_100" class="person_button"></a>
                                 </div>
-                                <label for="email" class="discussion_form_label">Supporting Link</label>
+                                <label for="link" class="discussion_form_label">Supporting Link</label>
                                 <div class="input_block">
                                     <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
-                                    <div class="recording_input"></div>
+                                    <input type = "text" name = "link" id = "link_input" class="recording_input">
                                 </div>
-                                <label for="email" class="discussion_form_label">Voice Recording</label>
+                                <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
                                 <div class="input_block">
                                     <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block">
                                         <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
@@ -565,10 +337,10 @@
                                 <input type="file"  accept="audio/*" name="audio_recording" id="audio_input">
                             </form>
                         </div>
-                        <a data-w-id="dcee70d1-f761-ef9b-ec0c-95a7c7f5ae3c" href="http://localhost:8000/home" class="post_button_block w-inline-block">
+                        <a class="post_button_block w-inline-block">
                             <h3 class="post_heading">Post</h3>
                         </a>
-                        <a data-w-id="72c6dae9-2964-4098-b977-c7b9ea9235fe" href="http://localhost:8000/home" class="post_button_block small w-inline-block">
+                        <a class="post_button_block small w-inline-block">
                             <h3 class="post_heading">Post</h3>
                         </a>
                     </div>
@@ -804,9 +576,167 @@
                 </div>
             </div>
         </div>
-        <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+        
+        <script>
+            $(document).on('click', '.space_heading', function(){
+                $.ajax({
+                    type: 'GET',
+                    url: $(this).attr('href'),
+                    success: function (data) {
+                        $('#post_discussion_block').html(data);
+                    },
+                    error: function(data) {
+                    }
+                });
+                return false;
+            });
+            $(document).on('click', '.post_button_block', function(){
+                $('#discussion_form').submit();
+            });
+            $(document).on('submit', '#discussion_form', function() {
+                $('#discussion_title').val("");
+                let file_input = document.getElementById('audio_input');
+                let formData = new FormData(document.getElementById('discussion_form'));
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('#post_discussion_block').html(data);
+                    },
+                    error: function(data) {
+                    }
+                });
+                return false;
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                let prevActiveIndex = -1;
+                Amplitude.init({
+                    "songs": [
+                    {% for discussion in space.discussion_posts.all %}
+                    {
+                        "name": "{{discussion.title}}",
+                        "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
+                        "url": "{{discussion.audio.url}}",
+                        "element": document.createElement("audio"),
+                    },
+                    {% endfor %}
+                    ],
+                    playlists: {
+                        "1": {
+                            songs: [0,]
+                        }
+                    },
+                    starting_playlist: "1",
+                    starting_playlist_song: 0,
+                    preload: "metadata",
+                    callbacks: {
+                        song_change: function(){
+                            let activeID = Amplitude.getActivePlaylistMetadata().active_index;
+                            let prev_item_c;
+                            let item_c;
+
+                            if(activeID == null){
+                                Amplitude.setActivePlaylistMetadata("1", {active_index: 0});
+                                activeID = Amplitude.getActivePlaylistMetadata().active_index;
+                            }
+                            if(prevActiveIndex != activeID){
+                                prev_item_c = ".duration-" +  prevActiveIndex;
+                                $(prev_item_c).css("display", "flex");
+                                prev_item_c = ".current-time-" + prevActiveIndex;
+                                $(prev_item_c).css("display", "none");
+                                prev_item_c = ".play-" +  prevActiveIndex;
+                                $(prev_item_c).css("display", "flex");
+                                prev_item_c = ".pause-" + prevActiveIndex;
+                                $(prev_item_c).css("display", "none");
+                            }
+                            item_c = ".duration-" +  activeID;
+                            $(item_c).css("display", "none");
+                            item_c = ".current-time-" + activeID;
+                            $(item_c).css("display", "flex");
+                            item_c = ".play-" +  activeID;
+                            $(item_c).css("display", "none");
+                            item_c = ".pause-" + activeID;
+                            $(item_c).css("display", "flex");
+                            prevActiveIndex = activeID;
+                        },
+                        next:function(){
+                            if(Amplitude.getActivePlaylistMetadata().active_index == 0){
+                                let id = Amplitude.getActivePlaylistMetadata().active_index;
+                                let item_c = ".duration-" +  id;
+                                $(item_c).css("display", "flex");
+                                item_c = ".current-time-" + id;
+                                $(item_c).css("display", "none");
+                                item_c = ".play-" +  id;
+                                $(item_c).css("display", "flex");
+                                item_c = ".pause-" + id;
+                                $(item_c).css("display", "none");
+                                prevActiveIndex = id;
+                            }
+                        }
+                    }
+                });
+
+                for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
+                    var song = Amplitude.getActivePlaylistMetadata().songs[i];
+                    let au = song.element;
+                    au.src = song.url;
+                    au.id = i;
+                    au.preload = "auto";
+                    au.addEventListener('loadedmetadata', function(){
+                        var duration = Math.floor(au.duration);
+                        let mins = Math.floor(duration / 60); 
+                        let secs = duration % 60;
+                        secs = secs.toLocaleString('en-US', {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false
+                        })
+                        let c = ".duration-" + i;
+                        $(c).html(mins + ":" + secs);
+                    },false);
+                }
+
+                $('.amplitude-song-played-progress').click(function(e){
+                    if( Amplitude.getActivePlaylistMetadata().active_index == ($(this).attr('data-amplitude-song-index')) ){
+                        var offset = this.getBoundingClientRect();
+                        var x = e.pageX - offset.left;
+
+                        Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
+                    }
+                });
+
+
+                $('.amplitude-play-pause').click(function(e){
+                    let id = $(this).attr('data-amplitude-song-index');
+                    let item_c;
+
+                    if(Amplitude.getPlayerState() == "playing"){
+                        item_c = ".duration-" +  id;
+                        $(item_c).css("display", "none");
+                        item_c = ".current-time-" + id;
+                        $(item_c).css("display", "flex");
+                        item_c = ".play-" +  id;
+                        $(item_c).css("display", "none");
+                        item_c = ".pause-" + id;
+                        $(item_c).css("display", "flex");
+                    }
+                    else{
+                        item_c = ".play-" +  id;
+                        $(item_c).css("display", "flex");
+                        item_c = ".pause-" + id;
+                        $(item_c).css("display", "none");
+                    }
+                    prevActiveIndex = Amplitude.getActivePlaylistMetadata().active_index;
+                });
+            })
+        </script>
     </body>
     <loom-container id="lo-engage-ext-container">
         <div></div>
