@@ -309,7 +309,6 @@ progress{
     }
 
     .space_heading {
-        overflow: visible;
         margin-top: 1em;
         margin-bottom: 0em;
         direction: ltr;
@@ -319,7 +318,10 @@ progress{
         line-height: 1.75rem;
         font-weight: 400;
         text-decoration: none;
+        overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
     }
     
       .space_heading.sidebar_close_small {
@@ -551,7 +553,7 @@ progress{
                 display: -webkit-flex;
                 display: -ms-flexbox;
                 display: flex;
-                height: 40%;
+                height: auto;
                 padding: 1em;
                 -webkit-box-orient: vertical;
                 -webkit-box-direction: normal;
@@ -567,6 +569,7 @@ progress{
                 -ms-flex-align: start;
                 align-items: flex-start;
                 border-top: 0.1em solid rgba(0, 0, 0, 0.3);
+                overflow: hidden;
                 }
 
 .responses_block {
@@ -748,7 +751,7 @@ progress{
 }
 
 .time_posted {
-  width: 100%;
+  width: auto;
   margin-top: 0px;
   margin-bottom: 0.75em;
   float: right;
@@ -758,6 +761,8 @@ progress{
   line-height: 0.75rem;
   font-weight: 200;
   text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
     .time_posted.response_text {
@@ -770,7 +775,7 @@ progress{
     }
 
 .discussion_link {
-  width: auto;
+  width: 100%;
   margin-top: 0em;
   margin-left: 0em;
   font-family: 'Gothic A1', sans-serif;
@@ -778,7 +783,9 @@ progress{
   font-size: 0.7rem;
   line-height: 0.7rem;
   font-weight: 300;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
     .discussion_link.response_banner_link {
@@ -797,7 +804,11 @@ progress{
   font-size: 1rem;
   line-height: 1rem;
   font-weight: 300;
+  width:100%;
+  height:auto;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .amplitude-play-pause {
@@ -936,7 +947,9 @@ progress{
   font-size: 2rem;
   line-height: 2rem;
   font-weight: 300;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .star {
@@ -1561,7 +1574,9 @@ progress{
   line-height: 1.2rem;
   font-weight: 300;
   text-decoration: none;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .chats_block {

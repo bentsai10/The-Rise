@@ -62,7 +62,7 @@ class UserManager(models.Manager):
 
         if len(postData['first_name'].strip()) < 2:
             errors['first_name'] = "First name must be 2+ characters"
-        if len(postData['last_name'].strips()) < 2:
+        if len(postData['last_name'].strip()) < 2:
             errors['last_name'] = "Last name must be 2+ characters"
         if not EMAIL_REGEX.match(postData['email'].strip()):
             errors['email'] = ("Invalid email address!")

@@ -17,7 +17,8 @@ def home(request):
         return redirect('/login')
     context = {
         'spaces': Space.objects.all(),
-        'space': Space.objects.first(),
+        'space': Space.objects.get(id=5),
+        'logged_user': User.objects.get(id = request.session['logged_user']),
         'discussions': Space.objects.first().discussion_posts.all()
     }
     return render(request, 'home.html', context)
@@ -51,7 +52,7 @@ def process_apply(request):
                 messages.error(request, "Please provide your phone number in a valid format")
                 return redirect('/apply')
             User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, essay = essay, referral = referral)
-            return redirect('/home')
+            return redirect('/')
 
 def verification(request):
     if 'hold_id' not in request.session:
@@ -294,10 +295,8 @@ def process_add_space(request):
 
 def process_discussion_post (request):
     if request.method == 'GET':
-        print("here")
         return redirect('/home')
     if 'logged_user' not in request.session:
-        print("wut")
         return redirect('/login')
     else:
         errors = Discussion.objects.post_validator(request.POST, request.FILES)
@@ -311,9 +310,21 @@ def process_discussion_post (request):
             link = request.POST['link'].strip()
             user = User.objects.get(id = request.session['logged_user'])
 
-            link_html = urlopen(link).read()
-            soup = BeautifulSoup(link_html)
-            link_title = soup.title.string
+            try:
+                link_html = urlopen(link).read()
+                soup = BeautifulSoup(link_html)
+                link_title = soup.title.string
+            except:
+                link_title = link
 
-            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = Space.objects.get(id = 3))
-            return redirect('/home')
+            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = Space.objects.get(id = 5))
+            return render(request, 'partials/post_discussion.html')
+
+def space(request, network, space):
+    if 'logged_user' not in request.session:
+        return redirect('/home')
+
+    context = {
+        'space': Space.objects.get(id = space)
+    }
+    return render(request, 'partials/discussion_posts.html', context)

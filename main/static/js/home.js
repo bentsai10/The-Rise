@@ -6,10 +6,10 @@ $(document).ready(function(){
 
     $(document).on('click', '.discussion_type_radio_button', function(){
         $('.discussion_type_radio_button').removeClass("selected");
-        $('.person_button').attr('src', "{% static 'img/filled_person.svg' %}");
+        $('.person_button').attr('src', "/static/img/filled_person.svg");
         $(this).addClass("selected");
         let id = "#filled_person_" + $(this).attr('data-option');
-        $(id).attr('src', "{% static 'img/filled_person_white.svg' %}")
+        $(id).attr('src', "/static/img/filled_person_white.svg")
         
         $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
     });
@@ -28,7 +28,7 @@ $(document).ready(function(){
     //     $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
     // });
 
-    let audio_snippets = []
+    let audio_snippets = [];
 
     navigator.mediaDevices.getUserMedia({audio:true, video:false}).then(stream => {handlerFunction(stream)});
 
@@ -140,14 +140,7 @@ $(document).ready(function(){
         $('#record_button').off('click');
     }
 
-
-    let start_time;
-    $(document).on('click', '#record_button', start_recording);
-
-
-    $(document).on('click', '#stop_button', stop_recording);
-
-    $(document).on('click', '#clear_recording_button', function(){
+    let clear_recording = function(){
         audio_snippets = [];
         $('#elapsed_duration_display').html('00:00');
         $('#recorded_audio').css('display', 'none');
@@ -162,6 +155,35 @@ $(document).ready(function(){
         file_input.files = null;
         remaining_time = time_limit;
         elapsed_time = null;
+    }
+
+
+    let start_time;
+    $(document).on('click', '#record_button', start_recording);
+
+
+    $(document).on('click', '#stop_button', stop_recording);
+
+    $(document).on('click', '#clear_recording_button', clear_recording);
+
+    $(document).on('click', '.post_button_block', function(){
+        $('#discussion_form').submit();
+        clear_recording();
+    });
+
+    $(document).on('click', '.space_heading', function(){
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.discussion_posts_block').html(data)
+                
+                load_songs();
+            },
+            error: function(data) {
+            }
+        });
+        return false;
     });
     
 })
