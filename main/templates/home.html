@@ -63,7 +63,6 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="{% static 'js/playback_functions.js' %}"></script> -->
-        <script src = "{% static 'js/home.js' %}" type="text/javascript"></script>  
         
     </head>
     <body class="body">
@@ -94,8 +93,8 @@
                     </div>
                     <div data-w-id="8ab3bd1c-e710-cbb0-4010-9cfc9a1da5cb" class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
-                            <h2 class="space_header">Startups</h2>
-                            <a href="http://localhost:8000/home" class="favorite_button w-inline-block">
+                            <h2 class="space_header">{{current_space.name}}</h2>
+                            <a href="http://localhost:8000/favorite_space/{{current_space.name}}" class="favorite_button w-inline-block">
                                 <img src="{% static 'img/star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
                             </a>
                         </div>
@@ -154,7 +153,7 @@
                             <a href="http://localhost:8000/home" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
-                            {% for discussion in space.discussion_posts.all %}
+                            {% for discussion in current_space.discussion_posts.all %}
                             {% with user=discussion.poster %}
                             <div class="discussion_post">
                                 <div class="discussion player">
@@ -585,9 +584,8 @@
         </div>
         <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-        
+        <script src = "{% static 'js/home.js' %}" type="text/javascript"></script>  
         <script>
-            
             $(document).on('submit', '#discussion_form', function() {
                 $('#discussion_title').val("");
                 let file_input = document.getElementById('audio_input');
@@ -600,10 +598,10 @@
                     processData: false,
                     success: function (data) {
                         $('#post_discussion_block').html(data);
-                        clear_recording();
+                        $('#clear_recording_button').click();
                         $.ajax({
                             type: 'GET',
-                            url: "http://localhost:8000/{{space.network.id}}/{{space.id}}",
+                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
                             success: function (data) {
                                 $('.discussion_posts_block').html(data);
                             },
@@ -625,7 +623,7 @@
                 
                 Amplitude.init({
                     "songs": [
-                    {% for discussion in space.discussion_posts.all %}
+                    {% for discussion in current_space.discussion_posts.all %}
                     {
                         "name": "{{discussion.title}}",
                         "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
@@ -635,7 +633,7 @@
                     {% endfor %}
                     ],
                     playlists: {
-                        {% for discussion in space.discussion_posts.all %}
+                        {% for discussion in current_space.discussion_posts.all %}
                         "{{forloop.counter0}}": {
                             songs: [{{forloop.counter0}},]
                         },

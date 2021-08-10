@@ -21,5 +21,6 @@ urlpatterns = [
     path('process_discussion_post', views.process_discussion_post),
     path('spaces', views.add_space), 
     path('process_add_space', views.process_add_space),
-    path('<int:network>/<int:space>', views.space)
+    path('<int:network>/<int:space>', views.space), 
+    path('load_discussion_banner', views.load_discussion_banner)
 ]

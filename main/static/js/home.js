@@ -14,21 +14,7 @@ $(document).ready(function(){
         $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
     });
 
-    // $('#discussion_title').on("input", function(){
-    //     $('#discussion_title_input').val($('#discussion_title').val()); 
-    // });
-
-    // $('.discussion_type_radio_button').click(function(){
-    //     $('.discussion_type_radio_button').removeClass("selected");
-    //     $('.person_button').attr('src', "https://humanely-test-bucket-1.s3.us-west-1.amazonaws.com/static/img/filled_person.svg");
-    //     $(this).addClass("selected");
-    //     let id = "#filled_person_" + $(this).attr('data-option');
-    //     $(id).attr('src', "https://humanely-test-bucket-1.s3.us-west-1.amazonaws.com/static/img/filled_person_white.svg")
-        
-    //     $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
-    // });
-
-    let audio_snippets = [];
+    var audio_snippets = [];
 
     navigator.mediaDevices.getUserMedia({audio:true, video:false}).then(stream => {handlerFunction(stream)});
 
@@ -58,10 +44,10 @@ $(document).ready(function(){
     }
 
     const time_limit = 120000;
-    let remaining_time = time_limit;
-    let elapsed_time;
+    var remaining_time = time_limit;
+    var elapsed_time;
 
-    let time_date_handling = {
+    var time_date_handling = {
         get_elapsed_duration: function (start_time) {
             let end_time = new Date();
             let duration = end_time.getTime() - start_time.getTime();
@@ -76,7 +62,7 @@ $(document).ready(function(){
         }
     }
 
-    let start_recording = function(){
+    var start_recording = function(){
         
         $('#record_button').css('display', 'none');
         $('#stop_button').css('display', 'flex');
@@ -97,7 +83,7 @@ $(document).ready(function(){
         }, 1000);
     }
 
-    let stop_recording = function(){
+    var stop_recording = function(){
         
         if(typeof elapsed_duration_interval != "undefined"){
             clearInterval(elapsed_duration_interval);
@@ -122,7 +108,7 @@ $(document).ready(function(){
         $('#clear_recording_button').css('display', 'flex');
     }
 
-    let stop_recording_at_limit = function(){
+    var stop_recording_at_limit = function(){
         if(typeof elapsed_duration_interval != "undefined"){
             clearInterval(elapsed_duration_interval);
             elapsed_duration_interval = undefined;
@@ -140,7 +126,7 @@ $(document).ready(function(){
         $('#record_button').off('click');
     }
 
-    let clear_recording = function(){
+    var clear_recording = function(){
         audio_snippets = [];
         $('#elapsed_duration_display').html('00:00');
         $('#recorded_audio').css('display', 'none');
@@ -158,7 +144,7 @@ $(document).ready(function(){
     }
 
 
-    let start_time;
+    var start_time;
     $(document).on('click', '#record_button', start_recording);
 
 
@@ -168,7 +154,6 @@ $(document).ready(function(){
 
     $(document).on('click', '.post_button_block', function(){
         $('#discussion_form').submit();
-        clear_recording();
     });
 
     $(document).on('click', '.space_heading', function(){
@@ -177,8 +162,15 @@ $(document).ready(function(){
             url: $(this).attr('href'),
             success: function (data) {
                 $('.discussion_posts_block').html(data)
-                
-                load_songs();
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:8000/load_discussion_banner",
+                    success: function (data) {
+                        $('.discussion_banner').html(data);
+                    },
+                    error: function(data) {
+                    }
+                });
             },
             error: function(data) {
             }

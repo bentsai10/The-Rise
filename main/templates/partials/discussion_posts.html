@@ -1,7 +1,7 @@
 {% load static %}
 {% load humanize %}
 
-{% for discussion in space.discussion_posts.all %}
+{% for discussion in current_space.discussion_posts.all %}
 {% with user=discussion.poster %}
 <div class="discussion_post">
     <div class="discussion player">
@@ -44,7 +44,7 @@
 <script type = "text/JavaScript">
     Amplitude.init({
         "songs": [
-        {% for discussion in space.discussion_posts.all %}
+        {% for discussion in current_space.discussion_posts.all %}
         {
             "name": "{{discussion.title}}",
             "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
@@ -54,7 +54,7 @@
         {% endfor %}
         ],
         playlists: {
-            {% for discussion in space.discussion_posts.all %}
+            {% for discussion in current_space.discussion_posts.all %}
             "{{forloop.counter0}}": {
                 songs: [{{forloop.counter0}},]
             },

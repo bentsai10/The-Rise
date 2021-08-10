@@ -17,10 +17,13 @@ def home(request):
         return redirect('/login')
     context = {
         'spaces': Space.objects.all(),
-        'space': Space.objects.get(id=5),
         'logged_user': User.objects.get(id = request.session['logged_user']),
         'discussions': Space.objects.first().discussion_posts.all()
     }
+    if 'current_space' not in request.session:
+        request.session['current_space'] = Space.objects.all().order_by('-created_at').first().id
+    context['current_space'] = Space.objects.get(id = request.session['current_space'])
+        
     return render(request, 'home.html', context)
 
 def apply(request):
@@ -316,15 +319,24 @@ def process_discussion_post (request):
                 link_title = soup.title.string
             except:
                 link_title = link
-
-            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = Space.objects.get(id = 5))
+            space = Space.objects.get(id = request.session['current_space'])
+            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space)
             return render(request, 'partials/post_discussion.html')
 
 def space(request, network, space):
     if 'logged_user' not in request.session:
         return redirect('/home')
-
+    request.session['current_space'] = space
     context = {
-        'space': Space.objects.get(id = space)
+        'current_space': Space.objects.get(id = request.session['current_space'])
     }
     return render(request, 'partials/discussion_posts.html', context)
+
+
+def load_discussion_banner(request):
+    if 'logged_user' not in request.session:
+        return redirect('/home')
+    context = {
+        'current_space': Space.objects.get(id = request.session['current_space'])
+    }
+    return render(request, 'partials/discussion_banner.html', context)
