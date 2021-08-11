@@ -35,6 +35,8 @@ def home(request):
     if 'current_discussion_index' not in request.session:
         context['current_discussion_index'] = 0
 
+    context['favorite_spaces'] = context['logged_user'].favorite_spaces.all()
+
     return render(request, 'home.html', context)
 
 def apply(request):
@@ -349,7 +351,8 @@ def load_discussion_banner(request):
     if 'logged_user' not in request.session:
         return redirect('/home')
     context = {
-        'current_space': Space.objects.get(id = request.session['current_space'])
+        'current_space': Space.objects.get(id = request.session['current_space']),
+        'favorite_spaces': User.objects.get(id = request.session['logged_user']).favorite_spaces.all()
     }
     return render(request, 'partials/discussion_banner.html', context)
 
@@ -405,4 +408,20 @@ def load_responses(request, num, num2):
     return render(request, 'partials/response_posts_block.html', context)
 
 def process_favorite_space(request, num):
-    pass
+    
+    if 'logged_user' not in request.session:
+        print('here')
+        return redirect('/login')
+    space = Space.objects.get(id = num)
+    user = User.objects.get(id = request.session['logged_user'])
+    
+    if space in user.favorite_spaces.all():
+        user.favorite_spaces.remove(space)
+    else:
+        user.favorite_spaces.add(space)
+    context = {
+        'spaces': Space.objects.all(),
+        'favorite_spaces': user.favorite_spaces.all()
+    }
+    return render(request, 'partials/spaces_block.html', context)
+    

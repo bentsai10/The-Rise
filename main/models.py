@@ -166,6 +166,7 @@ class Space(models.Model):
         db_table = 'spaces'
     name = models.CharField(max_length = 255)
     network = models.ForeignKey(Network, on_delete=models.CASCADE, default = Network.objects.get(id = 1).id)
+    favorited_users = models.ManyToManyField(User, related_name = "favorite_spaces")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 

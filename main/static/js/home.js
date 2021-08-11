@@ -216,9 +216,25 @@ $(document).ready(function(){
         });
         return false;
     });
-
-    
-    
+    $(document).on('click', '.favorite_button', function(){
+        if($(this).attr('data-active') != "favorited"){
+            $('.star').attr('src', '/static/img/filled_star.svg');
+            $(this).attr('data-active', "unfavorited");
+        }else{
+            $('.star').attr('src', '/static/img/star.svg');
+            $(this).attr('data-active', "favorited");
+        }
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.spaces_block').html(data)
+            },
+            error: function(data) {
+            }
+        });
+        return false;
+    });
 })
 
 

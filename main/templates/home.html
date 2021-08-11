@@ -94,8 +94,12 @@
                     <div data-w-id="8ab3bd1c-e710-cbb0-4010-9cfc9a1da5cb" class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
                             <h2 class="space_header">{{current_space.name}}</h2>
-                            <a href="http://localhost:8000/favorite_space/{{current_space.name}}" class="favorite_button w-inline-block">
+                            <a href="http://localhost:8000/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
+                                {% if current_space in favorite_spaces %}
+                                <img src="{% static 'img/filled_star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
+                                {% else %}
                                 <img src="{% static 'img/star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
+                                {% endif %}
                             </a>
                         </div>
                     </div>
@@ -138,7 +142,9 @@
                         <div class="favorite_spaces_block">
                             <h1 class="spaces_heading">Favorite Spaces</h1>
                             <div class="favorite_spaces">
-                                
+                                {% for space in favorite_spaces %}
+                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="all_spaces_block">
