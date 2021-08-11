@@ -33,8 +33,12 @@
             <h2 class="cap_heading">{{discussion.participants}}/{{discussion.participant_cap}}</h2>
             <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
         </div>
-        <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
+        <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+            {% if discussion in user.saved_discussions.all %}
+            <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+            {% else %}
             <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+            {% endif %}
         </a>
     </div>
 </div>

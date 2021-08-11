@@ -444,6 +444,10 @@ progress{
     line-height: 1.2rem;
     font-weight: 300;
     }
+    .selected_discussion_button{
+        background-color: #3425e9;
+        color: #ffffff;
+    }
   
         .discussion_tab_button.saved_button {
         margin-right: 0vw;

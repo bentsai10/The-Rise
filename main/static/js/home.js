@@ -235,6 +235,43 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $(document).on('click', '.discussion_tab_button', function(){
+        $('.discussion_tab_button').removeClass('selected_discussion_button');
+        $(this).addClass('selected_discussion_button');
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.discussion_posts_block').html(data);
+            },
+            error: function(data) {
+            }
+        });
+        return false;
+    });
+
+    $(document).on('click', '.bookmark_link_block', function(){
+        if($(this).attr('data-active') != "saved"){
+            $('.bookmark').attr('src', '/static/img/filled_bookmark.svg');
+            $(this).attr('data-active', "unsaved");
+        }else{
+            $('.bookmark').attr('src', '/static/img/empty_bookmark.svg');
+            $(this).attr('data-active', "favorited");
+        }
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.discussion_posts_block').html(data);
+            },
+            error: function(data) {
+            }
+        });
+        return false;
+    });
+
+    
 })
 
 

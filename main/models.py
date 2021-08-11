@@ -205,6 +205,7 @@ class Discussion(models.Model):
     audio = models.FileField(upload_to = discussion_upload_to)
     poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE)
     space = models.ForeignKey(Space, related_name = "discussion_posts", on_delete = models.CASCADE)
+    saved_users = models.ManyToManyField(User, related_name = "saved_discussions")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 

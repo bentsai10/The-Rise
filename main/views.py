@@ -26,14 +26,13 @@ def home(request):
     context['discussions'] = context['current_space'].discussion_posts.all().order_by('-created_at')
 
     if 'current_discussion' not in request.session:
-        request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
-    if Discussion.objects.all().count() < 1:
-        context['current_discussion'] = ''
-    else:
-        context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
+        if context['current_space'].discussion_posts.all().count() > 0:
+            request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
+        else:
+            request.session['current_discussion'] = ""
 
     if 'current_discussion_index' not in request.session:
-        context['current_discussion_index'] = 0
+        context['current_discussion_index'] = -1
 
     context['favorite_spaces'] = context['logged_user'].favorite_spaces.all()
 
@@ -204,9 +203,8 @@ def process_edit_profile(request):
 
 def logout(request):
     if 'logged_user' in request.session:
-        del request.session['logged_user']
-        del request.session['logged_first_name']
-        del request.session['logged_last_name']
+        for key in list(request.session.keys()):
+            del request.session[key]
         
     return redirect('/login')
 
@@ -410,7 +408,6 @@ def load_responses(request, num, num2):
 def process_favorite_space(request, num):
     
     if 'logged_user' not in request.session:
-        print('here')
         return redirect('/login')
     space = Space.objects.get(id = num)
     user = User.objects.get(id = request.session['logged_user'])
@@ -424,4 +421,35 @@ def process_favorite_space(request, num):
         'favorite_spaces': user.favorite_spaces.all()
     }
     return render(request, 'partials/spaces_block.html', context)
+
+def discussion_button_pressed(request, num, lorem):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    context = {}
+    current_space = Space.objects.get(id = request.session['current_space'])
+    user = User.objects.get(id = request.session['logged_user'])
+    if lorem == "top":
+        context['discussions'] = current_space.discussion_posts.all().order_by('-saved_users__count')
+    elif lorem == "saved":
+        context['discussions'] = user.saved_discussions.all().filter(space = current_space).all().order_by('-created_at')
+    else:
+        context['discussions'] = current_space.discussion_posts.all().order_by('-created_at')
+
+    return render(request, 'partials/discussion_posts.html', context)
+
+def process_save_discussion(request, num):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    discussion = Discussion.objects.get(id = num)
+    user = User.objects.get(id = request.session['logged_user'])
+    space = Space.objects.get(id = request.session['current_space'])
+
+    if discussion in user.saved_discussions.all():
+        user.saved_discussions.remove(discussion)
+    else:
+        user.saved_discussions.add(discussion)
+    context = {
+        'discussions': space.discussion_posts.all().order_by('-created_at'),
+    }
+    return render(request, 'partials/discussion_posts.html', context)
     

@@ -158,9 +158,9 @@
                     </div>
                     <div data-w-id="5483b592-bf11-8295-85d7-12145ddd5522" class="discussions_block w-clearfix">
                         <div class="discussion_button_block">
-                            <a href="http://localhost:8000/home" class="discussion_tab_button w-button">Top</a>
-                            <a href="http://localhost:8000/home" class="discussion_tab_button w-button">Recent</a>
-                            <a href="http://localhost:8000/home" class="discussion_tab_button saved_button w-button">Saved</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/saved" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
                             {% for discussion in discussions %}
@@ -195,8 +195,12 @@
                                         <h2 class="cap_heading">{{discussion.participants}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
-                                    <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
+                                    <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions.all %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                        {% if discussion in user.saved_discussions.all %}
+                                        <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        {% else %}
                                         <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        {% endif %}
                                     </a>
                                 </div>
                             </div>

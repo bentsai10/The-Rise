@@ -27,4 +27,6 @@ urlpatterns = [
     path('load_response/<int:num>/<int:num2>', views.load_responses), 
     path('load_response_banner', views.load_response_banner), 
     path('favorite_space/<int:num>', views.process_favorite_space),
+    path('<int:num>/<str:lorem>', views.discussion_button_pressed),
+    path('save_discussion/<int:num>', views.process_save_discussion)
 ]
