@@ -177,6 +177,47 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $(document).on('click', '.plus_discussion_button', function(){
+        $('#discussion_form').attr('action', 'http://localhost:8000/process_discussion_post');
+        $('.discussion_form_exclusive').css('display', 'flex');
+        $('#response_banner').css('display', 'none');
+        $('#post_response_header').css('display', 'none');
+    });
+
+    $(document).on('click', '.plus_response_button', function(){
+        $('#discussion_form').attr('action', 'http://localhost:8000/process_response_post');
+        $('.discussion_form_exclusive').css('display', 'none');
+        $('#response_banner').css('display', 'flex');
+        $('#response_link_label').css('display', 'flex');
+        $('#post_response_header').css('display', 'flex');
+    });
+
+    $(document).on('click', '.discussion_post', function(){
+        let discussion_id = $(this).attr('data-discussion-id')
+        let discussion_index = $(this).attr('data-discussion-index')
+        $.ajax({
+            type: 'GET',
+            url: `http://localhost:8000/load_response/${discussion_id}/${discussion_index}`,
+            success: function (data) {
+                $('.response_posts_block').html(data)
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:8000/load_response_banner",
+                    success: function (data) {
+                        $('.response_banner').html(data);
+                    },
+                    error: function(data) {
+                    }
+                });
+            },
+            error: function(data) {
+            }
+        });
+        return false;
+    });
+
+    
     
 })
 

@@ -8,20 +8,21 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <input type="hidden" name = "title" id = "discussion_title_input">
-    <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input">
-    <label for="discussion_type" class="discussion_form_label">Discussion Type</label>
-    <div class="radio_buttons_block">
+    <input type="hidden" name = "title" class = "discussion_form_exclusive" id = "discussion_title_input">
+    <input type="hidden" name = "participant_cap" class = "discussion_form_exclusive" id = "discussion_participant_cap_input" >
+    <label for="discussion_type" class="discussion_form_label discussion_form_exclusive">Discussion Type</label>
+    <div class="radio_buttons_block discussion_form_exclusive">
         <a class="discussion_type_radio_button w-button" data-option = "2">2<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_2" class="person_button"></a>
         <a class="discussion_type_radio_button w-button" data-option = "10">10<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_10" class="person_button"></a>
         <a class="discussion_type_radio_button w-button" data-option = "100">100<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_100" class="person_button"></a>
     </div>
-    <label for="link" class="discussion_form_label">Supporting Link</label>
+    <label for="link" class="discussion_form_label discussion_form_exclusive">Supporting Link</label>
+    <label for="link" class="discussion_form_label" id = "response_link_label">Supporting Link (Optional)</label>
     <div class="input_block">
         <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
-        <input type = "text" name = "link" id = "link_input" class="recording_input">
+        <input type = "text" name = "link" class="link_input recording_input">
     </div>
-    <label for="email" class="discussion_form_label">Voice Recording</label>
+    <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
     <div class="input_block">
         <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block">
             <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">

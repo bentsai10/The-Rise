@@ -103,27 +103,30 @@
                         <a href="http://localhost:8000/home" class="back_arrow_link_block w-inline-block">
                             <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
                         </a>
-                        <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_banner">
-                        <div class="response_banner_middle">
-                            <h1 class="song-title banner_song_title">The Social Dilemma</h1>
-                            <h2 class="song-artist banner_song_artist">Ben Tsai</h2>
-                            <progress class="amplitude-song-played-progress progress-0" data-amplitude-song-index="0" data-amplitude-playlist="0"></progress>
-                            <h3 class="current-time current-time-0" style = "display:none;">
-                                <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="0"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="0"></span>
+                        {% if current_discussion %}
+                        <img src="{{current_discussion.poster.profile_picture.url}}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_banner">
+                        <div class="response_banner_middle player">
+                            <h1 class="song-title banner_song_title">{{current_discussion.title}}</h1>
+                            <h2 class="song-artist banner_song_artist">{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}} {{current_discussion_index}}</h2>
+                            <progress class="amplitude-song-played-progress progress-{{current_discussion_index}}-0" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></progress>
+                            <h3 class="current-time current-time-{{current_discussion_index}}-0" style = "display:none;">
+                                <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>
                             </h3>
-                            <h3 class="duration banner_duration duration-0" ><span class="amplitude-duration-minutes" data-amplitude-song-index="0" data-amplitude-playlist="0"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="0" data-amplitude-playlist="0"></span></h3>
-                            <a href="http://localhost:8000/home" class="discussion_link response_banner_link">Netflix: The Social Dilemma</a>
+                            <h3 class="duration banner_duration duration-{{current_discussion_index}}-0" ><span class="amplitude-duration-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
+                            <a href="{{current_discussion.link}}" class="discussion_link response_banner_link">{{current_discussion.link_title}}</a>
                         </div>
                         <div class="reponse_banner_right w-clearfix">
-                            <h4 class="time_posted">6m</h4>
-                            <div class="amplitude-play-pause amplitude-paused response_banner_play" data-amplitude-song-index="0" data-amplitude-playlist="0">
-                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play banner_play play-0">
-                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause banner_pause pause-0" style = "display:none;">
+                            <h4 class="time_posted">{{current_discussion.created_at|naturaltime}}</h4>
+                            <div class="amplitude-play-pause response_banner_play" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}">
+                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play banner_play play-{{current_discussion_index}}-0">
+                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause banner_pause pause-{{current_discussion_index}}-0" style = "display:none;">
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                     <div data-w-id="89c49f48-0c4b-f7cf-7cfe-838520ca24ca" class="main_banner_block post_discussion_banner">
-                        <div class="post_discussion_title_form">
+                        <h2 id = "post_response_header">Record a Response</h2>
+                        <div class="post_discussion_title_form discussion_form_exclusive">
                             <form id="discussion_title_form" name="discussion_title_form" class="discussion_title_form">
                                 <input type="text" class="discussion_title_text_field w-input" maxlength="256" name="discussion_title" placeholder="Title your discussion" id="discussion_title">
                             </form>
@@ -132,17 +135,18 @@
                 </div>
                 <div class="main_body">
                     <div data-w-id="ba788d6b-b8c8-2d9a-0fcc-7ba3cf938b8e" class="spaces_block">
-                        <div class="top_spaces_block">
-                            <h1 class="spaces_heading">Top Spaces</h1>
-                            <div class="top_spaces">
+                        <div class="favorite_spaces_block">
+                            <h1 class="spaces_heading">Favorite Spaces</h1>
+                            <div class="favorite_spaces">
+                                
+                            </div>
+                        </div>
+                        <div class="all_spaces_block">
+                            <h1 class="spaces_heading">All Spaces</h1>
+                            <div class="all_spaces">
                                 {% for space in spaces %}
                                 <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
                                 {% endfor %}
-                            </div>
-                        </div>
-                        <div class="favorite_spaces_block">
-                            <h1 class="spaces_heading">Favorites</h1>
-                            <div class="favorite_spaces">
                             </div>
                         </div>
                     </div>
@@ -153,9 +157,9 @@
                             <a href="http://localhost:8000/home" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
-                            {% for discussion in current_space.discussion_posts.all %}
+                            {% for discussion in discussions %}
                             {% with user=discussion.poster %}
-                            <div class="discussion_post">
+                            <div class="discussion_post" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                                 <div class="discussion player">
                                     <div class="discussion_top">
                                         <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
@@ -169,7 +173,7 @@
                                         </div>
                                         <div class="discussion_top_right w-clearfix">
                                             <h4 class="time_posted">{{discussion.created_at|naturaltime}}</h4>
-                                            <div class=" amplitude-play-pause"  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
+                                            <div class=" amplitude-play-pause "  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
                                                 <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-{{forloop.counter0}}-0">
                                                 <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-{{forloop.counter0}}-0" style = "display:none;">
                                             </div>
@@ -202,103 +206,41 @@
                     </div>
                     <div data-w-id="b189bfc2-387a-5bd3-bc41-add55944b24a" class="responses_block">
                         <div class="response_posts_block">
+                            {% for response in current_discussion.response_posts.all %}
                             <div class="response_post">
-                                <div class="response">
-                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
+                                <div class="response player">
+                                    <img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art">
                                     <div class="response_middle">
-                                        <h3 class="song-artist response_text">Ben Tsai</h3>
-                                        <progress class="amplitude-song-played-progress response_progress progress-1" data-amplitude-song-index="1" data-amplitude-playlist="1" ></progress>
+                                        <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
+                                        <progress class="amplitude-song-played-progress response_progress progress-1" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1" ></progress>
                                         <h4 class="response-current-time response-text current-time-1 " style = "display:none;">
-                                            <span class="amplitude-current-minutes response_text" data-amplitude-song-index="1" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="1" data-amplitude-playlist="1"></span>
+                                            <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1"></span>
                                         </h3>
-                                        <h4 class="response-duration response-text duration-1 "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="1" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="1" data-amplitude-playlist="1"></span></h3>
+                                        <h4 class="response-duration response-text duration-1 "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1"></span></h3>
                                     </div>
                                     <div class="reponse_banner_right w-clearfix">
-                                        <h5 class="time_posted response_text">6m</h5>
-                                        <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="1" data-amplitude-playlist="1">
+                                        <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>
+                                        <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="1">
                                             <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-1">
                                             <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-1" style = "display:none;">
                                         </div>
                                     </div>
+                                    {% if response.link %}
+                                    <div class="discussion_bottom">
+                                        <a href="{{response.link}}" class="discussion_link">{{response.link_title}}</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                                 <a href="http://localhost:8000/home" class="group_button w-inline-block">
                                     <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
-                            <div class="response_post">
-                                <div class="response">
-                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
-                                    <div class="response_middle">
-                                        <h3 class="song-artist response_text">Ben Tsai</h3>
-                                        <progress class="amplitude-song-played-progress response_progress progress-2" data-amplitude-song-index="2" data-amplitude-playlist="1"></progress>
-                                        <h4 class="response-current-time current-time-2" style = "display:none;">
-                                            <span class="amplitude-current-minutes" data-amplitude-song-index="2" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="2" data-amplitude-playlist="1"></span>
-                                        </h3>
-                                        <h4 class="response-duration duration-2"><span class="amplitude-duration-minutes" data-amplitude-song-index="2" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="2" data-amplitude-playlist="1"></span></h3>
-                                    </div>
-                                    <div class="reponse_banner_right w-clearfix">
-                                        <h5 class="time_posted response_text">6m</h5>
-                                        <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="2" data-amplitude-playlist="1">
-                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-2">
-                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-2" style = "display:none;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="http://localhost:8000/home" class="group_button w-inline-block">
-                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
-                                </a>
-                            </div>
-                            <div class="response_post">
-                                <div class="response">
-                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
-                                    <div class="response_middle">
-                                        <h3 class="song-artist response_text">Ben Tsai</h3>
-                                        <progress class="amplitude-song-played-progress response_progress progress-3" data-amplitude-song-index="3" data-amplitude-playlist="1"></progress>
-                                        <h4 class="response-current-time current-time-3" style = "display:none;">
-                                            <span class="amplitude-current-minutes" data-amplitude-song-index="3" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="3" data-amplitude-playlist="1"></span>
-                                        </h3>
-                                        <h4 class="response-duration duration-3"><span class="amplitude-duration-minutes" data-amplitude-song-index="3" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="3" data-amplitude-playlist="1"></span></h3>
-                                    </div>
-                                    <div class="reponse_banner_right w-clearfix">
-                                        <h5 class="time_posted response_text">6m</h5>
-                                        <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="3" data-amplitude-playlist="1">
-                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-3">
-                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-3" style = "display:none;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="http://localhost:8000/home" class="group_button w-inline-block">
-                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
-                                </a>
-                            </div>
-                            <div class="response_post">
-                                <div class="response">
-                                    <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art">
-                                    <div class="response_middle">
-                                        <h3 class="song-artist response_text">Ben Tsai</h3>
-                                        <progress class="amplitude-song-played-progress response_progress progress-4" data-amplitude-song-index="4" data-amplitude-playlist="1"></progress>
-                                        <h4 class="response-current-time current-time-4" style = "display:none;">
-                                            <span class="amplitude-current-minutes" data-amplitude-song-index="4" data-amplitude-playlist="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="4" data-amplitude-playlist="1"></span>
-                                        </h3>
-                                        <h4 class="response-duration duration-4"><span class="amplitude-duration-minutes" data-amplitude-song-index="4" data-amplitude-playlist="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="4" data-amplitude-playlist="1"></span></h3>
-                                    </div>
-                                    <div class="reponse_banner_right w-clearfix">
-                                        <h5 class="time_posted response_text">6m</h5>
-                                        <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="4" data-amplitude-playlist="1">
-                                            <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-4">
-                                            <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-4" style = "display:none;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="http://localhost:8000/home" class="group_button w-inline-block">
-                                    <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
-                                </a>
-                            </div>
+                            {% endfor %}
                         </div>
-                        <a data-w-id="40b1f191-81fa-9a7d-248e-3f1edf9fac6e" href="http://localhost:8000/home" class="plus_response_button w-inline-block">
+                        <a data-w-id="40b1f191-81fa-9a7d-248e-3f1edf9fac6e" class="plus_response_button w-inline-block">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
-                        <a data-w-id="5ca1c486-45c2-3b7c-a48c-dfa9976605a5" href="http://localhost:8000/home" class="plus_response_button small w-inline-block">
+                        <a data-w-id="5ca1c486-45c2-3b7c-a48c-dfa9976605a5" class="plus_response_button small w-inline-block">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
                     </div>
@@ -313,18 +255,19 @@
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
-                                <input type="hidden" name = "title" id = "discussion_title_input">
-                                <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input" >
-                                <label for="discussion_type" class="discussion_form_label">Discussion Type</label>
-                                <div class="radio_buttons_block">
+                                <input type="hidden" name = "title" class = "discussion_form_exclusive" id = "discussion_title_input">
+                                <input type="hidden" name = "participant_cap" class = "discussion_form_exclusive" id = "discussion_participant_cap_input" >
+                                <label for="discussion_type" class="discussion_form_label discussion_form_exclusive">Discussion Type</label>
+                                <div class="radio_buttons_block discussion_form_exclusive">
                                     <a class="discussion_type_radio_button w-button" data-option = "2">2<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_2" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "10">10<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_10" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "100">100<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_100" class="person_button"></a>
                                 </div>
-                                <label for="link" class="discussion_form_label">Supporting Link</label>
+                                <label for="link" class="discussion_form_label discussion_form_exclusive">Supporting Link</label>
+                                <label for="link" class="discussion_form_label" id = "response_link_label">Supporting Link (Optional)</label>
                                 <div class="input_block">
                                     <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
-                                    <input type = "text" name = "link" id = "link_input" class="recording_input">
+                                    <input type = "text" name = "link" class="link_input recording_input">
                                 </div>
                                 <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
                                 <div class="input_block">
@@ -623,7 +566,7 @@
                 
                 Amplitude.init({
                     "songs": [
-                    {% for discussion in current_space.discussion_posts.all %}
+                    {% for discussion in discussions %}
                     {
                         "name": "{{discussion.title}}",
                         "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
@@ -633,7 +576,7 @@
                     {% endfor %}
                     ],
                     playlists: {
-                        {% for discussion in current_space.discussion_posts.all %}
+                        {% for discussion in discussions %}
                         "{{forloop.counter0}}": {
                             songs: [{{forloop.counter0}},]
                         },
@@ -745,9 +688,9 @@
 
                 $(document).on('click', '.amplitude-play-pause', function(e){
                     
-                    
                     let song_id = $(this).attr('data-amplitude-song-index');
                     let playlist_id = $(this).attr("data-amplitude-playlist");
+                    Amplitude.playPlaylistSongAtIndex( song_id, playlist_id )
                     let item_c;
 
                     if(Amplitude.getPlayerState() == "playing"){

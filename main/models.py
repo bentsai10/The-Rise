@@ -12,6 +12,10 @@ def discussion_upload_to(instance, filename):
     return 'audio/discussions/{id}/{filename}'.format(
         id=instance.poster.id, filename=filename)
 
+def response_upload_to(instance, filename):
+    return 'audio/responses/{id}/{filename}'.format(
+        id=instance.poster.id, filename=filename)
+
 class UserManager(models.Manager):
     def verification_validator(self, postData, userID):
         errors = {}
@@ -197,10 +201,37 @@ class Discussion(models.Model):
     link_title = models.CharField(max_length = 255)
     participant_cap = models.IntegerField()
     participants = models.IntegerField(default = 1)
-    audio = models.FileField(upload_to = discussion_upload_to, blank=True)
-    poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE, default = User.objects.get(id = 1).id)
+    audio = models.FileField(upload_to = discussion_upload_to)
+    poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE)
     space = models.ForeignKey(Space, related_name = "discussion_posts", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
     objects = DiscussionManager()  
+
+class ResponseManager(models.Manager):
+    def post_validator(self, postData, fileData):
+        errors = {}
+        if len(postData['link'].strip()) < 2 and len(postData['link'].strip()) > 0:
+            errors['link'] = "Links need to be at least 2 characters"
+        elif len(postData['link'].strip()) > 0:
+            try:
+                validate = URLValidator()
+                validate(postData['link'].strip())
+            except ValidationError:
+                errors['link'] = "Invalid URL: Check if you have http:// or https:// in front"
+        if len(fileData) < 1:
+                errors['audio'] = "No audio file detected!"
+        return errors
+
+class Response(models.Model):
+    class Meta:
+        db_table = 'response_posts'
+    audio = models.FileField(upload_to = response_upload_to)
+    poster = models.ForeignKey(User, related_name = "response_posts", on_delete = models.CASCADE)
+    discussion = models.ForeignKey(Discussion, related_name = "response_posts", on_delete = models.CASCADE)
+    link = models.CharField(max_length = 200, blank = True)
+    link_title = models.CharField(max_length = 255, blank = True)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+    objects = ResponseManager()  

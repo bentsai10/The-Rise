@@ -1,0 +1,44 @@
+{% load static %}
+{% load humanize %}
+{% for response in current_discussion.response_posts.all %}
+<div class="response_post">
+    <div class="response player">
+        <img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art">
+        <div class="response_middle">
+            <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
+            <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter1}}" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress>
+            <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter1}} " style = "display:none;">
+                <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
+            </h3>
+            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter1}} "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
+        </div>
+        <div class="reponse_banner_right w-clearfix">
+            <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>
+            <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}">
+                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-{{current_discussion_index}}-{{forloop.counter1}}">
+                <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-{{current_discussion_index}}-{{forloop.counter1}}" style = "display:none;">
+            </div>
+        </div>
+        {% if response.link %}
+        <div class="discussion_bottom">
+            <a href="{{response.link}}" class="discussion_link">{{response.link_title}}</a>
+        </div>
+        {% endif %}
+    </div>
+    <a href="http://localhost:8000/home" class="group_button w-inline-block">
+        <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
+    </a>
+</div>
+{% endfor %}
+
+<script type = "text/JavaScript">
+    {% for response in current_discussion.response_posts.all %}
+    var song = {
+        "name": "",
+        "artist": "{{response.poster.first_name}} {{response.poster.last_name}}",
+        "url": "{{response.audio.url}}",
+        "element": document.createElement("audio"),
+    }
+    Amplitude.addSongToPlaylist(song, "{{current_discussion_index}}");
+    {% endfor %}
+</script>

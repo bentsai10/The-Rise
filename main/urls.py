@@ -22,5 +22,9 @@ urlpatterns = [
     path('spaces', views.add_space), 
     path('process_add_space', views.process_add_space),
     path('<int:network>/<int:space>', views.space), 
-    path('load_discussion_banner', views.load_discussion_banner)
+    path('load_discussion_banner', views.load_discussion_banner), 
+    path('process_response_post', views.process_response_post),
+    path('load_response/<int:num>/<int:num2>', views.load_responses), 
+    path('load_response_banner', views.load_response_banner), 
+    path('favorite_space/<int:num>', views.process_favorite_space),
 ]

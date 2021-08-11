@@ -331,7 +331,7 @@ progress{
       font-weight: 300;
       }
 
-    .top_spaces_block {
+    .favorite_spaces_block {
         overflow: visible;
         width: 100%;
         height: auto;
@@ -339,7 +339,7 @@ progress{
         padding: 0.5em 0em;
     }
     
-        .top_spaces {
+        .favorite_spaces {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -357,13 +357,13 @@ progress{
             font-family: 'Gothic A1', sans-serif;
         }
     
-    .favorite_spaces_block {
+    .all_spaces_block {
     overflow: visible;
     width: 100%;
     height: auto;
     padding: 0.5em 0em;
     }
-        .favorite_spaces {
+        .all_spaces {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -950,6 +950,17 @@ progress{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+#post_response_header{
+    float: left;
+    font-family: 'Gothic A1', sans-serif;
+    color: #fff;
+    width: auto;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    font-weight: 300;
+    display:none;
 }
 
 .star {
@@ -1763,13 +1774,16 @@ progress{
   border-radius: 20px;
 }
 
-#link_input{
+.link_input{
     
   padding: .3em .5em;
   color: #3425e9;
   font-family: 'Gothic A1', sans-serif;
   font-size: 1rem;
   line-height: 1rem;
+}
+#response_link_label{
+    display:none;
 }
 
 .image {
@@ -2687,22 +2701,6 @@ progress{
     display: flex;
   }
 
-  .top_spaces_block {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-
   .favorite_spaces_block {
     display: -webkit-box;
     display: -webkit-flex;
@@ -2719,7 +2717,16 @@ progress{
     align-items: center;
   }
 
-  .top_spaces {
+  .all_spaces_block {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -2727,6 +2734,13 @@ progress{
   }
 
   .favorite_spaces {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .all_spaces {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -3108,7 +3122,7 @@ progress{
     padding: 0em;
   }
 
-  .top_spaces_block {
+  .favorite_spaces_block {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3124,7 +3138,7 @@ progress{
     align-items: center;
   }
 
-  .favorite_spaces_block {
+  .all_spaces_block {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3145,14 +3159,14 @@ progress{
     line-height: 1.8rem;
   }
 
-  .top_spaces {
+  .favorite_spaces {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
   }
 
-  .favorite_spaces {
+  .all_spaces {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -3954,7 +3968,7 @@ progress{
     margin-right: 0em;
   }
 
-  .top_spaces_block {
+  .favorite_spaces_block {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3971,7 +3985,7 @@ progress{
     align-items: center;
   }
 
-  .favorite_spaces_block {
+  .all_spaces_block {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3994,14 +4008,14 @@ progress{
     line-height: 1.2rem;
   }
 
-  .top_spaces {
+  .favorite_spaces {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
   }
 
-  .favorite_spaces {
+  .all_spaces {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -4435,12 +4449,12 @@ progress{
     height: 100%;
   }
 
-  .top_spaces_block {
+  .favorite_spaces_block {
     overflow: visible;
     height: auto;
   }
 
-  .favorite_spaces_block {
+  .all_spaces_block {
     overflow: visible;
     height: auto;
   }

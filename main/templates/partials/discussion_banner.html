@@ -1,7 +1,7 @@
 {% load static %}
 <div class="main_banner_block_left w-clearfix">
     <h2 class="space_header">{{current_space.name}}</h2>
-    <a href="http://localhost:8000/favorite_space/{{current_space.name}}" class="favorite_button w-inline-block">
+    <a href="http://localhost:8000/favorite_space/{{current_space.id}}" class="favorite_button w-inline-block">
         <img src="{% static 'img/star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
     </a>
 </div>

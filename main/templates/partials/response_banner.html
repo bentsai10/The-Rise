@@ -1,0 +1,23 @@
+{% load static %}
+{% load humanize %}
+<a href="http://localhost:8000/home" class="back_arrow_link_block w-inline-block">
+    <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
+</a>
+<img src="{{current_discussion.poster.profile_picture.url}}" loading="lazy" width="60" alt="placeholder profile picture" class="album_art album_art_banner">
+<div class="response_banner_middle player">
+    <h1 class="song-title banner_song_title">{{current_discussion.title}}</h1>
+    <h2 class="song-artist banner_song_artist">{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}</h2>
+    <progress class="amplitude-song-played-progress progress-{{current_discussion_index}}-0" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></progress>
+    <h3 class="current-time current-time-{{current_discussion_index}}-0" style = "display:none;">
+        <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>
+    </h3>
+    <h3 class="duration banner_duration duration-{{current_discussion_index}}-0" ><span class="amplitude-duration-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
+    <a href="{{current_discussion.link}}" class="discussion_link response_banner_link">{{current_discussion.link_title}}</a>
+</div>
+<div class="reponse_banner_right w-clearfix">
+    <h4 class="time_posted">{{current_discussion.created_at|naturaltime}}</h4>
+    <div class=" amplitude-play-pause response_banner_play"  data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}">
+        <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-{{current_discussion_index}}-0">
+        <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-{{current_discussion_index}}-0" style = "display:none;">
+    </div>
+</div>

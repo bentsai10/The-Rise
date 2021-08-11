@@ -1,9 +1,9 @@
 {% load static %}
 {% load humanize %}
 
-{% for discussion in current_space.discussion_posts.all %}
+{% for discussion in discussions %}
 {% with user=discussion.poster %}
-<div class="discussion_post">
+<div class="discussion_post" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
     <div class="discussion player">
         <div class="discussion_top">
             <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
@@ -17,7 +17,7 @@
             </div>
             <div class="discussion_top_right w-clearfix">
                 <h4 class="time_posted">{{discussion.created_at|naturaltime}}</h4>
-                <div class=" amplitude-play-pause"  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
+                <div class=" amplitude-play-pause "  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
                     <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-{{forloop.counter0}}-0">
                     <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-{{forloop.counter0}}-0" style = "display:none;">
                 </div>

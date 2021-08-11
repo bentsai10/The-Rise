@@ -18,12 +18,23 @@ def home(request):
     context = {
         'spaces': Space.objects.all(),
         'logged_user': User.objects.get(id = request.session['logged_user']),
-        'discussions': Space.objects.first().discussion_posts.all()
     }
     if 'current_space' not in request.session:
         request.session['current_space'] = Space.objects.all().order_by('-created_at').first().id
+    
     context['current_space'] = Space.objects.get(id = request.session['current_space'])
-        
+    context['discussions'] = context['current_space'].discussion_posts.all().order_by('-created_at')
+
+    if 'current_discussion' not in request.session:
+        request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
+    if Discussion.objects.all().count() < 1:
+        context['current_discussion'] = ''
+    else:
+        context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
+
+    if 'current_discussion_index' not in request.session:
+        context['current_discussion_index'] = 0
+
     return render(request, 'home.html', context)
 
 def apply(request):
@@ -330,6 +341,7 @@ def space(request, network, space):
     context = {
         'current_space': Space.objects.get(id = request.session['current_space'])
     }
+    context['discussions'] = context['current_space'].discussion_posts.all().order_by('-created_at')
     return render(request, 'partials/discussion_posts.html', context)
 
 
@@ -340,3 +352,57 @@ def load_discussion_banner(request):
         'current_space': Space.objects.get(id = request.session['current_space'])
     }
     return render(request, 'partials/discussion_banner.html', context)
+
+def load_response_banner(request):
+    if 'logged_user' not in request.session:
+        return redirect('/home')
+    context = {
+        'current_discussion': Discussion.objects.get(id = request.session['current_discussion']),
+        'current_discussion_index': request.session['current_discussion_index'],
+    }
+    return render(request, 'partials/response_banner.html', context)
+
+
+def process_response_post(request):
+    if request.method == 'GET':
+        return redirect('/home')
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    else:
+        errors = Response.objects.post_validator(request.POST, request.FILES)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return render(request, 'partials/post_discussion.html')
+        else:
+            if 'link' in request.POST:
+                link = request.POST['link'].strip()
+                try:
+                    link_html = urlopen(link).read()
+                    soup = BeautifulSoup(link_html)
+                    link_title = soup.title.string
+                except:
+                    link_title = link
+            else:
+                link = None
+                link_title = None
+
+            user = User.objects.get(id = request.session['logged_user'])
+            discussion = Discussion.objects.get(id = request.session['current_discussion'])
+            Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion)
+            return render(request, 'partials/post_discussion.html')
+
+def load_responses(request, num, num2):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    discussion = Discussion.objects.get(id = num)
+    request.session['current_discussion'] = num
+    request.session['current_discussion_index'] = num2
+    context = {
+        'current_discussion': discussion,
+        'current_discussion_index': request.session['current_discussion_index']
+    }
+    return render(request, 'partials/response_posts_block.html', context)
+
+def process_favorite_space(request, num):
+    pass
