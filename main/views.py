@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect
 from .models import *
+from .secrets import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import phonenumbers, bcrypt
+from twilio.rest import Client
 
 # Create your views here.
+
+account_sid = TWILIO_ACCOUNT_SID
+auth_token = TWILIO_AUTH_TOKEN
+client = Client(account_sid, auth_token)
+
 
 def index(request):
     return render(request, 'index.html')
@@ -69,26 +76,30 @@ def process_apply(request):
             User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, essay = essay, referral = referral)
             return redirect('/')
 
-def verification(request):
+def verify(request):
     if 'hold_id' not in request.session:
         return redirect('/login')
     return render(request, 'verification.html')
 
 def process_verification(request):
-    if request.method == 'GET':
+    if request.method == 'GET' or 'hold_id' not in request.session:
         return redirect('/login')
     if 'logged_user' in request.session:
         return redirect('/home')
     else:
         errors = User.objects.verification_validator(request.POST, request.session['hold_id'])
-        if len(errors) > 0:
-            for key, value in errors.items():
-                messages.error(request, value)
+
+        user = User.objects.get(id = request.session['hold_id'])
+        phone_number = user.phone_number
+        verification_check = client.verify \
+                           .services(TWILIO_SERVICE_ID) \
+                           .verification_checks \
+                           .create(to=phone_number, code=request.POST['verification_code'].strip())
+        print(verification_check.status)
+        if verification_check.status != 'approved':
+            messages.error(request, "Incorrect verification code")
             return redirect('/verification')
         else:
-            if not request.session['hold_id']:
-                return redirect('/login')
-            user = User.objects.get(id = request.session['hold_id'])
             del request.session['hold_id']
             request.session['logged_user'] = user.id
             request.session['logged_first_name'] = user.first_name
@@ -136,6 +147,11 @@ def process_login(request):
                 request.session['first'] = "yes"
             user.save() #to regenerate verification code
             request.session['hold_id'] = user.id
+            verification = client.verify \
+                     .services(TWILIO_SERVICE_ID) \
+                     .verifications \
+                     .create(to=phone_number, channel='sms')
+            print(verification.status)
             return redirect('/verification')          
 
 
@@ -453,3 +469,7 @@ def process_save_discussion(request, num):
     }
     return render(request, 'partials/discussion_posts.html', context)
     
+
+
+
+

@@ -8,7 +8,7 @@ urlpatterns = [
     path('process_login', views.process_login),
     path('apply', views.apply),
     path('process_apply', views.process_apply),
-    path('verification', views.verification),
+    path('verification', views.verify),
     path('process_verification', views.process_verification),
     path('edit_profile', views.edit_profile),
     path('process_edit_profile', views.process_edit_profile),
