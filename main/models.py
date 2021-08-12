@@ -17,12 +17,6 @@ def response_upload_to(instance, filename):
         id=instance.poster.id, filename=filename)
 
 class UserManager(models.Manager):
-    def verification_validator(self, postData, userID):
-        errors = {}
-        user = User.objects.get(id = userID)
-        if postData['verification_code'] != user.verification_code:
-            errors['verification_code'] = "Incorrect verification code"
-        return errors
 
     def login_validator(self, postData):
         errors = {}

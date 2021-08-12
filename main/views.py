@@ -432,6 +432,7 @@ def process_favorite_space(request, num):
         user.favorite_spaces.remove(space)
     else:
         user.favorite_spaces.add(space)
+    user.save()
     context = {
         'spaces': Space.objects.all(),
         'favorite_spaces': user.favorite_spaces.all()
@@ -445,7 +446,8 @@ def discussion_button_pressed(request, num, lorem):
     current_space = Space.objects.get(id = request.session['current_space'])
     user = User.objects.get(id = request.session['logged_user'])
     if lorem == "top":
-        context['discussions'] = current_space.discussion_posts.all().order_by('-saved_users__count')
+        print('here')
+        context['discussions'] = current_space.discussion_posts.all().order_by('saved_users')
     elif lorem == "saved":
         context['discussions'] = user.saved_discussions.all().filter(space = current_space).all().order_by('-created_at')
     else:
@@ -464,6 +466,7 @@ def process_save_discussion(request, num):
         user.saved_discussions.remove(discussion)
     else:
         user.saved_discussions.add(discussion)
+    user.save()
     context = {
         'discussions': space.discussion_posts.all().order_by('-created_at'),
     }
