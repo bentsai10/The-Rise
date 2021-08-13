@@ -222,11 +222,7 @@
     background-color:#d8d8d8;
 }
 
-progress{
-    background-color: pink !important;
-}
     progress.amplitude-song-played-progress {
-        background-color: pink !important;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -252,6 +248,9 @@ progress{
     border: none; }
   
   progress[value]::-webkit-progress-bar {
+    background-color: #cccbcb;
+    border-radius: 3px; }
+    .amplitude-song-played-progress[value]::-webkit-progress-bar {
     background-color: #cccbcb;
     border-radius: 3px; }
   
@@ -848,6 +847,14 @@ progress{
         margin-bottom: 0em;
         background-color: #90fcf9;
     }
+        .amplitude-play-pause.response_banner_play {
+        width: 2.5em;
+        height: 2.5em;
+        margin-top: 0.5em;
+        margin-bottom: 0em;
+        padding-top: 0em;
+        background-color: #fff;
+        }
 
         .amplitude-play-pause.amplitude-paused.response_banner_play {
         width: 2.5em;
@@ -1150,7 +1157,7 @@ progress{
   margin: 0px;
   cursor: pointer;
 }
-#stop_button, #audio_input, #recorded_audio{
+.stop_button, .audio_input, .recorded_audio{
     display: none;
 }
 
@@ -1162,7 +1169,7 @@ progress{
     padding: 0em;
 }
 
-#elapsed_duration_display{
+.elapsed_duration_display{
     color: #3425e9;
     font-family: 'Gothic A1', sans-serif;
     font-size: 0.8rem;
@@ -1171,7 +1178,7 @@ progress{
     margin-left: 0.5em;
 }
 
-#clear_recording_button{
+.clear_recording_button{
     display:none;
     width: 2em;
     margin-top: 2px;
@@ -1786,9 +1793,6 @@ progress{
   font-size: 1rem;
   line-height: 1rem;
 }
-#response_link_label{
-    display:none;
-}
 
 .image {
   width: 3em;
@@ -2177,8 +2181,16 @@ progress{
     font-size: 1rem;
     line-height: 1rem;
   }
+  .amplitude-play-pause.response_banner_play {
+    width: 3em;
+    height: 3em;
+  }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
+    width: 3em;
+    height: 3em;
+  }
+  .amplitude-play-pause.amplitude-playing.response_banner_play {
     width: 3em;
     height: 3em;
   }
@@ -2359,6 +2371,10 @@ progress{
     width: 39%;
   }
 
+  .discussion_form_block{
+      width:39%;
+  }
+
   .search_text_field {
     height: 100%;
     border-width: 0.05em;
@@ -2413,6 +2429,9 @@ progress{
   }
 
   .main_banner_block.discussion_banner {
+    width: 39%;
+  }
+  .main_banner_block.post_discussion_banner {
     width: 39%;
   }
 
@@ -2528,6 +2547,10 @@ progress{
   .amplitude-play-pause.amplitude-playing {
     width: 3em;
     height: 3em;
+  }
+  .amplitude-play-pause.response_banner_play {
+    width: 3.5em;
+    height: 3.5em;
   }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {
@@ -2676,9 +2699,6 @@ progress{
     justify-content: flex-start;
   }
 
-  .discussion_form_block {
-    display: none;
-  }
   .person_button{
     width: 20%;
     padding-bottom: 0.125em;
@@ -2844,6 +2864,11 @@ progress{
     height: 4em;
   }
   .amplitude-play-pause.amplitude-playing {
+    width: 4em;
+    height: 4em;
+  }
+
+  .amplitude-play-pause.response_banner_play {
     width: 4em;
     height: 4em;
   }
@@ -3375,6 +3400,11 @@ progress{
     cursor: pointer;
   }
 
+  .amplitude-play-pause.response_banner_play {
+    width: 3.5em;
+    height: 3.5em;
+  }
+
   .amplitude-play-pause.amplitude-paused.response_banner_play {
     width: 3.5em;
     height: 3.5em;
@@ -3382,6 +3412,11 @@ progress{
   .amplitude-play-pause.amplitude-playing.response_banner_play {
     width: 3.5em;
     height: 3.5em;
+  }
+
+  .amplitude-play-pause.chat_play {
+    width: 2.5em;
+    height: 2.5em;
   }
 
   .amplitude-play-pause.amplitude-paused.chat_play {
@@ -4599,6 +4634,11 @@ progress{
   .amplitude-play-pause.amplitude-playing {
     width: 2.75em;
     height: 2.75em;
+  }
+
+  .amplitude-play-pause.response_banner_play {
+    width: 2.5em;
+    height: 2.5em;
   }
 
   .amplitude-play-pause.amplitude-paused.response_banner_play {

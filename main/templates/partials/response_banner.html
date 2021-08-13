@@ -21,3 +21,30 @@
         <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-{{current_discussion_index}}-0" style = "display:none;">
     </div>
 </div>
+
+<script type = "text/JavaScript">
+    try{
+        for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
+            var song = Amplitude.getActivePlaylistMetadata().songs[i];
+            let playlist = Amplitude.getActivePlaylist();
+
+            let au = song.element;
+            au.src = song.url;
+            au.id = i;
+            au.preload = "none";
+            au.addEventListener('loadedmetadata', function(){
+                var duration = Math.floor(au.duration);
+                let mins = Math.floor(duration / 60); 
+                let secs = duration % 60;
+                secs = secs.toLocaleString('en-US', {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
+                })
+                let c = ".duration-" + playlist + "-" + i;
+                $(c).html(mins + ":" + secs);
+            },false);
+        }
+    }catch(e){
+        console.log("no songs yet");
+    }
+</script>

@@ -3,8 +3,8 @@
 
 {% for discussion in discussions %}
 {% with user=discussion.poster %}
-<div class="discussion_post" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
-    <div class="discussion player">
+<div class="discussion_post" >
+    <div class="discussion player" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
         <div class="discussion_top">
             <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
             <div class="discussion_top_middle">

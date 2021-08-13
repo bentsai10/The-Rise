@@ -1,0 +1,35 @@
+{% load static %}
+<form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_response_post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if messages %}
+    <ul class = "error_list">
+        {% for message in messages %}
+        <li class = "error_item">{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <ul class = "error_list">
+        <li class = "error_item">Your response has been posted! Click back on the associated discussion to view it.</li>
+    </ul>
+    {% endif %}
+    <label for="link" class="discussion_form_label">Supporting Link (Optional)</label>
+    <div class="input_block">
+        <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
+        <input type = "text" name = "link" class="link_input recording_input">
+    </div>
+    <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
+    <div class="input_block">
+        <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block record_button">
+            <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
+            
+        </a>
+        <a id = "stop_button" class="microphone_block discussion_form_mic_button w-inline-block stop_button">
+            <img src="{% static 'img/stop.svg' %}" loading="lazy" width="37" alt="white stop icon" class="mic">
+        </a>
+        <div class = "recording_input_bar recording_input"><div class = "recording_input recording_progress" id = "recording_progress_response"></div></div>
+        <audio class="recording_input recorded_audio" id = "recorded_response_audio" controls = "true"></audio>
+        <label class = "elapsed_duration_display">00:00</label>
+        <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button" >
+    </div>
+    <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="response_audio_input">
+</form>

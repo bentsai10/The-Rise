@@ -8,11 +8,11 @@
         
         <title>Humanely Digital</title>
         
-        <!-- <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
-        <link rel="manifest" href="{% static 'img/site.webmanifest' %}"> -->
+        <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <meta content="Webflow" name="generator">
 
@@ -83,15 +83,15 @@
             <a data-w-id="b0d5e608-35fa-fa2c-1b92-482de446f24b" href="http://localhost:8000/home" class="network_button private_button small w-button">Private</a>
         </div>
         <div class="main_block">
-            <div data-w-id="297b3c0e-3994-2ef4-0300-4f1263142eb0" class="public_panel">
+            <div class="public_panel">
                 <div class="main_banner">
-                    <div data-w-id="9d16b2c2-3987-fd64-8985-b6f2593045d3" class="search_space_block w-form">
+                    <div  class="search_space_block w-form">
                         <form id="email-form-3" name="email-form-3" data-name="Email Form 3" class="search_form">
                             <input type="text" class="search_text_field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="Search" id="name-3">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" data-w-id="77552425-143d-95e3-5d10-f1450f000108" alt="blue x symbol icon" class="sidebar sidebar_close_small">
                         </form>
                     </div>
-                    <div data-w-id="8ab3bd1c-e710-cbb0-4010-9cfc9a1da5cb" class="main_banner_block discussion_banner">
+                    <div class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
                             <h2 class="space_header">{{current_space.name}}</h2>
                             <a href="http://localhost:8000/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
@@ -103,7 +103,7 @@
                             </a>
                         </div>
                     </div>
-                    <div data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0383" class="main_banner_block response_banner player w-clearfix">
+                    <div class="main_banner_block response_banner player w-clearfix">
                         <a href="http://localhost:8000/home" class="back_arrow_link_block w-inline-block">
                             <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
                         </a>
@@ -128,9 +128,8 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div data-w-id="89c49f48-0c4b-f7cf-7cfe-838520ca24ca" class="main_banner_block post_discussion_banner">
-                        <h2 id = "post_response_header">Record a Response</h2>
-                        <div class="post_discussion_title_form discussion_form_exclusive">
+                    <div class="main_banner_block post_discussion_banner">
+                        <div class="post_discussion_title_form">
                             <form id="discussion_title_form" name="discussion_title_form" class="discussion_title_form">
                                 <input type="text" class="discussion_title_text_field w-input" maxlength="256" name="discussion_title" placeholder="Title your discussion" id="discussion_title">
                             </form>
@@ -138,7 +137,7 @@
                     </div>
                 </div>
                 <div class="main_body">
-                    <div data-w-id="ba788d6b-b8c8-2d9a-0fcc-7ba3cf938b8e" class="spaces_block">
+                    <div class="spaces_block">
                         <div class="favorite_spaces_block">
                             <h1 class="spaces_heading">Favorite Spaces</h1>
                             <div class="favorite_spaces">
@@ -156,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div data-w-id="5483b592-bf11-8295-85d7-12145ddd5522" class="discussions_block w-clearfix">
+                    <div class="discussions_block w-clearfix">
                         <div class="discussion_button_block">
                             <a href="http://localhost:8000/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
                             <a href="http://localhost:8000/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
@@ -165,8 +164,8 @@
                         <div class="discussion_posts_block">
                             {% for discussion in discussions %}
                             {% with user=discussion.poster %}
-                            <div class="discussion_post" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
-                                <div class="discussion player">
+                            <div class="discussion_post" >
+                                <div class="discussion player" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                                     <div class="discussion_top">
                                         <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
                                         <div class="discussion_top_middle">
@@ -207,14 +206,14 @@
                             {% endwith %}
                             {% endfor %}
                         </div>
-                        <a data-w-id="f246c375-2497-eba0-dd5e-a066414a2e85"  class="plus_discussion_button w-inline-block">
+                        <a  class="plus_discussion_button w-inline-block" id = "plus_discussion_button_big">
                             <img src="{% static 'img/cyan_plus.svg' %}" loading="lazy" alt="cyan plus icon" class="plus">
                         </a>
-                        <a data-w-id="050b5eb0-d993-264e-acb1-226d4e466683" class="plus_discussion_button small w-inline-block">
+                        <a class="plus_discussion_button small w-inline-block" id = "plus_discussion_button_small">
                             <img src="{% static 'img/cyan_plus.svg' %}" loading="lazy" alt="cyan plus icon" class="plus">
                         </a>
                     </div>
-                    <div data-w-id="b189bfc2-387a-5bd3-bc41-add55944b24a" class="responses_block">
+                    <div class="responses_block">
                         <div class="response_posts_block">
                             {% for response in current_discussion.response_posts.all %}
                             <div class="response_post">
@@ -247,14 +246,14 @@
                             </div>
                             {% endfor %}
                         </div>
-                        <a data-w-id="40b1f191-81fa-9a7d-248e-3f1edf9fac6e" class="plus_response_button w-inline-block">
+                        <a class="plus_response_button w-inline-block" id = "plus_response_button_big">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
-                        <a data-w-id="5ca1c486-45c2-3b7c-a48c-dfa9976605a5" class="plus_response_button small w-inline-block">
+                        <a class="plus_response_button small w-inline-block" id = "plus_response_button_small">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
                         </a>
                     </div>
-                    <div data-w-id="d92ad075-ab3e-254a-0e3c-973a7a5405d2" class="discussion_form_block">
+                    <div class="discussion_form_block" id = "discussion_form_block">
                         <div class="post_discussion_block" id = "post_discussion_block">
                             <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -265,60 +264,99 @@
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
-                                <input type="hidden" name = "title" class = "discussion_form_exclusive" id = "discussion_title_input">
-                                <input type="hidden" name = "participant_cap" class = "discussion_form_exclusive" id = "discussion_participant_cap_input" >
-                                <label for="discussion_type" class="discussion_form_label discussion_form_exclusive">Discussion Type</label>
-                                <div class="radio_buttons_block discussion_form_exclusive">
+                                <input type="hidden" name = "title" id = "discussion_title_input">
+                                <input type="hidden" name = "participant_cap" id = "discussion_participant_cap_input">
+                                <label for="discussion_type" class="discussion_form_label">Discussion Type</label>
+                                <div class="radio_buttons_block">
                                     <a class="discussion_type_radio_button w-button" data-option = "2">2<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_2" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "10">10<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_10" class="person_button"></a>
                                     <a class="discussion_type_radio_button w-button" data-option = "100">100<img src="{% static 'img/filled_person.svg' %}" loading="lazy" alt="blue person icon" id = "filled_person_100" class="person_button"></a>
                                 </div>
-                                <label for="link" class="discussion_form_label discussion_form_exclusive">Supporting Link</label>
-                                <label for="link" class="discussion_form_label" id = "response_link_label">Supporting Link (Optional)</label>
+                                <label for="link" class="discussion_form_label">Supporting Link</label>
                                 <div class="input_block">
                                     <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
                                     <input type = "text" name = "link" class="link_input recording_input">
                                 </div>
                                 <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
                                 <div class="input_block">
-                                    <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block">
+                                    <a id = "record_discussion_button" class="microphone_block discussion_form_mic_button w-inline-block record_button">
                                         <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
                                         
                                     </a>
-                                    <a id = "stop_button" class="microphone_block discussion_form_mic_button w-inline-block">
+                                    <a id = "stop_discussion_button" class="microphone_block discussion_form_mic_button w-inline-block stop_button">
                                         <img src="{% static 'img/stop.svg' %}" loading="lazy" width="37" alt="white stop icon" class="mic">
                                     </a>
-                                    <div class = recording_input id = "recording_input_bar"><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
-                                    <audio class="recording_input" id = "recorded_audio" controls = "true"></audio>
-                                    <label id = "elapsed_duration_display">00:00</label>
-                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small" id = "clear_recording_button">
+                                    <div class = "recording_input_bar recording_input" ><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
+                                    <audio class="recording_input recorded_audio" id = "recorded_discussion_audio" controls = "true"></audio>
+                                    <label class = "elapsed_duration_display">00:00</label>
+                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button">
                                 </div>
-                                <input type="file"  accept="audio/*" name="audio_recording" id="audio_input">
+                                <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="discussion_audio_input">
                             </form>
                         </div>
-                        <a class="post_button_block w-inline-block">
+                        <a class="post_button_block post_discussion_button w-inline-block">
                             <h3 class="post_heading">Post</h3>
                         </a>
-                        <a class="post_button_block small w-inline-block">
+                        <a class="post_button_block post_discussion_button small w-inline-block">
+                            <h3 class="post_heading">Post</h3>
+                        </a>
+                    </div>
+                    <div class="discussion_form_block" id = "response_form_block">
+                        <div class="post_discussion_block" id = "post_response_block">
+                            <form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_response_post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% if messages %}
+                                <ul class = "error_list">
+                                    {% for message in messages %}
+                                    <li class = "error_item">{{message}}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                                <label for="link" class="discussion_form_label">Supporting Link (Optional)</label>
+                                <div class="input_block">
+                                    <img src="{% static 'img/link.svg' %}" loading="lazy" alt="blue link icon" class="image">
+                                    <input type = "text" name = "link" class="link_input recording_input">
+                                </div>
+                                <label for="audio_recording" class="discussion_form_label">Voice Recording</label>
+                                <div class="input_block">
+                                    <a id = "record_button" class="microphone_block discussion_form_mic_button w-inline-block record_button">
+                                        <img src="{% static 'img/mic.svg' %}" loading="lazy" width="37" alt="white microphone icon" class="mic">
+                                        
+                                    </a>
+                                    <a id = "stop_button" class="microphone_block discussion_form_mic_button w-inline-block stop_button">
+                                        <img src="{% static 'img/stop.svg' %}" loading="lazy" width="37" alt="white stop icon" class="mic">
+                                    </a>
+                                    <div class = "recording_input_bar recording_input"><div class = "recording_input recording_progress" id = "recording_progress_response"></div></div>
+                                    <audio class="recording_input recorded_audio" id = "recorded_response_audio" controls = "true"></audio>
+                                    <label class = "elapsed_duration_display">00:00</label>
+                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button" >
+                                </div>
+                                <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="response_audio_input">
+                            </form>
+                        </div>
+                        <a class="post_button_block post_response_button w-inline-block">
+                            <h3 class="post_heading">Post</h3>
+                        </a>
+                        <a class="post_button_block post_response_button small w-inline-block">
                             <h3 class="post_heading">Post</h3>
                         </a>
                     </div>
                 </div>
             </div>
-            <div data-w-id="7bb2540f-fc1d-d0c6-7be3-598a484c232d" class="private_panel">
+            <div class="private_panel">
                 <div class="main_banner">
-                    <div data-w-id="7bb2540f-fc1d-d0c6-7be3-598a484c232f" class="main_banner_block main_banner_side_group w-form">
+                    <div class="main_banner_block main_banner_side_group w-form">
                         <form id="email-form" name="email-form" data-name="Email Form" class="search_form chat">
                             <input type="text" class="search_text_field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="Search" id="name-3">
                         </form>
                     </div>
-                    <div data-w-id="7bb2540f-fc1d-d0c6-7be3-598a484c236a" class="main_banner_block chat_header w-clearfix">
+                    <div class="main_banner_block chat_header w-clearfix">
                         <h4 class="time_posted banner">6m</h4>
                         <h2 class="group_banner_header">Kant Fans</h2>
                     </div>
                 </div>
                 <div class="main_body">
-                    <div data-w-id="e8ec54c6-c132-32b7-7092-9f50895b9cfd" class="chats_block">
+                    <div class="chats_block">
                         <div class="chat chat_selected w-clearfix">
                             <h3 class="time_posted">6m</h3>
                             <h2 class="chat_heading chat_heading_selected">Kant Fans</h2>
@@ -375,7 +413,7 @@
                             </div>
                         </div>
                     </div>
-                    <div data-w-id="fbee99a9-1872-07cf-576f-b6e0f80e3be2" class="chat_window">
+                    <div class="chat_window">
                         <div class="chat_panel">
                             <div class="chat_message received_message">
                                 <div class="received_chat_message">
@@ -541,7 +579,7 @@
         <script>
             $(document).on('submit', '#discussion_form', function() {
                 $('#discussion_title').val("");
-                let file_input = document.getElementById('audio_input');
+                let file_input = document.getElementById('discussion_audio_input');
                 let formData = new FormData(document.getElementById('discussion_form'));
                 $.ajax({
                     type: $(this).attr('method'),
@@ -551,12 +589,39 @@
                     processData: false,
                     success: function (data) {
                         $('#post_discussion_block').html(data);
-                        $('#clear_recording_button').click();
+                        $('.clear_recording_button').click();
                         $.ajax({
                             type: 'GET',
                             url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
                             success: function (data) {
                                 $('.discussion_posts_block').html(data);
+                            },
+                            error: function(data) {
+                            }
+                        });
+                    },
+                    error: function(data) {
+                    }
+                });
+                return false;
+            });
+            $(document).on('submit', '#response_form', function() {
+                let file_input = document.getElementById('response_audio_input');
+                let formData = new FormData(document.getElementById('response_form'));
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('#post_response_block').html(data);
+                        $('.clear_recording_button').click();
+                        $.ajax({
+                            type: 'GET',
+                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
+                            success: function (data) {
+                                $('.response_posts_block').html(data);
                             },
                             error: function(data) {
                             }
@@ -632,7 +697,6 @@
                         },
                         next:function(){
                             if(Amplitude.getActiveSongMetadata().index == 0){
-                                "active_index"
                                 let id = Amplitude.getActiveSongMetadata().index;
                                 let playlist = Amplitude.getActivePlaylist();
                                 let item_c = ".duration-" +  playlist + "-" + id;

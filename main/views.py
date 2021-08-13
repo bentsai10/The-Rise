@@ -407,7 +407,7 @@ def process_response_post(request):
             user = User.objects.get(id = request.session['logged_user'])
             discussion = Discussion.objects.get(id = request.session['current_discussion'])
             Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion)
-            return render(request, 'partials/post_discussion.html')
+            return render(request, 'partials/post_response.html')
 
 def load_responses(request, num, num2):
     if 'logged_user' not in request.session:

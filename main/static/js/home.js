@@ -24,7 +24,7 @@ $(document).ready(function(){
             audio_snippets.push(e.data);
             if (rec.state == "inactive"){
                 let blob = new Blob(audio_snippets, {type:'audio/mp3'});
-                let recorded_audio = $('#recorded_audio');
+                let recorded_audio = $('.recorded_audio');
                 recorded_audio.attr('src', URL.createObjectURL(blob));
                 sendData(blob);
             }
@@ -32,15 +32,16 @@ $(document).ready(function(){
     }
 
     function sendData(data){
-        let file_input = document.getElementById('audio_input');
+        let file_input = document.getElementsByClassName('audio_input');
         let container = new DataTransfer();
         const d = new Date();
         let file_name = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}-${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}-${d.getMilliseconds()}.mp3`
 
         let file = new File([data], file_name, {type: "audio/mp3", lastModified: d.getTime()});
         container.items.add(file);
-        file_input.files = container.files;
-        console.log(file_input.files)
+        for(let i = 0; i < file_input.length; i++){
+            file_input[i].files = container.files;
+        }
     }
 
     const time_limit = 120000;
@@ -63,15 +64,15 @@ $(document).ready(function(){
     }
 
     var start_recording = function(){
-        
-        $('#record_button').css('display', 'none');
-        $('#stop_button').css('display', 'flex');
-        $('#recording_input_bar').css('display', 'block');
-        $('#recorded_audio').css('display', 'none');
+        console.log('here')
+        $('.record_button').css('display', 'none');
+        $('.stop_button').css('display', 'flex');
+        $('.recording_input_bar').css('display', 'block');
+        $('.recorded_audio').css('display', 'none');
         if(rec.state == "inactive"){
             rec.start();
         }
-        let progress = $('#recording_progress_dicussion');
+        let progress = $('.recording_progress');
         start_time = new Date();
         if (elapsed_time){
             start_time.setMinutes(start_time.getMinutes() - elapsed_time.mins);
@@ -79,7 +80,7 @@ $(document).ready(function(){
         }
         progress.animate({width: '100%'}, remaining_time, stop_recording_at_limit);
         elapsed_duration_interval = setInterval(() => {
-            $('#elapsed_duration_display').html(time_date_handling.get_elapsed_duration(start_time));
+            $('.elapsed_duration_display').html(time_date_handling.get_elapsed_duration(start_time));
         }, 1000);
     }
 
@@ -89,23 +90,23 @@ $(document).ready(function(){
             clearInterval(elapsed_duration_interval);
             elapsed_duration_interval = undefined;
         }
-        const elapsed_time_text = $('#elapsed_duration_display').html().split(":");
+        const elapsed_time_text = $('.elapsed_duration_display').html().split(":");
         const elapsed_time_as_nums = elapsed_time_text.map(num_string => parseInt(num_string));
         elapsed_time = {
             mins: elapsed_time_as_nums[0],
             secs: elapsed_time_as_nums[1],
         };
         remaining_time = 120000 - (elapsed_time.mins * 60000 + elapsed_time.secs * 1000);
-        let progress = $('#recording_progress_dicussion');
+        let progress = $('.recording_progress');
         progress.stop();
-        $('#stop_button').css('display', 'none');
-        $('#record_button').css('display', 'flex');
-        $('#recording_input_bar').css('display', 'none');
+        $('.stop_button').css('display', 'none');
+        $('.record_button').css('display', 'flex');
+        $('.recording_input_bar').css('display', 'none');
         if(MediaRecorder.state != 'inactive'){
             rec.stop();
         }
-        $('#recorded_audio').css('display', 'flex');
-        $('#clear_recording_button').css('display', 'flex');
+        $('.recorded_audio').css('display', 'flex');
+        $('.clear_recording_button').css('display', 'flex');
     }
 
     var stop_recording_at_limit = function(){
@@ -115,45 +116,51 @@ $(document).ready(function(){
         }
         let progress = $('#recording_progress_dicussion');
         progress.stop();
-        $('#stop_button').css('display', 'none');
-        $('#record_button').css('display', 'flex');
-        $('#recording_input_bar').css('display', 'none');
+        $('.stop_button').css('display', 'none');
+        $('.record_button').css('display', 'flex');
+        $('.recording_input_bar').css('display', 'none');
         if(MediaRecorder.state != 'inactive'){
             rec.stop();
         }
-        $('#recorded_audio').css('display', 'flex');
-        $('#clear_recording_button').css('display', 'flex');
-        $('#record_button').off('click');
+        $('.recorded_audio').css('display', 'flex');
+        $('.clear_recording_button').css('display', 'flex');
+        $('.record_button').off('click');
     }
 
     var clear_recording = function(){
         audio_snippets = [];
-        $('#elapsed_duration_display').html('00:00');
-        $('#recorded_audio').css('display', 'none');
-        $('#clear_recording_button').css('display', 'none');
-        let progress = $('#recording_progress_dicussion');
-        progress.css('width', '0%');
-        $('#recording_input_bar').css('display', 'block');
+        $('.elapsed_duration_display').html('00:00');
+        $('.recorded_audio').css('display', 'none');
+        $('.clear_recording_button').css('display', 'none');
+        $('.recording_progress').css('width', '0%');
+        $('.recording_input_bar').css('display', 'block');
         if(remaining_time == 0){
-            $(document).on("click", '#record_button', start_recording);
+            $(document).on("click", '.record_button', start_recording);
         }
-        let file_input = document.getElementById('audio_input');
-        file_input.files = null;
+        let file_input = document.getElementsByClassName('audio_input');
+        for(let i = 0; i < file_input.length; i++){
+            file_input[i].files = null;
+        }
         remaining_time = time_limit;
         elapsed_time = null;
     }
 
 
     var start_time;
-    $(document).on('click', '#record_button', start_recording);
+    $(document).on('click', '.record_button', start_recording);
 
 
-    $(document).on('click', '#stop_button', stop_recording);
+    $(document).on('click', '.stop_button', stop_recording);
 
-    $(document).on('click', '#clear_recording_button', clear_recording);
+    $(document).on('click', '.clear_recording_button', clear_recording);
 
-    $(document).on('click', '.post_button_block', function(){
+
+
+    $(document).on('click', '.post_discussion_button', function(){
         $('#discussion_form').submit();
+    });
+    $(document).on('click', '.post_response_button', function(){
+        $('#response_form').submit();
     });
 
     $(document).on('click', '.space_heading', function(){
@@ -178,22 +185,24 @@ $(document).ready(function(){
         return false;
     });
 
-    $(document).on('click', '.plus_discussion_button', function(){
-        $('#discussion_form').attr('action', 'http://localhost:8000/process_discussion_post');
-        $('.discussion_form_exclusive').css('display', 'flex');
-        $('#response_banner').css('display', 'none');
-        $('#post_response_header').css('display', 'none');
+    $(document).on('click', '#plus_discussion_button_big', function(){
+        $('#plus_discussion_button_big').css('display', 'none');
+        $('#discussion_form_block').css('display', 'flex');
+        $('.post_discussion_banner').css('display', 'flex');
+        $('.response_banner').css('display', 'none');
+        $('.responses_block').css('display', 'none');
+        $('#response_form_block').css('display', 'none');
     });
 
-    $(document).on('click', '.plus_response_button', function(){
-        $('#discussion_form').attr('action', 'http://localhost:8000/process_response_post');
-        $('.discussion_form_exclusive').css('display', 'none');
-        $('#response_banner').css('display', 'flex');
-        $('#response_link_label').css('display', 'flex');
-        $('#post_response_header').css('display', 'flex');
+    $(document).on('click', '#plus_response_button_big', function(){
+        $('#discussion_form_block').css('display', 'none');
+        $('#response_form_block').css('display', 'flex');
+        $('.response_banner').css('display', 'flex');
+        $('.responses_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
     });
 
-    $(document).on('click', '.discussion_post', function(){
+    $(document).on('click', '.discussion', function(){
         let discussion_id = $(this).attr('data-discussion-id')
         let discussion_index = $(this).attr('data-discussion-index')
         $.ajax({
@@ -205,7 +214,15 @@ $(document).ready(function(){
                     type: 'GET',
                     url: "http://localhost:8000/load_response_banner",
                     success: function (data) {
+                        console.log("here");
                         $('.response_banner').html(data);
+                        $('.response_banner').css('display', 'flex');
+                        $('.responses_block').css('display', 'flex');
+                        $('.post_discussion_banner').css('display', 'none');
+                        $('.discussion_form_block').css('display', 'none');
+                        $('#plus_discussion_button_big').css('display', 'flex');
+                        $('#plus_response_button_big').css('display', 'flex');
+                        $('.error_list').css('display', 'none');
                     },
                     error: function(data) {
                     }
@@ -216,6 +233,7 @@ $(document).ready(function(){
         });
         return false;
     });
+
     $(document).on('click', '.favorite_button', function(){
         if($(this).attr('data-active') != "favorited"){
             $('.star').attr('src', '/static/img/filled_star.svg');
