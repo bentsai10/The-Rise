@@ -469,7 +469,7 @@ def space(request, network, space):
     if 'logged_user' not in request.session:
         return redirect('/home')
 
-    # Store clicked on space as current space in sessin variable
+    # Store clicked on space as current space in session variable
     request.session['current_space'] = space
 
     # Pass to discussion posts section the current space and its discussions
@@ -477,6 +477,14 @@ def space(request, network, space):
         'current_space': Space.objects.get(id = request.session['current_space'])
     }
     context['discussions'] = context['current_space'].discussion_posts.all().order_by('-created_at')
+
+    # Overwrite currently selected discussion with most recent Discussion in selected space
+    if context['discussions'].count() > 0:
+            request.session['current_discussion'] = context['discussions'].first().id
+            request.session['current_discussion_index'] = 0
+    else:
+        request.session['current_discussion'] = None
+        request.session['current_discussion_index'] = 0
     return render(request, 'partials/discussion_posts.html', context)
 
 # Render corresponding discussion banner for selected space
