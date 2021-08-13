@@ -129,15 +129,15 @@ class User(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
     
-    def save(self, *args, **kwargs):
-        num_list = [x for x in range(10)]
-        code = []
-        for i in range (6):
-            num = random.choice(num_list)
-            code.append(num)
-        code_str = "".join(str(n) for n in code)
-        self.verification_code = code_str
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     num_list = [x for x in range(10)]
+    #     code = []
+    #     for i in range (6):
+    #         num = random.choice(num_list)
+    #         code.append(num)
+    #     code_str = "".join(str(n) for n in code)
+    #     self.verification_code = code_str
+    #     super().save(*args, **kwargs)
 
 
 class NetworkManager(models.Manager):
