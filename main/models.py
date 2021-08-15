@@ -152,6 +152,9 @@ class Network(models.Model):
 
     objects = NetworkManager()
 
+    def __str__(self):
+        return self.name
+
 class SpaceManager(models.Manager):
     pass
 
@@ -165,6 +168,9 @@ class Space(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
     objects = SpaceManager()
+
+    def __str__(self):
+        return self.network.name + ": " + self.name
 
 
 class DiscussionManager(models.Manager):
@@ -203,7 +209,10 @@ class Discussion(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-    objects = DiscussionManager()  
+    objects = DiscussionManager()
+
+    def __str__(self):
+        return self.title + " by " + str(self.poster)
 
 class ResponseManager(models.Manager):
     def post_validator(self, postData, fileData):
@@ -230,4 +239,8 @@ class Response(models.Model):
     link_title = models.CharField(max_length = 255, blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    
     objects = ResponseManager()  
+
+    def __str__(self):
+        return "Response to " + str(self.discussion) + " by " + str(self.poster)

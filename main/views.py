@@ -50,12 +50,14 @@ def home(request):
         if context['current_space'].discussion_posts.all().count() > 0:
             request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
         else:
-            request.session['current_discussion'] = None
-
+            request.session['current_discussion'] = 0
+    context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
     # Current discussion index resembles the playlist name of the current discussion for integration w/ Amplitude JS
     # If no discussion is currently selected, we assign -1, which will never match a playlist in Amplitude JS
     if 'current_discussion_index' not in request.session:
         context['current_discussion_index'] = -1
+    else:
+        context['current_discussion_index'] = request.session['current_discussion_index']
 
     # Provide the logged in user's favorite spaces to context
     context['favorite_spaces'] = context['logged_user'].favorite_spaces.all()
@@ -65,6 +67,9 @@ def home(request):
     # 4) 'discussions': all discussions within the currently selected space, 5) 'current_discussion': the currently selected discussion,
     # 6) 'current_discussion_index': the corresponding playlist name of the currently selected discussion,
     # 7) 'favorite_spaces': all the favorite spaces of the logged in user
+
+    for key in list(request.session.keys()):
+            print(key, request.session[key])
 
     return render(request, 'home.html', context)
 
@@ -493,7 +498,7 @@ def load_discussion_banner(request):
         return redirect('/home')
     context = {
         'current_space': Space.objects.get(id = request.session['current_space']),
-        'favorite_spaces': User.objects.get(id = request.session['logged_user']).favorite_spaces.all()
+        'favorite_spaces': User.objects.get(id = request.session['logged_user']).favorite_spaces.all(),
     }
     return render(request, 'partials/discussion_banner.html', context)
 
@@ -501,10 +506,12 @@ def load_discussion_banner(request):
 def load_response_banner(request):
     if 'logged_user' not in request.session:
         return redirect('/home')
+    space = Space.objects.get(id = request.session['current_space'])
     context = {
         'current_discussion': Discussion.objects.get(id = request.session['current_discussion']),
         'current_discussion_index': request.session['current_discussion_index'],
     }
+    context['discussions'] = space.discussion_posts.all().order_by('-created_at')
     return render(request, 'partials/response_banner.html', context)
 
 # Process a new response post
@@ -549,11 +556,13 @@ def load_responses(request, num, num2):
     if 'logged_user' not in request.session:
         return redirect('/login')
     discussion = Discussion.objects.get(id = num)
+    space = discussion.space
     request.session['current_discussion'] = num
     request.session['current_discussion_index'] = num2
     context = {
         'current_discussion': discussion,
-        'current_discussion_index': request.session['current_discussion_index']
+        'current_discussion_index': request.session['current_discussion_index'],
+        'discussions': space.discussion_posts.all().order_by('-created_at')
     }
     return render(request, 'partials/response_posts_block.html', context)
 

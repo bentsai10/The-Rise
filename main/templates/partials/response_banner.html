@@ -23,6 +23,88 @@
 </div>
 
 <script type = "text/JavaScript">
+    Amplitude.init({
+        "songs": [
+        {% for discussion in discussions %}
+        {
+            "name": "{{discussion.title}}",
+            "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
+            "url": "{{discussion.audio.url}}",
+            "element": document.createElement("audio"),
+        },
+        {% endfor %}
+        ],
+        playlists: {
+            {% for discussion in discussions %}
+            "{{forloop.counter0}}": {
+                songs: [{{forloop.counter0}},]
+            },
+            {% endfor %}
+        },
+        starting_playlist: "0",
+        starting_playlist_song: "0",
+        preload: "metadata",
+        callbacks: {
+            song_change: function(){
+                let activeID = Amplitude.getActiveSongMetadata().index;
+                let playlist_id = Amplitude.getActivePlaylist();
+                let prev_item_c;
+                let item_c;
+
+                if(activeID == -1){
+                    Amplitude.setActivePlaylistMetadata("0", {active_index: 0});
+                    activeID = Amplitude.getActiveSongMetadata().index;
+                    playlist_id = Amplitude.getActivePlaylist();
+                }
+                if(prevActiveIndex != activeID){
+                    prev_item_c = ".duration-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "flex");
+                    prev_item_c = ".current-time-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "none");
+                    prev_item_c = ".play-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "flex");
+                    prev_item_c = ".pause-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "none");
+                }
+                if (prevActiveIndex != -1){
+                    item_c = ".duration-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "none");
+                    item_c = ".current-time-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "flex");
+                    item_c = ".play-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "none");
+                    item_c = ".pause-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "flex");
+                    prevActiveIndex = activeID;
+                    prevActivePlaylist = playlist_id
+                }
+            },
+            next:function(){
+                if(Amplitude.getActiveSongMetadata().index == 0){
+                    "active_index"
+                    let id = Amplitude.getActiveSongMetadata().index;
+                    let playlist = Amplitude.getActivePlaylist();
+                    let item_c = ".duration-" +  playlist + "-" + id;
+                    $(item_c).css("display", "flex");
+                    item_c = ".current-time-" +  playlist + "-" + id;
+                    $(item_c).css("display", "none");
+                    item_c = ".play-" +  playlist + "-" + id;
+                    $(item_c).css("display", "flex");
+                    item_c = ".pause-" +  playlist + "-" + id;
+                    $(item_c).css("display", "none");
+                    prevActiveIndex = id;
+                    prevActivePlaylist = Amplitude.getActivePlaylist();
+                }
+            },
+            initialized:function(){
+                if(activeID == -1){
+                    Amplitude.setActivePlaylistMetadata("0", {active_index: 0});
+                    activeID = Amplitude.getActiveSongMetadata().index;
+                    playlist_id = Amplitude.getActivePlaylist();
+                }
+            }
+        }
+    });
     try{
         for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
             var song = Amplitude.getActivePlaylistMetadata().songs[i];
@@ -45,6 +127,7 @@
             },false);
         }
     }catch(e){
+        console.log(e);
         console.log("no songs yet");
     }
 </script>

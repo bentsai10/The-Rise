@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     $(document).on('input', '#discussion_title', function(){
         $('#discussion_title_input').val($('#discussion_title').val()); 
     });
@@ -64,7 +63,6 @@ $(document).ready(function(){
     }
 
     var start_recording = function(){
-        console.log('here')
         $('.record_button').css('display', 'none');
         $('.stop_button').css('display', 'flex');
         $('.recording_input_bar').css('display', 'block');
@@ -205,16 +203,16 @@ $(document).ready(function(){
     $(document).on('click', '.discussion', function(){
         let discussion_id = $(this).attr('data-discussion-id')
         let discussion_index = $(this).attr('data-discussion-index')
+        
         $.ajax({
             type: 'GET',
             url: `http://localhost:8000/load_response/${discussion_id}/${discussion_index}`,
             success: function (data) {
-                $('.response_posts_block').html(data)
+                $('.response_posts_block').html(data);
                 $.ajax({
                     type: 'GET',
                     url: "http://localhost:8000/load_response_banner",
                     success: function (data) {
-                        console.log("here");
                         $('.response_banner').html(data);
                         $('.response_banner').css('display', 'flex');
                         $('.responses_block').css('display', 'flex');
@@ -237,10 +235,10 @@ $(document).ready(function(){
     $(document).on('click', '.favorite_button', function(){
         if($(this).attr('data-active') != "favorited"){
             $('.star').attr('src', '/static/img/filled_star.svg');
-            $(this).attr('data-active', "unfavorited");
+            $(this).attr('data-active', "favorited");
         }else{
             $('.star').attr('src', '/static/img/star.svg');
-            $(this).attr('data-active', "favorited");
+            $(this).attr('data-active', "unfavorited");
         }
         $.ajax({
             type: 'GET',

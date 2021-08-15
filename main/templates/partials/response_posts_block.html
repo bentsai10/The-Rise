@@ -6,17 +6,17 @@
         <img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art">
         <div class="response_middle">
             <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
-            <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter1}}" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress>
-            <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter1}} " style = "display:none;">
-                <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
+            <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress>
+            <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter}} " style = "display:none;">
+                <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
             </h3>
-            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter1}} "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
+            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter}} "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
         </div>
         <div class="reponse_banner_right w-clearfix">
-            <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>
-            <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter1}}" data-amplitude-playlist="{{current_discussion_index}}">
-                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-{{current_discussion_index}}-{{forloop.counter1}}">
-                <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-{{current_discussion_index}}-{{forloop.counter1}}" style = "display:none;">
+            <h5 class="time_posted response_text">{{response.created_at|naturaltime}} {{current_discussion_index}}</h5>
+            <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}">
+                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-{{current_discussion_index}}-{{forloop.counter}}">
+                <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-{{current_discussion_index}}-{{forloop.counter}}" style = "display:none;">
             </div>
         </div>
         {% if response.link %}
@@ -32,12 +32,121 @@
 {% endfor %}
 
 <script type = "text/JavaScript">
+    Amplitude.init({
+        "songs": [
+        {% for discussion in discussions %}
+        {
+            "name": "{{discussion.title}}",
+            "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
+            "url": "{{discussion.audio.url}}",
+            "element": document.createElement("audio"),
+        },
+        {% endfor %}
+        ],
+        playlists: {
+            {% for discussion in discussions %}
+            "{{forloop.counter0}}": {
+                songs: [{{forloop.counter0}},]
+            },
+            {% endfor %}
+        },
+        starting_playlist: "0",
+        starting_playlist_song: "0",
+        preload: "metadata",
+        callbacks: {
+            song_change: function(){
+                // console.log("song changed called");
+                let activeID = Amplitude.getActiveSongMetadata().index;
+                let playlist_id = Amplitude.getActivePlaylist();
+                let prev_item_c;
+                let item_c;
+
+                if(activeID == -1){
+                    Amplitude.setActivePlaylistMetadata("0", {active_index: 0});
+                    activeID = Amplitude.getActiveSongMetadata().index;
+                    playlist_id = Amplitude.getActivePlaylist();
+                }
+                if(prevActiveIndex != activeID){
+                    prev_item_c = ".duration-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "flex");
+                    prev_item_c = ".current-time-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "none");
+                    prev_item_c = ".play-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "flex");
+                    prev_item_c = ".pause-" +  prevActivePlaylist + "-" + prevActiveIndex;
+                    $(prev_item_c).css("display", "none");
+                }
+                if (prevActiveIndex != -1){
+                    item_c = ".duration-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "none");
+                    item_c = ".current-time-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "flex");
+                    item_c = ".play-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "none");
+                    item_c = ".pause-" +  playlist_id + "-" + activeID;
+                    $(item_c).css("display", "flex");
+                    prevActiveIndex = activeID;
+                    prevActivePlaylist = playlist_id
+                }
+            },
+            next:function(){
+                if(Amplitude.getActiveSongMetadata().index == 0){
+                    "active_index"
+                    let id = Amplitude.getActiveSongMetadata().index;
+                    let playlist = Amplitude.getActivePlaylist();
+                    let item_c = ".duration-" +  playlist + "-" + id;
+                    $(item_c).css("display", "flex");
+                    item_c = ".current-time-" +  playlist + "-" + id;
+                    $(item_c).css("display", "none");
+                    item_c = ".play-" +  playlist + "-" + id;
+                    $(item_c).css("display", "flex");
+                    item_c = ".pause-" +  playlist + "-" + id;
+                    $(item_c).css("display", "none");
+                    prevActiveIndex = id;
+                    prevActivePlaylist = Amplitude.getActivePlaylist();
+                }
+            },
+            initialized:function(){
+                if(activeID == -1){
+                    Amplitude.setActivePlaylistMetadata("0", {active_index: 0});
+                    activeID = Amplitude.getActiveSongMetadata().index;
+                    playlist_id = Amplitude.getActivePlaylist();
+                }
+            }
+        }
+    });
+    try{
+        for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
+            var song = Amplitude.getActivePlaylistMetadata().songs[i];
+            let playlist = Amplitude.getActivePlaylist();
+            
+            let au = song.element;
+            au.src = song.url;
+            au.id = i;
+            au.preload = "none";
+            au.addEventListener('loadedmetadata', function(){
+                var duration = Math.floor(au.duration);
+                let mins = Math.floor(duration / 60); 
+                let secs = duration % 60;
+                secs = secs.toLocaleString('en-US', {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
+                })
+                let c = ".duration-" + playlist + "-" + i;
+                $(c).html(mins + ":" + secs);
+            },false);
+        }
+    }catch(e){
+        console.log("e");
+        console.log("no songs yet");
+    }
     {% for response in current_discussion.response_posts.all %}
     var song = {
         "name": "",
         "artist": "{{response.poster.first_name}} {{response.poster.last_name}}",
         "url": "{{response.audio.url}}",
         "element": document.createElement("audio"),
+        "index": {{forloop.counter}}
     }
     Amplitude.addSongToPlaylist(song, "{{current_discussion_index}}");
     {% endfor %}

@@ -831,6 +831,7 @@
   align-items: center;
   border-radius: 50px;
   background-color: #90fcf9;
+  cursor: pointer;
 }
 
     .amplitude-play-pause.amplitude-paused {
@@ -1018,6 +1019,7 @@
   font-size: 12px;
   line-height: 18px;
   text-decoration: none;
+  cursor: pointer;
 }
 
     .plus_discussion_button.small {
@@ -1937,6 +1939,7 @@
   align-items: center;
   border-radius: 50%;
   background-color: #90fcf9;
+  cursor: pointer;
 }
 
 .plus_response_button.small {
