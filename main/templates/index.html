@@ -1,129 +1,310 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://ins-stellar-project.webflow.io/ -->
-<html data-wf-domain="ins-stellar-project.webflow.io" data-wf-page="5ffef2a0c34c36ae674478de" data-wf-site="5ffef2a0c34c3619574478dd" data-wf-status="1" class="w-mod-js w-mod-ix js-focus-visible wf-gothica1-n4-active wf-gothica1-n3-active wf-mulish-n6-active wf-mulish-n8-active wf-mulish-n5-active wf-mulish-n2-active wf-mulish-n7-active wf-mulish-n9-active wf-mulish-n4-active wf-mulish-n3-active wf-mulish-i7-active wf-mulish-i4-active wf-mulish-i2-active wf-mulish-i5-active wf-mulish-i8-active wf-mulish-i9-active wf-mulish-i6-active wf-mulish-i3-active wf-poppins-i2-active wf-poppins-n2-active wf-poppins-n3-active wf-poppins-i3-active wf-poppins-n4-active wf-poppins-i4-active wf-poppins-n5-active wf-poppins-i5-active wf-poppins-n6-active wf-poppins-i6-active wf-poppins-n7-active wf-poppins-i7-active wf-poppins-n8-active wf-poppins-i8-active wf-poppins-n9-active wf-poppins-i9-active wf-gothica1-n2-active wf-gothica1-n5-active wf-gothica1-n6-active wf-gothica1-n7-active wf-gothica1-n8-active wf-gothica1-n9-active wf-active" data-js-focus-visible="">
+<html data-wf-domain="the-rise-2021.webflow.io" data-wf-page="61142e6827b5e12112435162" data-wf-site="61142e6827b5e112b5435161" data-wf-status="1" class="w-mod-js w-mod-ix wf-cormorant-n4-active wf-cormorant-n5-active wf-gothica1-n3-active js-focus-visible wf-cormorant-n3-active wf-cormorant-i3-active wf-cormorant-i4-active wf-cormorant-i5-active wf-cormorant-n6-active wf-cormorant-i6-active wf-cormorant-n7-active wf-cormorant-i7-active wf-gothica1-n1-active wf-gothica1-n2-active wf-gothica1-n4-active wf-gothica1-n5-active wf-gothica1-n6-active wf-gothica1-n7-active wf-gothica1-n8-active wf-gothica1-n9-active wf-active" data-js-focus-visible="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>.wf-force-outline-none[tabindex="-1"]:focus{outline:none;}</style>
-        <title>Humanely Digital</title>
         {% load static %}
+        <title>The Rise</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <meta content="Webflow" name="generator">
-        <link href="{% static 'css/landing_login.css' %}" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href= "{% static 'css/css' %}" media="all">
+        <link href="{% static 'css/landing.css' %}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/css' %}" media="all">
+        <style>.wf-force-outline-none[tabindex="-1"]:focus{outline:none;}</style>
         <style type="text/css">
             @font-face {
-                font-weight: 400;
-                font-style:  normal;
-                font-family: 'Circular-Loom';
+            font-weight: 400;
+            font-style:  normal;
+            font-family: 'Circular-Loom';
 
-                src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Book-cd7d2bcec649b1243839a15d5eb8f0a3.woff2') format('woff2');
+            src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Book-cd7d2bcec649b1243839a15d5eb8f0a3.woff2') format('woff2');
             }
 
             @font-face {
-                font-weight: 500;
-                font-style:  normal;
-                font-family: 'Circular-Loom';
+            font-weight: 500;
+            font-style:  normal;
+            font-family: 'Circular-Loom';
 
-                src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Medium-d74eac43c78bd5852478998ce63dceb3.woff2') format('woff2');
+            src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Medium-d74eac43c78bd5852478998ce63dceb3.woff2') format('woff2');
             }
 
             @font-face {
-                font-weight: 700;
-                font-style:  normal;
-                font-family: 'Circular-Loom';
+            font-weight: 700;
+            font-style:  normal;
+            font-family: 'Circular-Loom';
 
-                src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Bold-83b8ceaf77f49c7cffa44107561909e4.woff2') format('woff2');
+            src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Bold-83b8ceaf77f49c7cffa44107561909e4.woff2') format('woff2');
             }
 
             @font-face {
-                font-weight: 900;
-                font-style:  normal;
-                font-family: 'Circular-Loom';
+            font-weight: 900;
+            font-style:  normal;
+            font-family: 'Circular-Loom';
 
-                src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Black-bf067ecb8aa777ceb6df7d72226febca.woff2') format('woff2');
+            src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Black-bf067ecb8aa777ceb6df7d72226febca.woff2') format('woff2');
             }
         </style>
-        <script type="text/javascript">WebFont.load({  google: {    families: ["Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic","Poppins:200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Gothic A1:200,300,regular,500,600,700,800,900"]  }});</script>
+        <script src="{% static 'js/webfont.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">WebFont.load({  google: {    families: ["Cormorant:300,300italic,regular,italic,500,500italic,600,600italic,700,700italic","Gothic A1:100,200,300,regular,500,600,700,800,900"]  }});</script>
         <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]-->
         <script type="text/javascript">
-            !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
+            !function(o,c){var n=c.documentElement,t=" w-mod-";
+            n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
         </script>
-        <script src = "{% static 'js/webfont.js' %}" type="text/javascript"></script>  
     </head>
     <body class="body">
-        <div class="logo_banner">
-            <img src="{% static 'img/logo.png' %}" loading="lazy" width="212" sizes="(max-width: 479px) 74vw, (max-width: 767px) 86vw, (max-width: 991px) 503.5625px, 404.90625px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60feb87997816ab3d71f1007_Semib%3Aregular.png 1902w" alt="humanely digital logo" class="logo">
-        </div>
-        <div class="main_block">
-            <div class="left_col">
-                <h1 class="descrip_header">A space for learning, growing and networking in a healthy online environment.</h1>
-                <div data-animation="slide" data-duration="500" data-infinite="1" class="proto_slider w-slider" role="region" aria-label="carousel">
-                    <div class="proto_mask w-slider-mask" id="w-slider-mask-0">
-                        <div class="proto_slide w-slide" aria-label="1 of 5" role="group" style="transform: translateX(0px); opacity: 1;">
-                            <img src="{% static 'img/proto_home.png' %}" loading="lazy" width="1413" sizes="(max-width: 479px) 80vw, (max-width: 767px) 84vw, (max-width: 991px) 85vw, (max-width: 1279px) 45vw, (max-width: 1919px) 46vw, 44vw" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home-p-1600.png 1600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home-p-2000.png 2000w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home-p-2600.png 2600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home-p-3200.png 3200w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc25b8197552dc9b5237_home.png 3840w" alt="home page prototype screenshot" class="proto_image">
-                        </div>
-                        <div class="proto_slide w-slide" aria-label="2 of 5" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1;">
-                            <img src="{% static 'img/proto_post.png' %}" loading="lazy" sizes="(max-width: 479px) 80vw, (max-width: 767px) 84vw, (max-width: 991px) 85vw, (max-width: 1279px) 45vw, (max-width: 1919px) 46vw, 47vw" width="1920" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-1600.png 1600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-2000.png 2000w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-2600.png 2600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion-p-3200.png 3200w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc248b1c929136dc3e9f_post%20discussion.png 3840w" alt="post discussion page prototype screenshot" class="proto_image" aria-hidden="true">
-                        </div>
-                        <div class="proto_slide w-slide" aria-label="3 of 5" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1;">
-                            <img src="{% static 'img/proto_add.png' %}" loading="lazy" width="1413" sizes="(max-width: 479px) 80vw, (max-width: 767px) 84vw, (max-width: 991px) 85vw, (max-width: 1279px) 45vw, (max-width: 1919px) 46vw, 44vw" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group-p-1600.png 1600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group-p-2000.png 2000w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group-p-2600.png 2600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group-p-3200.png 3200w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc2463b80294db6f366a_create%20group.png 3840w" alt="create group prototype screenshot" class="proto_image" aria-hidden="true">
-                        </div>
-                        <div class="proto_slide w-slide" aria-label="4 of 5" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1;">
-                            <img src="{% static 'img/proto_chat.png' %}" loading="lazy" width="1413" sizes="(max-width: 479px) 80vw, (max-width: 767px) 84vw, (max-width: 991px) 85vw, (max-width: 1279px) 45vw, (max-width: 1919px) 46vw, 44vw" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages-p-2600.png 2600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages-p-3200.png 3200w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc24aab14ee995f735a9_group%20messages.png 3840w" alt="group messages prototype screenshot" class="proto_image" aria-hidden="true">
-                        </div>
-                        <div class="proto_slide w-slide" aria-label="5 of 5" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1;">
-                            <img src="{% static 'img/proto_profile.png' %}" loading="lazy" width="1413" sizes="(max-width: 479px) 80vw, (max-width: 767px) 84vw, (max-width: 991px) 85vw, (max-width: 1279px) 45vw, (max-width: 1919px) 46vw, 44vw" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-800.png 800w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-1080.png 1080w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-1600.png 1600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-2000.png 2000w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-2600.png 2600w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile-p-3200.png 3200w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60f5cc246e38130dc8e07d8e_profile.png 3840w" alt="profile page prototype screenshot" class="proto_image" aria-hidden="true">
-                        </div>
-                        <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
-                    </div>
-                    <div class="left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="previous slide">
-                        <div class="w-icon-slider-left"></div>
-                    </div>
-                    <div class="right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="next slide">
-                        <div class="w-icon-slider-right"></div>
-                    </div>
-                    <div class="proto_nav w-slider-nav w-round">
-                        <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 5" aria-pressed="true" role="button" tabindex="0"></div>
-                        <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 5" aria-pressed="false" role="button" tabindex="-1"></div>
-                        <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 5" aria-pressed="false" role="button" tabindex="-1"></div>
-                        <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 4 of 5" aria-pressed="false" role="button" tabindex="-1"></div>
-                        <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 5 of 5" aria-pressed="false" role="button" tabindex="-1"></div>
+        <div class="s1_menu_bar wf-section">
+            <div class="menu_block" data-open = "no">
+                <img src="/static/img/hamburger.svg" alt="hamburger menu" id = "menu_icon">
+            </div>
+            <div class="menu_cols w-row">
+                <div class="about_col w-col w-col-3">
+                    <div class="about_menu_block">
+                        <a href="#About-Section" class="about_link">The RISE/about</a>
                     </div>
                 </div>
-                <div class="button_block">
-                    <a href="http://localhost:8000/apply" class="apply_button w-button">Apply for access</a>
-                    <a href="http://localhost:8000/login" class="apply_button w-button">Login</a>
+                <div class="sign_in_col w-col w-col-3">
+                    <div class="sign_in_menu_block">
+                        <a href="#" class="sign_in_link">Sign in</a>
+                    </div>
+                </div>
+                <div class="apply_col w-col w-col-3">
+                    <div class="apply_menu_block">
+                        <a href="https://forms.gle/wTRnAResdciJ9rg98" target="_blank" class="apply_link">Apply</a>
+                    </div>
+                </div>
+                <div class="contact_col w-col w-col-3">
+                    <div class="collection_menu_block">
+                        <a href="#Contact-Section" class="collection_link">The RISE/contact</a>
+                    </div>
                 </div>
             </div>
-            <div class="right_col">
-                <div class="about_block">
-                    <h1 class="header_text">About</h1>
-                    <p class="para_text">At Humanely Digital we are building a digital social space that focuses on transferring high quality information across tight-knit communities, using the medium of audio.<br>‍<br>Our goal is to create a space where everyone benefits from meaningful interaction, whilst placing human well-being at the forefront of innovation.</p>
+        </div>
+        <nav class="overlay_menu">
+            <div class="menu_list_block">
+                <ul role="list" class="menu_list w-list-unstyled">
+                    <li class="menu_list_item">
+                        <a href="#" class="menu_link"><span class="menu_number">01</span> Sign in </a>
+                    </li>
+                    <li class="list-item-2">
+                        <a href="https://forms.gle/fww5iUA7a9XHc1Lk9" target="_blank" class="menu_link second_link"><span class="menu_number">02</span> Apply </a>
+                    </li>
+                    <li class="list-item-3">
+                        <a href="https://the-rise-2021.webflow.io/#About-Section" data-w-id="b31758c8-950d-9412-ed31-ef5d1a77f22b" class="menu_link third_link"><span class="menu_number">03 </span>The RISE/about</a>
+                    </li>
+                    <li>
+                        <a href="https://the-rise-2021.webflow.io/#Contact-Section" data-w-id="89ecfb23-e51c-1e53-b49c-f241d35c130b" class="menu_link last_link"><span class="menu_number">04</span> The RISE/contact </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="company_header_block">
+            <h1 class="company_name_heading">The RISE</h1>
+        </div>
+        <div class="company_tagline">Reimagining the way we interact with information and people online </div>
+        <div class="globe_block">
+            <img src="{% static 'img/globe.png' %}" loading="lazy" width="300" height="300" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000.png 5000w" sizes="100vw" alt="globe" class="globe_smallest">
+            <img src="{% static 'img/globe.png' %}" loading="lazy" width="400" height="400" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000.png 5000w" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" alt="globe" class="globe_small">
+            <img src="{% static 'img/globe.png' %}" loading="eager" width="500" height="500" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000.png 5000w" sizes="(max-width: 767px) 100vw, 500px" alt="globe" class="globe">
+        </div>
+        <div class="s2_update_loop wf-section">
+            <div class="update_loop_block">
+                <div data-w-id="3cd52e0b-3ad9-6ea7-934d-1e85365897e9" style="transform: translate3d(-21.6424em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="loop_text_smallest">
+                    <h1 class="loop_headline_small">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="80" sizes="(max-width: 479px) 80px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow_small">
+                    <h1 class="loop_headline_small">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="90" sizes="(max-width: 479px) 90px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow_small">
+                    <h1 class="loop_headline_small">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="80" sizes="(max-width: 479px) 80px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow_small">
+                    <h1 class="loop_headline_small">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="90" sizes="(max-width: 479px) 90px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow_small">
                 </div>
-                <div class="school_block">
-                    <h1 class="header_text">Currently Open to</h1>
-                    <p class="para_text">Boston College</p>
+                <div data-w-id="e56e498b-5492-4941-96f9-8b47e35a2ba4" style="transform: translate3d(-30.9633em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="loop_text_small">
+                    <h1 class="loop_headline">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="100" sizes="(max-width: 479px) 100vw, (max-width: 991px) 100px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="100" sizes="(max-width: 479px) 100vw, (max-width: 991px) 100px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="100" sizes="(max-width: 479px) 100vw, (max-width: 991px) 100px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="100" sizes="(max-width: 479px) 100vw, (max-width: 991px) 100px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="100" sizes="(max-width: 479px) 100vw, (max-width: 991px) 100px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
                 </div>
+                <div class="loop_text">
+                    <h1 class="loop_headline"> 9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="150" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 150px, 10vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="150" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 150px, 10vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="150" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 150px, 10vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="150" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 150px, 10vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">9/6/2021</h1>
+                    <img src="{% static 'img/white_arrow.png' %}" loading="lazy" width="150" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 150px, 10vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61147583fe8d4d9b7094c3f7_Arrow.png 2000w" alt="white arrow" class="arrow">
+                    <h1 class="loop_headline">Boston College</h1>
+                </div>
+            </div>
+        </div>
+        <div id="About-Section" class="s3_about wf-section">
+            <h1 class="about_heading">AUDIO-BASED NEWS PRODUCED FOR COMMUNITIES BY COMMUNITIES </h1>
+        </div>
+        <div class="about_description_block">
+            <p class="about_description">The Rise is on a mission to make information more democratized, truthful, valuable and diverse. We elevate knowledge that provides significant value to tight-knit communities and one's existence in the physical world. <br><br>Through designing an environment that respects human nature and gives everyone autonomy over the content they produce and engage with, niche topics are uncovered that typically wouldn't be found in mainstream media; it also makes for a far more productive, enjoyable and healthy online experience.</p>
+        </div>
+        <div class="s4_purpose wf-section">
+            <div class="purpose_container w-container">
+                <h1 class="purpose_header">FOR LEARNING, NETWORKING &amp; DISCUSSING WHAT MATTERS </h1>
+            </div>
+        </div>
+        <div class="s5_topic_loop wf-section">
+            <div class="topic_loop_block">
+                <div class="topic_block_small">
+                    <h1 class="topic_header_small">College Housing... </h1>
+                    <h1 class="topic_header_small">Senior Week...</h1>
+                    <h1 class="topic_header_small">Postgrad Studies...</h1>
+                    <h1 class="topic_header_small">Volunteering...</h1>
+                    <h1 class="topic_header_small">Mental Health...</h1>
+                    <h1 class="topic_header_small">Cryptography... </h1>
+                    <h1 class="topic_header_small">Startup Internships...</h1>
+                    <h1 class="topic_header_small">College Housing... </h1>
+                    <h1 class="topic_header_small">Senior Week...</h1>
+                    <h1 class="topic_header_small">Postgrad Studies...</h1>
+                    <h1 class="topic_header_small">Volunteering...</h1>
+                    <h1 class="topic_header_small">Mental Health...</h1>
+                    <h1 class="topic_header_small">Cryptography... </h1>
+                    <h1 class="topic_header_small">Startup Internships...</h1>
+                </div>
+                <div class="topic_block">
+                    <h1 class="topic_header">College Housing... </h1>
+                    <h1 class="topic_header">Senior Week... </h1>
+                    <h1 class="topic_header">Postgrad Studies... </h1>
+                    <h1 class="topic_header">Volunteering... </h1>
+                    <h1 class="topic_header">Mental Health...</h1>
+                    <h1 class="topic_header">Cryptography... </h1>
+                    <h1 class="topic_header">Startup Internships...</h1>
+                    <h1 class="topic_header">College Housing... </h1>
+                    <h1 class="topic_header">Senior Week... </h1>
+                    <h1 class="topic_header">Postgrad Studies... </h1>
+                    <h1 class="topic_header">Volunteering... </h1>
+                    <h1 class="topic_header">Mental Health...</h1>
+                    <h1 class="topic_header">Cryptography... </h1>
+                    <h1 class="topic_header">Startup Internships...</h1>
+                </div>
+            </div>
+        </div>
+        <div class="s6_audio_loop wf-section">
+            <div class="audio_loop_block">
+                <div class="audio_block_smallest">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_tony.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_tony.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img_smallest">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="300" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img_smallest">
+                </div>
+                <div class="audio_block_small">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_tony.png' %}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" width="400" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_tony.png' %}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" width="400" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img_small">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="400" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img_small">
+                </div>
+                <div class="audio_block">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/tony.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_taylor.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a6560340f91e09117700_Audio%20*1.png 1858w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_callie.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198d138aa1f643d213c7ac_Screen%20Shot%202021-08-15%20at%202.51.04%20PM.png 603w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_mary.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a5485d0fe97c23c25ca9_Audio%202.png 1857w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_tony.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6116a54b1acf1629ffe735ac_Audio%205.png 1857w" alt="discussion sample" class="discussion_img">
+                    <img src="{% static 'img/discussion_connor.png' %}" loading="lazy" width="600" sizes="(max-width: 767px) 100vw, 600px" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/61198ee41dc3c20f32351979_Screen%20Shot%202021-08-15%20at%203.02.03%20PM.png 522w" alt="discussion sample" class="discussion_img">
+                </div>
+            </div>
+        </div>
+        <div class="s7_problem wf-section">
+            <div class="inhumane_block w-container">
+                <h1 class="inhumane_heading">THE IMPACTS OF INHUMANE TECHNOLOGY </h1>
+                <div class="behavior_block">
+                    <h1 class="inhumane_section_header">HUMAN BEHAVIOR </h1>
+                    <p class="inhumane_section_description">The digital social space is riddled with low-quality information, misinformation, and polarization. People lack significant exposure to diverse perspectives and the truth; this is leading to systemic oppression, a disrupted democratic process and reduced empathy.</p>
+                    <div class="learn_more_block">
+                        <a href="https://docs.google.com/document/d/1snsEXeoVi4xdZfp0T0MJ0JR4Ghmnowc_nuPVbZDkSkE/edit?usp=sharing" target="_blank" class="learn_more_link">Learn More</a>
+                        <img src="{% static 'img/purple_arrow.png' %}" loading="lazy" width="15" height="10" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-2000.png 2000w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-2600.png 2600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-3200.png 3200w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202.png 5000w" sizes="(max-width: 767px) 18.023040771484375px, (max-width: 1279px) 2vw, 1vw" alt="purple arrow" class="link_arrow">
+                    </div>
+                </div>
+                <div class="wellbeing_block">
+                    <h1 class="inhumane_section_header">HUMAN WELL-BEING </h1>
+                    <p class="inhumane_section_description">Both social media channels and mainstream news outlets adopt ad-based business models which exploit our innate physiological vulnerabilities and profit off addictive behavioral patterns. Certain information is amplified for the purpose of keeping “users” engaged. The effects of this are damaging cognitive development along with physical and mental health.</p>
+                    <div class="learn_more_block">
+                        <a href="https://docs.google.com/document/d/1snsEXeoVi4xdZfp0T0MJ0JR4Ghmnowc_nuPVbZDkSkE/edit?usp=sharing" target="_blank" class="learn_more_link">Learn More</a>
+                        <img src="{% static 'img/purple_arrow.png' %}" loading="lazy" width="15" height="10" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-1080.png 1080w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-1600.png 1600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-2000.png 2000w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-2600.png 2600w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202-p-3200.png 3200w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6114757d34645f8cb2e2d110_Arrow%202.png 5000w" sizes="(max-width: 767px) 18.023040771484375px, (max-width: 1279px) 2vw, 1vw" alt="purple arrow" class="link_arrow">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="s8_attention_economy wf-section">
+            <img src="{% static 'img/attention_economy_main.png' %}" loading="lazy" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6117146175eb547d963d424d_AE-Main-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/6117146175eb547d963d424d_AE-Main.png 1878w" alt="attention economy graphic design" class="attention_economy">
+        </div>
+        <div id="Contact-Section" class="s9_contact wf-section">
+            <div class="full_contact_block w-container">
+                <div class="reach_out_header">REACH OUT </div>
                 <div class="contact_block">
-                    <h1 class="header_text">Contact</h1>
-                    <div class="email_block">
-                        <a href="mailto:humanelydigital@gmail.com?subject=Access%20to%20Humanely%20Digital" class="link">humanelydigital@gmail.com</a>
-                    </div>
-                    <div class="linkedin_block">
-                        <a href="https://www.linkedin.com/in/benjaminpctsai/" target="_blank" class="founder_block w-inline-block">
-                            <p class="founder_name">Ben Tsai</p>
-                            <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" width="50" sizes="(max-width: 479px) 20px, (max-width: 767px) 30px, (max-width: 991px) 5vw, (max-width: 1279px) 28px, (max-width: 1919px) 42px, 56px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60e9f5e70070ba30281a4880_clipart1361216-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60e9f5e70070ba30281a4880_clipart1361216.png 858w" alt="linkedin icon" class="link_logo">
-                        </a>
-                        <a href="https://www.linkedin.com/in/storm-sunderland-692057b8/" target="_blank" class="founder_block w-inline-block">
-                            <p class="founder_name">Storm Sunderland</p>
-                            <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" width="50" sizes="(max-width: 479px) 20px, (max-width: 767px) 30px, (max-width: 991px) 5vw, (max-width: 1279px) 28px, (max-width: 1919px) 42px, 56px" srcset="https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60e9f5e70070ba30281a4880_clipart1361216-p-500.png 500w, https://uploads-ssl.webflow.com/5ffef2a0c34c3619574478dd/60e9f5e70070ba30281a4880_clipart1361216.png 858w" alt="linkedin icon" class="link_logo">
-                        </a>
+                    <div class="contact_cols w-row">
+                        <div class="founder_contact_col w-col w-col-6">
+                            <h1 class="founder_contact_heading">Founders</h1>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/storm-sunderland-692057b8/" target="_blank" class="contact_link">STORM SUNDERLAND</a>
+                            </div>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/benjaminpctsai/" target="_blank" class="contact_link">BEN TSAI </a>
+                            </div>
+                            <div class="email_block">
+                                <h1 class="email_header">Email </h1>
+                                <div class="contact_info_block">
+                                    <a href="https://the-rise-2021.webflow.io/#" class="contact_link">TEAM@THERISE.ONLINE</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ambassadors-block w-col w-col-6">
+                            <h1 class="ambassador_header">Lead Ambassadors </h1>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/emma-sabbadini/" target="_blank" class="contact_link">EMMA SABBADINI, BOSTON COLLEGE</a>
+                            </div>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/tony-lewis-9909861b2/" target="_blank" class="contact_link">TONY LEWIS, BOSTON COLLEGE</a>
+                            </div>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/callie-sardina-a586b2205/" target="_blank" class="contact_link">CALLIE SARDINA, BOSTON COLLEGE</a>
+                            </div>
+                            <div class="contact_info_block">
+                                <a href="https://www.linkedin.com/in/phillip-tracy/" target="_blank" class="contact_link">PHILLIP TRACY, BOSTON COLLEGE</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="copyright_block_small">
+                    <img src="{% static 'img/copyright_logo.png' %}" loading="lazy" width="12" alt="copyright logo" class="copyright_logo_small">
+                    <div class="copyright_text_small">2021 THE RISE</div>
+                </div>
+            </div>
+            <div class="copyright_block">
+                <img src="{% static 'img/copyright_logo.png' %}" loading="lazy" width="14" alt="copyright logo" class="copyright_logo">
+                <div class="copyright_text">2021 THE RISE</div>
             </div>
         </div>
-        <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="{% static 'js/landing.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/jquery3.5.1.js' %}" type="text/JavaScript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="{% static 'js/landing.js' %}" type="text/JavaScript"></script>
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
     </body>
     <loom-container id="lo-engage-ext-container">
