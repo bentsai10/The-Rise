@@ -5,7 +5,6 @@ main/secrets.py
 db.sqlite3
 bfg.jar
 media/
-requirements.txt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

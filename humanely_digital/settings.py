@@ -26,7 +26,7 @@ SECRET_KEY = secrets.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://django-env2.eba-tmarsgxy.us-west-2.elasticbeanstalk.com/', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,16 +78,28 @@ WSGI_APPLICATION = 'humanely_digital.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default' : {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME' : 'HUMANELY_DIGITAL_DB',
-#         'USER' : 'postgres', 
-#         'PASSWORD': secrets.POSTGRES_PW,
-#         'HOST' : 'localhost',
-#         'PORT' : '5432',
-#     }
-# }
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    DATABASES = {
+        'default' : {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME' : 'HUMANELY_DIGITAL_DB',
+            'USER' : 'postgres', 
+            'PASSWORD': secrets.POSTGRES_PW,
+            'HOST' : 'localhost',
+            'PORT' : '5432',
+        }
+    }
 
 
 # Password validation
