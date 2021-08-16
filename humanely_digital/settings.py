@@ -26,7 +26,7 @@ SECRET_KEY = secrets.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://django-env2.eba-tmarsgxy.us-west-2.elasticbeanstalk.com/']
+ALLOWED_HOSTS = ['http://django-env2.eba-tmarsgxy.us-west-2.elasticbeanstalk.com/', 'localhost']
 
 
 # Application definition
@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'humanely_digital.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default' : {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : 'HUMANELY_DIGITAL_DB',
-        'USER' : 'postgres', 
-        'PASSWORD': secrets.POSTGRES_PW,
-        'HOST' : 'localhost',
-        'PORT' : '5432',
-    }
-}
+# DATABASES = {
+#     'default' : {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME' : 'HUMANELY_DIGITAL_DB',
+#         'USER' : 'postgres', 
+#         'PASSWORD': secrets.POSTGRES_PW,
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
 
 
 # Password validation
