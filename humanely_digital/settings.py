@@ -93,13 +93,19 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
+    # DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+# }
     DATABASES = {
         'default' : {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME' : 'HUMANELY_DIGITAL_DB',
             'USER' : 'postgres', 
             'PASSWORD': os.environ['POSTGRES_PW'],
-            'HOST' : '127.0.0.1',
+            'HOST' : 'localhost',
             'PORT' : '5432',
         }
     }
