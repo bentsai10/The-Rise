@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .secrets import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import phonenumbers, bcrypt
+import phonenumbers, bcrypt, dotenv, os
 from twilio.rest import Client
 
 
@@ -117,8 +116,8 @@ def process_apply(request):
             return redirect('/')
 
 # Twilio setup for 2-step verification
-account_sid = TWILIO_ACCOUNT_SID
-auth_token = TWILIO_AUTH_TOKEN
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
 client = Client(account_sid, auth_token)
 
 # Render page for entering 2-step code
@@ -144,7 +143,7 @@ def process_verification(request):
         # Check that entered verification code matches the one Twilio sent out
         phone_number = user.phone_number
         verification_check = client.verify \
-                           .services(TWILIO_SERVICE_ID) \
+                           .services(os.environ['TWILIO_SERVICE_ID']) \
                            .verification_checks \
                            .create(to=phone_number, code=request.POST['verification_code'].strip())
         
@@ -220,7 +219,7 @@ def process_login(request):
 
             # Use Twilio to send 6-digit code to user's phone number
             verification = client.verify \
-                     .services(TWILIO_SERVICE_ID) \
+                     .services(os.environ['TWILIO_SERVICE_ID']) \
                      .verifications \
                      .create(to=phone_number, channel='sms')
             
