@@ -14,6 +14,9 @@ from twilio.rest import Client
 def index(request):
     return render(request, 'index.html')
 
+def placeholder(request):
+    return render(request, 'placeholder.html')
+
 # Render home page
 def home(request):
     # If no logged in user, redirect to login page
@@ -49,8 +52,11 @@ def home(request):
         if context['current_space'].discussion_posts.all().count() > 0:
             request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
         else:
-            request.session['current_discussion'] = 0
-    context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
+            request.session['current_discussion'] = -1
+    if request.session['current_discussion'] == -1:
+        context['current_discussion'] = -1
+    else:        
+        context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
     # Current discussion index resembles the playlist name of the current discussion for integration w/ Amplitude JS
     # If no discussion is currently selected, we assign -1, which will never match a playlist in Amplitude JS
     if 'current_discussion_index' not in request.session:

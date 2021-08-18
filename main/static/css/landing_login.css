@@ -12,13 +12,31 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-body {
+#placeholder_title{
+    color: #3425e9; 
+    font-family: 'Cormorant'; 
+    font-weight: 500;
+    font-size: 8rem;
+}
+#placeholder_descrip{
+    color: #3425e9;
+    font-family: 'Gothic A1';
+    font-weight: 300;
+    font-size: 2rem;
+    margin-top: 2.5em;
+}
+
+   body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   color: #333;
   font-size: 14px;
   line-height: 20px;
 }
 
+#add_space_header{
+    margin-bottom: 1em;
+    font-size: 3rem;
+}
 .body {
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,7 +53,7 @@ body {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #3425e9;
+  background-color: #faf9f5;
 }
 
 .body.access{
@@ -362,7 +380,7 @@ body {
   width: 100%;
   margin-bottom: 0.5em;
   font-family: 'Gothic A1', sans-serif;
-  color: #fff;
+  color: #3425e9;
   font-size: 1.8rem;
   line-height: 2.5rem;
   font-weight: 300;
@@ -379,6 +397,9 @@ body {
   line-height: 2.5rem;
   font-weight: 300;
   cursor: pointer;
+  border: 1px solid #3425e9;
+  background: #faf9f5;
+  
 }
 
 .submit-button {
@@ -386,14 +407,24 @@ body {
   padding: 0.3em 1em;
   float: right;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: #3425e9;
   font-family: 'Gothic A1', sans-serif;
-  color: #3425e9;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 2.5rem;
   font-weight: 300;
   text-align: center;
   cursor: pointer;
+}
+
+select{
+    border: 1px solid #3425e9;
+    background: #faf9f5;
+}
+
+option{
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
 }
 
 .email_block {
@@ -473,8 +504,7 @@ body {
 }
 
 input::-webkit-input-placeholder {
-    color: black; 
-    opacity: 0.5; 
+    opacity: 0.3
 }
 
 .access-form-block {
@@ -492,6 +522,8 @@ textarea{
     line-height: 2.5rem;
     font-weight: 300;
     padding: .5em;
+    background: #faf9f5;
+    border: 1px solid #3425e9;
 }
 
 .error_list{
@@ -500,7 +532,7 @@ textarea{
 }
 
 .error_item{
-    color: #90FCF9; 
+    color: #3425e9; 
     font-size: 1rem; 
     font-weight: 1.5rem;
     font-family: 'Gothic A1', sans-serif;
@@ -508,7 +540,7 @@ textarea{
 }
 
 .applicant_name{
-    color: #90FCF9; 
+    color: #3425e9; 
     font-size: 2rem; 
     font-weight: 2.5rem;
     font-family: 'Gothic A1', sans-serif;
@@ -632,6 +664,7 @@ textarea{
     margin-bottom: 0.5em;
     font-size: 1.8rem;
     line-height: 2.5rem;
+    color: #3425e9;
   }
 
   .login_text_field {
@@ -674,7 +707,8 @@ textarea{
   #profile_pic_preview{
       border-radius: 50%;
       border: 2px solid white;
-      width: 50%;
+      width: 12.5em;
+      height:12.5em;
       margin-bottom: 1em;
   }
 
@@ -772,7 +806,7 @@ textarea{
   .login_label {
     width: 100%;
     font-family: 'Gothic A1', sans-serif;
-    color: #fff;
+    color: #3425e9;
     font-size: 1.8rem;
     line-height: 2.5rem;
     font-weight: 300;
@@ -798,9 +832,9 @@ textarea{
     float: right;
     clear: none;
     border-radius: 100px;
-    background-color: #fff;
+    background-color: #3425e9;
     font-family: 'Gothic A1', sans-serif;
-    color: #3425e9;
+    color: #fff;
     font-size: 1.5rem;
     line-height: 2.5rem;
     font-weight: 300;
@@ -816,6 +850,12 @@ textarea{
 }
 
 @media screen and (max-width: 991px) {
+    #placeholder_title{
+        font-size: 6rem;
+    }
+    #placeholder_descrip{
+        margin-top: 1.5em;
+    }
   .body {
     border: 5px solid #000;
   }
@@ -990,6 +1030,13 @@ textarea{
 }
 
 @media screen and (max-width: 767px) {
+    #placeholder_title{
+        font-size: 3rem;
+    }
+    #placeholder_descrip{
+        font-size: 1.5rem;
+        margin-top: .5em;
+    }
   .descrip_header {
     font-size: 2rem;
     line-height: 3rem;
@@ -1084,6 +1131,13 @@ textarea{
 }
 
 @media screen and (max-width: 479px) {
+    #placeholder_title{
+        font-size: 2.5rem;
+    }
+    #placeholder_descrip{
+        font-size: 1.2rem;
+        margin-top: .5em;
+    }
   .main_block {
     height: auto;
     padding: 1em 0px;

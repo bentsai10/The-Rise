@@ -53,7 +53,7 @@
     <body class="body">
         <div class="s1_menu_bar wf-section">
             <div class="menu_block" data-open = "no">
-                <img src="{% static 'img/hamburger.png' %}" alt="hamburger menu" id = "menu_icon">
+                <img src="{% static 'img/hamburger.svg' %}" alt="hamburger menu" id = "menu_icon">
             </div>
             <div class="menu_cols w-row">
                 <div class="about_col w-col w-col-3">
@@ -63,12 +63,12 @@
                 </div>
                 <div class="sign_in_col w-col w-col-3">
                     <div class="sign_in_menu_block">
-                        <a href="#" class="sign_in_link">Sign in</a>
+                        <a href="http://localhost:8000/login" class="sign_in_link">Sign in</a>
                     </div>
                 </div>
                 <div class="apply_col w-col w-col-3">
                     <div class="apply_menu_block">
-                        <a href="https://forms.gle/wTRnAResdciJ9rg98" target="_blank" class="apply_link">Apply</a>
+                        <a href="http://localhost:8000/apply" target="_blank" class="apply_link">Apply</a>
                     </div>
                 </div>
                 <div class="contact_col w-col w-col-3">
@@ -82,16 +82,16 @@
             <div class="menu_list_block">
                 <ul role="list" class="menu_list w-list-unstyled">
                     <li class="menu_list_item">
-                        <a href="#" class="menu_link"><span class="menu_number">01</span> Sign in </a>
+                        <a href="http://localhost:8000/login" class="menu_link"><span class="menu_number">01</span> Sign in </a>
                     </li>
                     <li class="list-item-2">
-                        <a href="https://forms.gle/fww5iUA7a9XHc1Lk9" target="_blank" class="menu_link second_link"><span class="menu_number">02</span> Apply </a>
+                        <a href="http://localhost:8000/apply" target="_blank" class="menu_link second_link"><span class="menu_number">02</span> Apply </a>
                     </li>
                     <li class="list-item-3">
-                        <a href="https://the-rise-2021.webflow.io/#About-Section" data-w-id="b31758c8-950d-9412-ed31-ef5d1a77f22b" class="menu_link third_link"><span class="menu_number">03 </span>The RISE/about</a>
+                        <a href="#About-Section" data-w-id="b31758c8-950d-9412-ed31-ef5d1a77f22b" class="menu_link third_link"><span class="menu_number">03 </span>The RISE/about</a>
                     </li>
                     <li>
-                        <a href="https://the-rise-2021.webflow.io/#Contact-Section" data-w-id="89ecfb23-e51c-1e53-b49c-f241d35c130b" class="menu_link last_link"><span class="menu_number">04</span> The RISE/contact </a>
+                        <a href="#Contact-Section" data-w-id="89ecfb23-e51c-1e53-b49c-f241d35c130b" class="menu_link last_link"><span class="menu_number">04</span> The RISE/contact </a>
                     </li>
                 </ul>
             </div>
@@ -99,7 +99,7 @@
         <div class="company_header_block">
             <h1 class="company_name_heading">The RISE</h1>
         </div>
-        <div class="company_tagline">Reimagining the way we interact with information and people online </div>
+        <div class="company_tagline">Reimagining how we interact with information and people online</div>
         <div class="globe_block">
             <img src="{% static 'img/globe.png' %}" loading="lazy" width="300" height="300" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000.png 5000w" sizes="100vw" alt="globe" class="globe_smallest">
             <img src="{% static 'img/globe.png' %}" loading="lazy" width="400" height="400" srcset="https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-500.png 500w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000-p-800.png 800w, https://uploads-ssl.webflow.com/61142e6827b5e112b5435161/611475770aadb7627e9ceb3b_LOGOAsset%2015000.png 5000w" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, 100vw" alt="globe" class="globe_small">
@@ -293,15 +293,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="copyright_block_small">
+                <!-- <div class="copyright_block_small">
                     <img src="{% static 'img/copyright_logo.png' %}" loading="lazy" width="12" alt="copyright logo" class="copyright_logo_small">
                     <div class="copyright_text_small">2021 THE RISE</div>
-                </div>
+                </div> -->
             </div>
-            <div class="copyright_block">
+            <!-- <div class="copyright_block">
                 <img src="{% static 'img/copyright_logo.png' %}" loading="lazy" width="14" alt="copyright logo" class="copyright_logo">
                 <div class="copyright_text">2021 THE RISE</div>
-            </div>
+            </div> -->
         </div>
         <script src="{% static 'js/jquery3.5.1.js' %}" type="text/JavaScript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="{% static 'js/landing.js' %}" type="text/JavaScript"></script>

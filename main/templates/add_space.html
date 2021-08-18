@@ -61,7 +61,7 @@
     </head>
     <body class="body">
         <div class="main_login_block">
-            <h1 class = "applicant_name">Add a Space</h1>
+            <a href="http://localhost:8000/home"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
             <div class="form-block">
                 <form id=" add-space-form" name="add_space_form" class="login_form" method = "POST" action = "http://localhost:8000/process_add_space">
                     {% csrf_token %}
