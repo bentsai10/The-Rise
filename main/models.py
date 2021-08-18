@@ -145,7 +145,7 @@ class NetworkManager(models.Manager):
 
 class Network(models.Model):
     class Meta:
-        db_table = 'networks'
+        db_table = 'network'
     name = models.CharField(max_length = 255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
@@ -162,7 +162,7 @@ class Space(models.Model):
     class Meta:
         db_table = 'spaces'
     name = models.CharField(max_length = 255)
-    network = models.ForeignKey(Network, on_delete=models.CASCADE, default = Network.objects.get(id = 1).id)
+    network = models.ForeignKey(Network, on_delete=models.CASCADE)
     favorited_users = models.ManyToManyField(User, related_name = "favorite_spaces")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
@@ -170,7 +170,7 @@ class Space(models.Model):
     objects = SpaceManager()
 
     def __str__(self):
-        return self.network.name + ": " + self.name
+        return self.name
 
 
 class DiscussionManager(models.Manager):
