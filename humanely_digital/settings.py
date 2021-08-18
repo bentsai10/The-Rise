@@ -93,16 +93,10 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-    # DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-# }
     DATABASES = {
         'default' : {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME' : 'HUMANELY_DIGITAL_DB',
+            'NAME' : 'THE_RISE_DB',
             'USER' : 'postgres', 
             'PASSWORD': os.environ['POSTGRES_PW'],
             'HOST' : 'localhost',
@@ -153,16 +147,17 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 #S3 buckets config
-
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = 'the-rise-online-bucket'
+if 'AWS_ACCESS_KEY_ID' in os.environ:
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
-STATIC_URL = '/https://the-rise-online-bucket.s3.amazonaws.com/static/'
+STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
 DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
+
 
 COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
