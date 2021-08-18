@@ -154,15 +154,15 @@ MEDIA_URL = '/media/'
 
 #S3 buckets config
 
-# AWS_ACCESS_KEY_ID = secrets.AWS_ACCESS_KEY_ID
-# AWS_SECRET_ACCESS_KEY = secrets.AWS_SECRET_ACCESS_KEY
-# AWS_STORAGE_BUCKET_NAME = 'humanely-test-bucket-1'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = 'the-rise-online-bucket'
 
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# STATIC_URL = '/https://humanely-test-bucket-1.s3.amazonaws.com/static/'
-# DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
-# STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+STATIC_URL = '/https://the-rise-online-bucket.s3.amazonaws.com/static/'
+DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
+STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
 
 COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
