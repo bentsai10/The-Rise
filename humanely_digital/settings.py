@@ -147,14 +147,14 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 #S3 buckets config
-if 'AWS_ACCESS_KEY_ID' in os.environ:
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+# if 'AWS_ACCESS_KEY_ID' in os.environ:
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
-STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
+STATIC_URL = '/https://{}.s3.{}.amazonaws.com'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
 DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
 
