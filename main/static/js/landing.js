@@ -65,12 +65,12 @@ $(document).ready(function(){
         if($(this).attr('data-open') == 'no'){
             $('body').addClass('no_scroll');
             $('.overlay_menu').css('margin-left', '0vw');
-            $('#menu_icon').attr('src', '/static/img/purple_x.svg');
+            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/static/img/purple_x.svg');
             $(this).attr('data-open', 'yes');
         }else{
             $('body').removeClass('no_scroll');
             $('.overlay_menu').css('margin-left', '100vw');
-            $('#menu_icon').attr('src', '/static/img/hamburger.svg');
+            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/static/img/hamburger.svg');
             $(this).attr('data-open', 'no');
         }
         

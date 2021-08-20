@@ -63,7 +63,7 @@
         <div class="main_login_block">
             <a href="https://latest-rise-dev.us-east-2.elasticbeanstalk.com/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
             <div class="form-block">
-                <form id=" add-space-form" name="add_space_form" class="login_form" method = "POST" action = "http://latest-rise-dev.us-east-2.elasticbeanstalk.com/process_add_space">
+                <form id=" add-space-form" name="add_space_form" class="login_form" method = "POST" action = "https://therise.online/process_add_space">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">

@@ -62,20 +62,20 @@
     </head>
     <body class="body">
         <div class="nav">
-            <a href="http://localhost:8000/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
-            <a href="http://localhost:8000/my_profile" class="profile_banner_link_block w-inline-block">
+            <a href="https://therise.online/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
+            <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
                 <img src="{{logged_user.profile_picture.url}}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
                 <h1 class="profile_banner">{{logged_user.first_name}} {{logged_user.last_name}}</h1>
             </a>
         </div>
         <div class="network_block">
-            <a href="http://localhost:8000/home" class="network_link_block w-inline-block">
+            <a href="https://therise.online/home" class="network_link_block w-inline-block">
                 <h1 data-w-id="ee46b548-7cad-c835-5ba7-fee04a006c78" class="network_heading public">Boston College</h1>
                 <h1 data-w-id="f9dad7f8-b7ac-c1eb-9783-ff6fc603aa4a" class="network_heading private">Boston College</h1>
             </a>
-            <a data-w-id="a7d90bae-ebd2-3426-0d6b-4d4a420a2c7d" href="http://localhost:8000/home" class="network_button public_button w-button">Public</a>
-            <a data-w-id="1849c984-94a7-0d15-005f-7130437a31cd" href="http://localhost:8000/home" class="network_button private_button w-button">Private</a>
-            <a data-w-id="b0d5e608-35fa-fa2c-1b92-482de446f24b" href="http://localhost:8000/home" class="network_button private_button small w-button">Private</a>
+            <a data-w-id="a7d90bae-ebd2-3426-0d6b-4d4a420a2c7d" href="https://therise.online/home" class="network_button public_button w-button">Public</a>
+            <a data-w-id="1849c984-94a7-0d15-005f-7130437a31cd" href="https://therise.online/home" class="network_button private_button w-button">Private</a>
+            <a data-w-id="b0d5e608-35fa-fa2c-1b92-482de446f24b" href="https://therise.online/home" class="network_button private_button small w-button">Private</a>
         </div>
         <div class="main_block">
             <div class="public_panel">
@@ -89,7 +89,7 @@
                     <div class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
                             <h2 class="space_header">{{current_space.name}}</h2>
-                            <a href="http://localhost:8000/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
+                            <a href="https://therise.online/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
                                 {% if current_space in favorite_spaces %}
                                 <img src="{% static 'img/filled_star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
                                 {% else %}
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="main_banner_block response_banner player w-clearfix">
-                        <a href="http://localhost:8000/home" class="back_arrow_link_block w-inline-block">
+                        <a href="https://therise.online/home" class="back_arrow_link_block w-inline-block">
                             <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
                         </a>
                         {% if current_discussion != -1%}
@@ -137,7 +137,7 @@
                             <h1 class="spaces_heading">Favorite Spaces</h1>
                             <div class="favorite_spaces">
                                 {% for space in favorite_spaces %}
-                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+                                <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -145,16 +145,16 @@
                             <h1 class="spaces_heading">All Spaces</h1>
                             <div class="all_spaces">
                                 {% for space in spaces %}
-                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+                                <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="discussions_block w-clearfix">
                         <div class="discussion_button_block">
-                            <a href="http://localhost:8000/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
-                            <a href="http://localhost:8000/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
-                            <a href="http://localhost:8000/{{current_space.id}}/saved" class="discussion_tab_button saved_button w-button">Saved</a>
+                            <a href="https://therise.online/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
+                            <a href="https://therise.online/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
+                            <a href="https://therise.online/{{current_space.id}}/saved" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
                             {% for discussion in discussions %}
@@ -189,7 +189,7 @@
                                         <h2 class="cap_heading">{{discussion.participants}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
-                                    <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions.all %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                    <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions.all %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
                                         {% if discussion in user.saved_discussions.all %}
                                         <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                         {% else %}
@@ -235,7 +235,7 @@
                                     </div>
                                     {% endif %}
                                 </div>
-                                <a href="http://localhost:8000/home" class="group_button w-inline-block">
+                                <a href="https://therise.online/home" class="group_button w-inline-block">
                                     <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
                                 </a>
                             </div>
@@ -250,7 +250,7 @@
                     </div>
                     <div class="discussion_form_block" id = "discussion_form_block">
                         <div class="post_discussion_block" id = "post_discussion_block">
-                            <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
+                            <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "https://therise.online/process_discussion_post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if messages %}
                                 <ul class = "error_list">
@@ -298,7 +298,7 @@
                     </div>
                     <div class="discussion_form_block" id = "response_form_block">
                         <div class="post_discussion_block" id = "post_response_block">
-                            <form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_response_post" enctype="multipart/form-data">
+                            <form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "https://therise.online/process_response_post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if messages %}
                                 <ul class = "error_list">
@@ -481,7 +481,7 @@
                                         </div>
                                     </div>
                                     <div class="discussion_bottom">
-                                        <a href="http://localhost:8000/home" class="discussion_link response_text">Netflix: The Social Dilemma</a>
+                                        <a href="https://therise.online/home" class="discussion_link response_text">Netflix: The Social Dilemma</a>
                                     </div>
                                 </div>
                             </div>
@@ -502,7 +502,7 @@
                                         </div>
                                     </div>
                                     <div class="discussion_bottom">
-                                        <a href="http://localhost:8000/home" class="discussion_link">Netflix: The Social Dilemma</a>
+                                        <a href="https://therise.online/home" class="discussion_link">Netflix: The Social Dilemma</a>
                                     </div>
                                 </div>
                             </div>
@@ -561,7 +561,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="http://localhost:8000/home" class="microphone_block w-inline-block">
+                        <a href="https://therise.online/home" class="microphone_block w-inline-block">
                             <img src="{% static 'img/mic.svg' %}" loading="lazy" alt="white microphone icon" class="mic">
                         </a>
                     </div>
@@ -587,7 +587,7 @@
                         $('.clear_recording_button').click();
                         $.ajax({
                             type: 'GET',
-                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
+                            url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",
                             success: function (data) {
                                 $('.discussion_posts_block').html(data);
                             },
@@ -614,7 +614,7 @@
                         $('.clear_recording_button').click();
                         $.ajax({
                             type: 'GET',
-                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
+                            url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",
                             success: function (data) {
                                 $('.response_posts_block').html(data);
                             },

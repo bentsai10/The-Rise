@@ -62,7 +62,7 @@
         <div class="main_login_block">
             <img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo">
             <div class="form-block">
-                <form id="login_form" name="login_form" class="login_form" action = "http://latest-rise-dev.us-east-2.elasticbeanstalk.com/process_login" method = "POST">
+                <form id="login_form" name="login_form" class="login_form" action = "https://therise.online/process_login" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">

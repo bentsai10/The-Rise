@@ -54,7 +54,7 @@
     </head>
     <body class="body">
         <div class="nav">
-            <a href="http://localhost:8000/home" class="link">Humanely Digital</a>
+            <a href="https://therise.online/home" class="link">Humanely Digital</a>
             <a href="#" class="profile_banner_link_block w-inline-block">
                 {% if user.profile_picture %}
                 <img src="{{user.profile_picture.url}}" loading="lazy" alt="profile picture" class="profile_thumbnail">
@@ -65,7 +65,7 @@
             </a>
         </div>
         <div class="network_block">
-            <a href="http://localhost:8000/home" class="network_link_block w-inline-block">
+            <a href="https://therise.online/home" class="network_link_block w-inline-block">
                 <h1 class="network_heading">Boston College</h1>
             </a>
         </div>
@@ -83,7 +83,7 @@
             <h2 class="heading">{% if user.department1 %}{{user.department1}}{% if user.department2 %} &amp; {{user.department2}}{% endif %}{% endif %} {{user.title}}{% if user.year %}, Class of '{{user.year}}{% endif %}</h2>
             {% endif %}
             {% if user.id == request.session.logged_user %}
-            <a href="http://localhost:8000/edit_profile" class="edit-profile-button w-button">Edit Profile</a>
+            <a href="https://therise.online/edit_profile" class="edit-profile-button w-button">Edit Profile</a>
             {% endif %}
         </div>
         <div class="activity_block">
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="listening_space">in <a href="http://localhost:8000/" class="space_link">Senior Week</a></h4>
+                    <h4 class="listening_space">in <a href="https://therise.online/" class="space_link">Senior Week</a></h4>
                 </div>
             </div>
             <div class="activity_panel speaking_panel">
@@ -132,7 +132,7 @@
                             </div>
                             <div class="discussion_bottom">
                                 <h1 class="song-title">The Social Dilemma</h1>
-                                <a href="http://localhost:8000/home" class="discussion_link">Netflix: The Social Dilemma</a>
+                                <a href="https://therise.online/home" class="discussion_link">Netflix: The Social Dilemma</a>
                             </div>
                         </div>
                         <div class="discussion_buttons">
@@ -140,7 +140,7 @@
                                 <h2 class="cap_heading">8/10</h2>
                                 <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                             </div>
-                            <a href="http://localhost:8000/home" class="bookmark_link_block w-inline-block">
+                            <a href="https://therise.online/home" class="bookmark_link_block w-inline-block">
                                 <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                             </a>
                         </div>
@@ -150,15 +150,15 @@
             <div class="activity_panel networking_panel">
                 <h1 class="activity_header">Networking with</h1>
                 <div class="networking_with_block">
-                    <a href="http://localhost:8000/" class="network_profile w-inline-block">
+                    <a href="https://therise.online/" class="network_profile w-inline-block">
                         <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Ben Tsai</h1>
                     </a>
-                    <a href="http://localhost:8000/" class="network_profile w-inline-block">
+                    <a href="https://therise.online/" class="network_profile w-inline-block">
                         <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Storm Sunderland</h1>
                     </a>
-                    <a href="http://localhost:8000/" class="network_profile w-inline-block">
+                    <a href="https://therise.online/" class="network_profile w-inline-block">
                         <img src="{% static 'img/profile_placehold.png' %}" loading="lazy" alt="placeholder profile picture" class="network_profile_image">
                         <h1 class="network_profile_name">Eve Blossom</h1>
                     </a>
