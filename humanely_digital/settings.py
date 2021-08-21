@@ -154,7 +154,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
-STATIC_URL = '/https://{}.s3.{}.amazonaws.com/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
+STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
 # MEDIA_URL = '/https://{}.s3.{}.amazonaws.com/media/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
 DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
@@ -164,8 +164,8 @@ COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
 #Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'humanelydigital@gmail.com'
+EMAIL_HOST_USER = 'team@therise.online'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
