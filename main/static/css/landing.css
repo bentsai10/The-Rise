@@ -12,7 +12,10 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-.no_scroll{
+   .attention_economy{
+       margin-top: 2em;
+   }
+   .no_scroll{
     overflow:hidden;
 }   
    html {
@@ -374,11 +377,8 @@
 
 .s6_audio_loop {
   overflow: hidden;
-  height: 45vh;
-  margin-top: 4em;
-  margin-bottom: 1em;
-  padding-bottom: 0em;
-  border-bottom: 0px none #000;
+  height: auto;
+  margin: 2em 0em;
   white-space: normal;
 }
 
@@ -651,7 +651,6 @@
 }
 
 .s4_purpose {
-  border-top: 3px solid #000;
   background-color: #3425e9;
 }
 
@@ -716,11 +715,6 @@
     display: none;
   }
 
-  .s6_audio_loop {
-    height: 40vh;
-    margin-top: 2.5em;
-    margin-bottom: 0em;
-  }
 
   .audio_loop_block {
     margin-left: -19px;
@@ -838,10 +832,6 @@
     max-width: 80%;
   }
 
-  .s6_audio_loop {
-    height: 45vh;
-    margin-bottom: 0em;
-  }
 
   .discussion_img {
     margin-right: 1vw;
@@ -1246,11 +1236,6 @@
     display: none;
   }
 
-  .s6_audio_loop {
-    overflow: hidden;
-    height: 38vw;
-    margin-bottom: 1em;
-  }
 
   .audio_loop_block {
     overflow: hidden;
@@ -1633,12 +1618,6 @@
     white-space: nowrap;
   }
 
-  .s6_audio_loop {
-    overflow: hidden;
-    height: 25vh;
-    margin-bottom: 1em;
-    border-bottom-style: none;
-  }
 
   .audio_loop_block {
     overflow: hidden;
@@ -1945,16 +1924,8 @@
     font-size: 2em;
   }
 
-  .s6_audio_loop {
-    overflow: hidden;
-    height: 20vh;
-    margin-top: 4em;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
 
   .audio_loop_block {
-    position: absolute;
     display: block;
     overflow: hidden;
     margin-bottom: 0em;
