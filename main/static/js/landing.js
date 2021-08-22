@@ -72,7 +72,7 @@ $(document).ready(function(){
         if($('#menu_button').attr('data-open') == 'no'){
             $('body').addClass('no_scroll');
             $('.overlay_menu').css('margin-left', '0vw');
-            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/purple_x.pngstatic/img/purple_x.png');
+            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/purple_x.png');
             $('#menu_button').attr('data-open', 'yes');
         }else{
             closeMenu();
