@@ -184,7 +184,7 @@ def login(request):
 def process_login(request):
     # Perform appropriate precautionary redirects
     if request.method == 'GET':
-        return redirect('/login')
+        return redirect('/secret_login')
     if 'logged_user' in request.session:
         return redirect('/home')
     else:
@@ -195,7 +195,7 @@ def process_login(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/login')
+            return redirect('/secret_login')
         else:
             password = request.POST['password']
             phone_number = request.POST['phone_number'].strip()
@@ -204,13 +204,13 @@ def process_login(request):
                 phone_number = phonenumbers.format_number(phone_number, phonenumbers.PhoneNumberFormat.E164)
             except:
                 messages.error(request, "Please provide your phone number in a valid format")
-                return redirect('/login')
+                return redirect('/secret_login')
 
            # Find user based on unique phone number 
             user = User.objects.filter(phone_number = phone_number)[0]
             if not user:
                 messages.error(request, "No user with this phone number")
-                return redirect('/login')
+                return redirect('/secret_login')
 
             # If no password associated w/ user, encode their entered passcode and enter it into the database
             # Store in the session that this is their first time ever logging in
