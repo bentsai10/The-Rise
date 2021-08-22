@@ -16,8 +16,8 @@ $(document).ready(function(){
     }
 
     function animateLoopTextSmallest(){
-        $('.loop_text_smallest').animate({marginLeft: '-31.5em'}, 10000, 'linear', function(){
-            $('.loop_text_smallest').animate({marginLeft: '0em'}, 10000, 'linear', function(){
+        $('.loop_text_smallest').animate({marginLeft: '-20em'}, 8000, 'linear', function(){
+            $('.loop_text_smallest').animate({marginLeft: '0em'}, 8000, 'linear', function(){
                 animateLoopTextSmallest();
             });
         });
@@ -64,7 +64,7 @@ $(document).ready(function(){
     function closeMenu(){
         $('body').removeClass('no_scroll');
         $('.overlay_menu').css('margin-left', '100vw');
-        $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/hamburger.svg');
+        $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/hamburger.png');
         $('#menu_button').attr('data-open', 'no');
 }
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
         if($('#menu_button').attr('data-open') == 'no'){
             $('body').addClass('no_scroll');
             $('.overlay_menu').css('margin-left', '0vw');
-            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/purple_x.svg');
+            $('#menu_icon').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/purple_x.pngstatic/img/purple_x.png');
             $('#menu_button').attr('data-open', 'yes');
         }else{
             closeMenu();
