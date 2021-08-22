@@ -316,7 +316,7 @@ def process_edit_profile(request):
 
 # Process user logout by removing all session variables and redirecting to landing page
 def logout(request):
-    if 'logged_user' in request.session:
+    if 'logged_user' or 'hold_id' in request.session:
         for key in list(request.session.keys()):
             del request.session[key]
     return redirect('/')

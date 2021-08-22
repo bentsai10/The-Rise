@@ -12,7 +12,45 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-#placeholder_title{
+   #file{
+    display:none;
+}
+
+#profile_picture_field{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    height: auto;
+    width: 100%;
+}
+
+#profile_pic_block{
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+
+#profile_pic_preview{
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 12.5em;
+    height:12.5em;
+    margin-bottom: 1em;
+}
+
+#title{
+    width: 100%;
+    color: #3425e9;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    margin-bottom: 1em;
+    border-radius: 20px;
+    height: auto;
+    padding: .5em;
+  }
+
+   #placeholder_title{
     color: #3425e9; 
     font-family: 'Cormorant'; 
     font-weight: 500;
@@ -42,7 +80,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
+  height: auto;
   padding: 1em;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -479,7 +517,7 @@ option{
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -499,16 +537,15 @@ option{
     height: auto;
 }
 
-.form-block {
-  width: 40em;
+.form-block{
+  width: 50%;
+}
+.access-form-block{
+    width: 60%;
 }
 
 input::-webkit-input-placeholder {
     opacity: 0.3
-}
-
-.access-form-block {
-    width: 40em;
 }
 
 textarea{
@@ -680,52 +717,12 @@ textarea{
     font-size: 1.5rem;
     line-height: 2.5rem;
   }
-
-  .form-block {
-    width: 25em;
-  }
-
-  .access-form-block {
-    width: 40em;
-  }
-
-  #profile_picture_field{
-      display:flex;
-      flex-direction: column;
-      margin-bottom: 2em;
-      height: auto;
-      width: 100%;
-  }
-
-  #profile_pic_block{
-      display: flex;
-      justify-content: center;
-      height: auto;
-      width: 100%;
-  }
-
-  #profile_pic_preview{
-      border-radius: 50%;
-      border: 2px solid white;
-      width: 12.5em;
-      height:12.5em;
-      margin-bottom: 1em;
-  }
-
-  #file{
-      display:none;
-  }
-
-  #title{
-    width: 100%;
-    color: #3425e9;
-    font-size: 1.5rem;
-    line-height: 2.5rem;
-    margin-bottom: 1em;
-    border-radius: 20px;
-    height: auto;
-    padding: .5em;
-  }
+  .form-block{
+    width: 30%;
+}
+    .access-form-block{
+        width: 60%;
+    }
 
 }
 
@@ -846,6 +843,13 @@ textarea{
   }
   .review_button_block{
     width: 40%;
+    }
+
+    .form-block{
+        width: 25%;
+    }
+    .access-form-block{
+        width: 50%;
     }
 }
 
@@ -1019,14 +1023,10 @@ textarea{
   .login_logo {
     width: 20em;
   }
-
-  .form-block {
-    width: 25em;
-  }
-  .access-form-block {
-    width: 40em;
-  }
   
+    .access-form-block{
+    width: 80%;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1123,9 +1123,8 @@ textarea{
     -ms-flex-pack: center;
     justify-content: center;
   }
-
-  .form-block, .access-form-block {
-        width: 30em;
+  .access-form-block{
+      width: 80%;
   }
   
 }
@@ -1366,7 +1365,7 @@ textarea{
   }
 
   .login_label {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 2.5rem;
   }
 
@@ -1410,7 +1409,8 @@ textarea{
   }
 
   .form-block, .access-form-block {
-    width: 20em;
+    width: 80%;
+    text-align: center;
   }
 }
 @font-face {

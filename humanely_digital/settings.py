@@ -27,7 +27,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -155,7 +155,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
-# MEDIA_URL = '/https://{}.s3.{}.amazonaws.com/media/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
+MEDIA_URL = '/https://{}.s3.{}.amazonaws.com/media/'.format(os.environ['AWS_MEDIA_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
 DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
 
