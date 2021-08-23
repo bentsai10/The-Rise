@@ -12,6 +12,15 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
+  #user_stat{
+    color: #3425e9;
+    font-family: 'Gothic A1';
+    font-weight: 300;
+    line-height: 1rem;
+    font-size: 1.5rem;
+    margin:0em;
+  }
+  
    #file{
     display:none;
 }
@@ -91,6 +100,7 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  justify-content: center;
   background-color: #faf9f5;
 }
 
@@ -444,7 +454,7 @@
   margin-top: 0.3em;
   padding: 0.3em 1em;
   float: right;
-  border-radius: 20px;
+  border-radius: 100px;
   background-color: #3425e9;
   font-family: 'Gothic A1', sans-serif;
   color: #fff;
@@ -561,6 +571,7 @@ textarea{
     padding: .5em;
     background: #faf9f5;
     border: 1px solid #3425e9;
+    cursor: pointer;
 }
 
 .error_list{
@@ -579,9 +590,9 @@ textarea{
 .applicant_name{
     color: #3425e9; 
     font-size: 2rem; 
-    font-weight: 2.5rem;
+    line-height: 2.5rem;
     font-family: 'Gothic A1', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .review_button_block{
@@ -828,7 +839,6 @@ textarea{
     padding-left: 1em;
     float: right;
     clear: none;
-    border-radius: 100px;
     background-color: #3425e9;
     font-family: 'Gothic A1', sans-serif;
     color: #fff;

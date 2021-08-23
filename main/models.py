@@ -71,16 +71,16 @@ class UserManager(models.Manager):
         try: 
             phone_number = phonenumbers.parse(postData['phone_number'].strip())
         except:
-            errors['phone_number'] = ("Phone number must be entered in the format: '+6171234567'. Up to 15 digits allowed")
+            errors['phone_number'] = ("Country dialing code is required (+1 for U.S)")
             return errors
         if not phonenumbers.is_valid_number(phone_number):
-            errors['phone_number'] = ("Number invalid. Phone number must be entered in the format: '+6171234567'. Up to 15 digits allowed")
+            errors['phone_number'] = ("Country dialing code is required (+1 for U.S)")
             return errors
         if User.objects.filter(phone_number = postData['phone_number']).all().count() > 0:
             errors['phone_number'] = "An application has already been submitted with this phone number"
             return errors
-        if len(postData['essay'].strip()) < 15:
-            errors['essay'] = "Please be thoughtful in your response (15+ characters)"
+        if len(postData['essay'].strip()) < 50:
+            errors['essay'] = "Please be thoughtful in your response (50+ characters)"
         if len(postData['referral'].strip()) < 2:
             errors['referral'] = "Please let us know what brought you here (2+ characters)"
         return errors

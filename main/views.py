@@ -264,34 +264,34 @@ def process_edit_profile(request):
             # Since we are making it possible that users can leave certain fields blank,
             # We need if statements to check if they have entered something for each field
 
-            if request.POST['year']:
-                user.year = request.POST['year'].strip()
-            else:
-                user.year = ""
+            # if request.POST['year']:
+            #     user.year = request.POST['year'].strip()
+            # else:
+            #     user.year = ""
 
-            # If there is department data, clean it before assigning it
-            if request.POST['department1']:
-                department1 = ""
-                department1_raw = request.POST['department1'].strip().split(' ')
-                for i in range(len(department1_raw)):
-                    department1 += department1_raw[i][0].upper() + department1_raw[i][1:].lower()
-                    if i != len(department1_raw) - 1:
-                        department1 += " "
-                user.department1 = department1
+            # # If there is department data, clean it before assigning it
+            # if request.POST['department1']:
+            #     department1 = ""
+            #     department1_raw = request.POST['department1'].strip().split(' ')
+            #     for i in range(len(department1_raw)):
+            #         department1 += department1_raw[i][0].upper() + department1_raw[i][1:].lower()
+            #         if i != len(department1_raw) - 1:
+            #             department1 += " "
+            #     user.department1 = department1
 
-            if request.POST['department2']:
-                department2 = ""
-                department2_raw = request.POST['department2'].strip().split(' ')
-                for i in range(len(department2_raw)):
-                    department2 += department2_raw[i][0].upper() + department2_raw[i][1:].lower()
-                    if i != len(department2_raw) - 1:
-                        department2 += " "
-                user.department2 = department2
+            # if request.POST['department2']:
+            #     department2 = ""
+            #     department2_raw = request.POST['department2'].strip().split(' ')
+            #     for i in range(len(department2_raw)):
+            #         department2 += department2_raw[i][0].upper() + department2_raw[i][1:].lower()
+            #         if i != len(department2_raw) - 1:
+            #             department2 += " "
+            #     user.department2 = department2
 
-            # If user entered a department2 but not a department1, then make department1 = department2 and clear department2
-            if request.POST['department2'] and not request.POST['department1']:
-                user.department1 = user.department2
-                user.department2 = ""
+            # # If user entered a department2 but not a department1, then make department1 = department2 and clear department2
+            # if request.POST['department2'] and not request.POST['department1']:
+            #     user.department1 = user.department2
+            #     user.department2 = ""
 
             # If there is title data, clean it before assigning it
             if 'title' in request.POST:
@@ -361,7 +361,9 @@ def review(request, num):
     
     # Provide to context the desired user, as well as the previous and next unapproved user according to id order
     context = {
-        'applicant': user
+        'applicant': user, 
+        'total_current_users': User.objects.filter(status = True).all().count(),
+        'total_unapproved_applications': User.objects.filter(status = False).all().count(),
     }
     greater_than = User.objects.filter(status = False, id__gt = user.id).all()
     less_than = User.objects.filter(status = False, id__lt = user.id).all()

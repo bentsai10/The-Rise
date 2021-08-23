@@ -69,6 +69,17 @@
                 <h1 class="profile_banner">Ben Tsai</h1>
             </a>
         </div>
+        <div class="nav">
+            <a href="https://therise.online/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
+            <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
+                {% if user.profile_picture %}
+                <img src="{{user.profile_picture.url}}" loading="lazy" alt="profile picture" class="profile_thumbnail">
+                {% else %}
+                <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" alt="placeholder profile picture" class="profile_thumbnail">
+                {% endif %}
+                <h1 class="profile_banner">{{logged_user.first_name}} {{logged_user.last_name}}</h1>
+            </a>
+        </div>
         <div class="network_block">
             <a href="https://therise.online/home" class="network_link_block w-inline-block">
                 <h1 class="network_heading">Boston College</h1>
@@ -82,16 +93,14 @@
             <img src="{% static 'img/linkedin_icon.png' %}" loading="lazy" alt="placeholder profile picture" class="profile_pic">
             {% endif %}
             <h1 class="profile_name">{{user.first_name}} {{user.last_name}}</h1>
-            {% if user.permissions == 1 %}
+            {% if user.title %}
             <h2 class="heading">{{user.title}}</h2>
-            {% else %}
-            <h2 class="heading">{% if user.department1 %}{{user.department1}}{% if user.department2 %} &amp; {{user.department2}}{% endif %}{% endif %} {{user.title}}{% if user.year %}, Class of '{{user.year}}{% endif %}</h2>
             {% endif %}
             {% if user.id == request.session.logged_user %}
             <a href="https://therise.online/edit_profile" class="edit-profile-button w-button">Edit Profile</a>
             {% endif %}
         </div>
-        <div class="activity_block">
+        <!-- <div class="activity_block">
             <div class="activity_panel listening_panel">
                 <h1 class="activity_header">Listening to</h1>
                 <div class="listening_to_block">
@@ -169,7 +178,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->

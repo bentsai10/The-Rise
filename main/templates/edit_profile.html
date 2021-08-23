@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)https://ins-stellar-project.webflow.io/login -->
 <html data-wf-domain="ins-stellar-project.webflow.io" data-wf-page="60ed169444f4564ba8ed90ca" data-wf-site="5ffef2a0c34c3619574478dd" data-wf-status="1" class="w-mod-js w-mod-ix js-focus-visible wf-gothica1-n3-active wf-mulish-n4-active wf-mulish-n5-active wf-mulish-n8-active wf-mulish-n9-active wf-mulish-n6-active wf-mulish-n3-active wf-mulish-n7-active wf-mulish-n2-active wf-mulish-i2-active wf-mulish-i7-active wf-mulish-i9-active wf-mulish-i8-active wf-mulish-i5-active wf-mulish-i4-active wf-mulish-i6-active wf-mulish-i3-active wf-poppins-n2-active wf-poppins-i2-active wf-poppins-i3-active wf-poppins-n4-active wf-poppins-i4-active wf-poppins-n5-active wf-poppins-i5-active wf-poppins-n3-active wf-poppins-n6-active wf-poppins-i6-active wf-poppins-n7-active wf-poppins-i7-active wf-poppins-n8-active wf-poppins-i8-active wf-poppins-n9-active wf-poppins-i9-active wf-gothica1-n2-active wf-gothica1-n4-active wf-gothica1-n5-active wf-gothica1-n6-active wf-gothica1-n7-active wf-gothica1-n8-active wf-gothica1-n9-active wf-active" data-js-focus-visible="">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,21 +85,8 @@
                         <input type="file"  accept="image/*" name="profile_picture" id="file"  onchange="loadImage(event)">
                         <label class = "submit-button w-button" for="file">Upload Image</label>
                     </div>
-                    <label for="year" class="login_label">Year</label>
-                    <input type="number" class="login_text_field w-input" minlength = "4" maxlength="4" name="year" id="year" value = "{{user.year}}">
-                    <label for="department1" class="login_label">Major/Department 1</label>
-                    <input type="text" class="login_text_field w-input" maxlength="255" name="department1" id="department1" value = "{{user.department1}}">
-                    <label for="department2" class="login_label">Major/Department 2</label>
-                    <input type="text" class="login_text_field w-input" maxlength="255" name="department2" id="department2" value = "{{user.department2}}">
-                    <label for="title" class="login_label">Title</label>
-                    <select name="title" id="title">
-                        <option value="" selected disabled hidden>{{user.title}}</option>
-                        <option value="student">Student</option>
-                        <option value="professor">Professor</option>
-                        <option value="faculty">Faculty</option>
-                        <option value="alumni">Alumni</option>
-                        <option value="other">Other</option>
-                    </select>
+                    <label for="title" class="login_label">Job</label>
+                    <input type="text" name="title" class = "login_text_field w-input">
                     <input type="submit" value="Save" class="submit-button w-button">
                 </form>
             </div>

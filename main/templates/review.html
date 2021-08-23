@@ -64,7 +64,16 @@
     </head>
     <body class="body access">
         <div class="main_login_block access">
-            <a href="https://latest-rise-dev.us-east-2.elasticbeanstalk.com"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
+            <a href="https://therise.online/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
+
+            <div class = "header block" style = "display: flex; flex-direction: row; align-items: center;">
+                {% if previous_user %}
+                <a href="https://therise.online/review/{{previous_user.id}}" class = "submit-button w-button previous-btn" style = "margin-right: 1em">&lt;</a>
+                {% endif %}
+                <h1 id = "user_stat" style = "margin-right: 1em" ><span style = "margin-right: 1em">Total Users: {{total_current_users}}</span>Remaining Applications: {{total_unapproved_applications}}</h1>
+                {% if next_user %}
+                <a href="https://therise.online/review/{{next_user.id}}" class = "submit-button w-button next-btn">&gt;</a></div>
+                {% endif %}
             {% if applicant %}
             <div class="access-form-block">
                 <h1 class = "applicant_name">{{applicant.first_name}} {{applicant.last_name}}</h1>
@@ -85,7 +94,7 @@
                     <input type="submit" value="Accept" class="submit-button w-button">
                 </form>
             </div>
-            <div class = "review_button_block">
+            <!-- <div class = "review_button_block">
                 <div class = "review_button_left">
                     {% if previous_user %}
                     <a href="https://therise.online/review/{{previous_user.id}}" class = "submit-button w-button previous-btn">Previous</a>
@@ -96,7 +105,7 @@
                     <a href="https://therise.online/review/{{next_user.id}}" class = "submit-button w-button next-btn">Next</a>
                     {% endif %}
                 </div>
-            </div>
+            </div> -->
             {% else %}
                 <h1 class = "applicant_name">No applications to review</h1>
             {% endif %}
