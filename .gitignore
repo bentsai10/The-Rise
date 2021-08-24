@@ -1,6 +1,8 @@
 db.sqlite3
 bfg.jar
 .env
+media/audio/
+media/images/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
