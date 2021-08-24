@@ -98,14 +98,14 @@
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Gothic A1', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     line-height: 1.2rem;
     font-weight: 300;
     }
 
     .profile_thumbnail {
-    width: 2.5em;
-    height: 2.5em;
+    width: 3.5em;
+    height: 3.5em;
     cursor: pointer;
     margin-right: 1vw;
     border: 1px solid #fff;
@@ -709,6 +709,7 @@
 .album_art {
   display: block;
   width: 3.5em;
+  height: 3.5em;
   margin-right: 0.5em;
   float: none;
   border-style: solid;
@@ -719,6 +720,7 @@
 
     .album_art.album_art_banner {
     width: 4.5em;
+    height: 4.5em;
     margin-right: 1em;
     float: left;
     }
@@ -1279,7 +1281,6 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: hidden;
   width: 15%;
   height: auto;
   -webkit-box-orient: vertical;
@@ -1321,7 +1322,7 @@
 }
 
 .response_middle {
-  width: 60%;
+  width: 68%;
 }
 
 .main_banner {
@@ -2150,10 +2151,12 @@
 
   .album_art {
     width: 4em;
+    height: 4em;
   }
 
   .album_art.album_art_banner {
     width: 5em;
+    height: 5em;
   }
 
   .song-artist {
@@ -2503,10 +2506,12 @@
 
   .album_art {
     width: 5em;
+    height: 5em;
   }
 
   .album_art.album_art_banner {
     width: 6em;
+    height: 6em;
   }
 
   .album_art.participant_pic {
@@ -2826,6 +2831,7 @@
 
   .album_art {
     width: 5.5em;
+    height: 5.5em;
   }
 
   .song-artist {
@@ -3332,16 +3338,19 @@
 
   .album_art {
     width: 4.5em;
+    height: 4.5em;
     margin-right: 0.5em;
     cursor: pointer;
   }
 
   .album_art.album_art_banner {
     width: 5em;
+    height: 5em;
   }
 
   .album_art.album_art_profile {
     width: 5em;
+    height: 5em;
   }
 
   .album_art.participant_pic {
@@ -3350,6 +3359,7 @@
 
   .album_art.chat_album_art {
     width: 3.5em;
+    height: 3.5em;
   }
 
   .song-artist {
@@ -4145,6 +4155,7 @@
   .album_art {
     display: block;
     width: 4.75em;
+    height: 4.75em;
     margin-right: 0.5em;
   }
 
