@@ -48,7 +48,7 @@ def home(request):
     # If no discussion is currently selected,
     # We assign the id of the most recent discussion in the space as the current discussion
     # If there are no discussions in the space, we assign None
-    if 'current_discussion' not in request.session:
+    if 'current_discussion' not in request.session or request.session['current_discussion'] == None:
         if context['current_space'].discussion_posts.all().count() > 0:
             request.session['current_discussion'] = context['current_space'].discussion_posts.all().order_by('-created_at').first().id
         else:
@@ -56,6 +56,7 @@ def home(request):
     if request.session['current_discussion'] == -1:
         context['current_discussion'] = -1
     else:        
+        print(request.session['current_discussion'])
         context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
     # Current discussion index resembles the playlist name of the current discussion for integration w/ Amplitude JS
     # If no discussion is currently selected, we assign -1, which will never match a playlist in Amplitude JS
@@ -437,7 +438,7 @@ def process_add_space(request):
         name += name_raw[i][0].upper() + name_raw[i][1:].lower()
         if i != len(name_raw) - 1:
             name += " "
-    Space.objects.create(name = name)
+    Space.objects.create(name = name, network = Network.objects.get(id = 1))
     return redirect('/home')
 
 # Process a new discussion being posted
@@ -492,8 +493,8 @@ def space(request, network, space):
 
     # Overwrite currently selected discussion with most recent Discussion in selected space
     if context['discussions'].count() > 0:
-            request.session['current_discussion'] = context['discussions'].first().id
-            request.session['current_discussion_index'] = 0
+        request.session['current_discussion'] = context['discussions'].first().id
+        request.session['current_discussion_index'] = 0
     else:
         request.session['current_discussion'] = None
         request.session['current_discussion_index'] = 0
@@ -566,6 +567,7 @@ def load_responses(request, num, num2):
     space = discussion.space
     request.session['current_discussion'] = num
     request.session['current_discussion_index'] = num2
+    print(request.session['current_discussion'], request.session['current_discussion_index'])
     context = {
         'current_discussion': discussion,
         'current_discussion_index': request.session['current_discussion_index'],

@@ -76,9 +76,9 @@
                 <h1 data-w-id="ee46b548-7cad-c835-5ba7-fee04a006c78" class="network_heading public">Boston College</h1>
                 <h1 data-w-id="f9dad7f8-b7ac-c1eb-9783-ff6fc603aa4a" class="network_heading private">Boston College</h1>
             </a>
-            <a data-w-id="a7d90bae-ebd2-3426-0d6b-4d4a420a2c7d" href="http://localhost:8000/home" class="network_button public_button w-button">Public</a>
+            <!-- <a data-w-id="a7d90bae-ebd2-3426-0d6b-4d4a420a2c7d" href="http://localhost:8000/home" class="network_button public_button w-button">Public</a>
             <a data-w-id="1849c984-94a7-0d15-005f-7130437a31cd" href="http://localhost:8000/home" class="network_button private_button w-button">Private</a>
-            <a data-w-id="b0d5e608-35fa-fa2c-1b92-482de446f24b" href="http://localhost:8000/home" class="network_button private_button small w-button">Private</a>
+            <a data-w-id="b0d5e608-35fa-fa2c-1b92-482de446f24b" href="http://localhost:8000/home" class="network_button private_button small w-button">Private</a> -->
         </div>
         <div class="main_block">
             <div class="public_panel">
@@ -238,9 +238,9 @@
                                     </div>
                                     {% endif %}
                                 </div>
-                                <a href="http://localhost:8000/home" class="group_button w-inline-block">
+                                <!-- <a href="http://localhost:8000/home" class="group_button w-inline-block">
                                     <img src="{% static 'img/empty_person.svg' %}" loading="lazy" width="14" alt="white w/ blue outline person icon" class="group">
-                                </a>
+                                </a> -->
                             </div>
                             {% endfor %}
                         </div>
@@ -575,79 +575,21 @@
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
         <script src = "{% static 'js/home.js' %}" type="text/javascript"></script>  
         <script>
-            $(document).on('submit', '#discussion_form', function() {
-                $('#discussion_title').val("");
-                let file_input = document.getElementById('discussion_audio_input');
-                let formData = new FormData(document.getElementById('discussion_form'));
-                $.ajax({
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $('#post_discussion_block').html(data);
-                        $('.clear_recording_button').click();
-                        $.ajax({
-                            type: 'GET',
-                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
-                            success: function (data) {
-                                $('.discussion_posts_block').html(data);
-                            },
-                            error: function(data) {
-                            }
-                        });
-                    },
-                    error: function(data) {
-                    }
-                });
-                return false;
+            var prevActiveIndex = -1;
+            var prevActivePlaylist = -1;
+            let songs = [];
+            {% for discussion in discussions %}
+            songs.push({
+                "name": "{{discussion.title}}",
+                "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
+                "url": "{{discussion.audio.url}}",
+                "element": document.createElement("audio"),
             });
-            $(document).on('submit', '#response_form', function() {
-                let file_input = document.getElementById('response_audio_input');
-                let formData = new FormData(document.getElementById('response_form'));
-                $.ajax({
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $('#post_response_block').html(data);
-                        $('.clear_recording_button').click();
-                        $.ajax({
-                            type: 'GET',
-                            url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
-                            success: function (data) {
-                                $('.response_posts_block').html(data);
-                            },
-                            error: function(data) {
-                            }
-                        });
-                    },
-                    error: function(data) {
-                    }
-                });
-                return false;
-            });
-        </script>
-
-        <script type = "text/JavaScript">
-            let load_songs = function(){
-                let prevActiveIndex = -1;
-                let prevActivePlaylist = -1;
-                
+            {% endfor %}
+            var load_songs = function(){
+                console.log(prevActiveIndex, prevActivePlaylist);
                 Amplitude.init({
-                    "songs": [
-                    {% for discussion in discussions %}
-                    {
-                        "name": "{{discussion.title}}",
-                        "artist": "{{discussion.poster.first_name}} {{discussion.poster.last_name}}",
-                        "url": "{{discussion.audio.url}}",
-                        "element": document.createElement("audio"),
-                    },
-                    {% endfor %}
-                    ],
+                    "songs": songs,
                     playlists: {
                         {% for discussion in discussions %}
                         "{{forloop.counter0}}": {
@@ -660,6 +602,7 @@
                     preload: "metadata",
                     callbacks: {
                         song_change: function(){
+                            console.log('changed called');
                             let activeID = Amplitude.getActiveSongMetadata().index;
                             let playlist_id = Amplitude.getActivePlaylist();
                             let prev_item_c;
@@ -694,6 +637,7 @@
                             prevActivePlaylist = playlist_id;
                         },
                         next:function(){
+                            console.log('next called');
                             if(Amplitude.getActiveSongMetadata().index == 0){ //if we've reached the end of the playlist
                                 let id = Amplitude.getActiveSongMetadata().index;
                                 let playlist = Amplitude.getActivePlaylist();
@@ -710,14 +654,26 @@
                             }
                         },
                         initialized:function(){
-                            if(activeID == -1){
-                                Amplitude.setActivePlaylistMetadata("0", {active_index: 0});
-                                activeID = Amplitude.getActiveSongMetadata().index;
-                                playlist_id = Amplitude.getActivePlaylist();
-                            }
+                            {% for response in current_discussion.response_posts.all %}
+                            var hold = {
+                                    "name": "",
+                                    "artist": "{{response.poster.first_name}} {{response.poster.last_name}}",
+                                    "url": "{{response.audio.url}}",
+                                    "element": document.createElement("audio"),
+                                    "index": {{forloop.counter}},
+                            };
+                            Amplitude.addSong(hold);
+                            Amplitude.addSongToPlaylist(hold, "{{current_discussion_index}}");
+                            Amplitude.bindNewElements();
+                            {% endfor %}
                         }
                     }
                 });
+            };
+        </script>
+        <script type = "text/JavaScript">
+            $(document).ready(function(){
+                  
                 try{
                     for(let i = 0; i < Amplitude.getActivePlaylistMetadata().songs.length; i++){
                         var song = Amplitude.getActivePlaylistMetadata().songs[i];
@@ -743,56 +699,67 @@
                     console.log(e);
                     console.log("no songs yet");
                 }
-            }
-            $(document).ready(function(){
+
+
                 load_songs();
-                {% for response in current_discussion.response_posts.all %}
-                var song = {
-                    "name": "",
-                    "artist": "{{response.poster.first_name}} {{response.poster.last_name}}",
-                    "url": "{{response.audio.url}}",
-                    "element": document.createElement("audio"),
-                    "index": {{forloop.counter}}
-                }
-                Amplitude.addSong( song);
-                Amplitude.addSongToPlaylist(song, "{{current_discussion_index}}");
-                {% endfor %}
-                $(document).on('click', '.amplitude-song-played-progress', function(e){
-                    if( Amplitude.getActiveSongMetadata().index == ($(this).attr('data-amplitude-song-index')) ){
-                        var offset = this.getBoundingClientRect();
-                        var x = e.pageX - offset.left;
 
-                        Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
-                    }
+
+                $(document).on('submit', '#discussion_form', function() {
+                    $('#discussion_title').val("");
+                    let file_input = document.getElementById('discussion_audio_input');
+                    let formData = new FormData(document.getElementById('discussion_form'));
+                    $.ajax({
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#post_discussion_block').html(data);
+                            $('.clear_recording_button').click();
+                            $.ajax({
+                                type: 'GET',
+                                url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
+                                success: function (data) {
+                                    $('.discussion_posts_block').html(data);
+                                },
+                                error: function(data) {
+                                }
+                            });
+                        },
+                        error: function(data) {
+                        }
+                    });
+                    return false;
                 });
-
-                $(document).on('click', '.amplitude-play-pause', function(e){
-                    
-                    let song_id = $(this).attr('data-amplitude-song-index');
-                    let playlist_id = $(this).attr("data-amplitude-playlist");
-                    Amplitude.playPlaylistSongAtIndex( song_id, playlist_id )
-                    let item_c;
-
-                    if(Amplitude.getPlayerState() == "playing"){
-                        item_c = ".duration-" + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "none");
-                        item_c = ".current-time-" + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "flex");
-                        item_c = ".play-" +  + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "none");
-                        item_c = ".pause-" + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "flex");
-                    }
-                    else{
-                        item_c = ".play-" + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "flex");
-                        item_c = ".pause-" + playlist_id + "-" + song_id;
-                        $(item_c).css("display", "none");
-                    }
-                    prevActiveIndex = Amplitude.getActiveSongMetadata().index
-                    prevActivePlaylist = Amplitude.getActivePlaylist();
+                $(document).on('submit', '#response_form', function() {
+                    let file_input = document.getElementById('response_audio_input');
+                    let formData = new FormData(document.getElementById('response_form'));
+                    $.ajax({
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#post_response_block').html(data);
+                            $('.clear_recording_button').click();
+                            $.ajax({
+                                type: 'GET',
+                                url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
+                                success: function (data) {
+                                    $('.response_posts_block').html(data);
+                                },
+                                error: function(data) {
+                                }
+                            });
+                        },
+                        error: function(data) {
+                        }
+                    });
+                    return false;
                 });
-            })
+            });
         </script>
     </body>
     <loom-container id="lo-engage-ext-container">

@@ -120,7 +120,6 @@ class User(models.Model):
     profile_picture = models.ImageField(upload_to = upload_to, blank = True)
     permissions = models.IntegerField(default = 0) #only admin permissions can view certain pages/perform certain actions
     status = models.BooleanField(default = False) #not accepted to begin with
-    verification_code = models.CharField(max_length = 6, blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
@@ -128,16 +127,6 @@ class User(models.Model):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
-    
-    # def save(self, *args, **kwargs):
-    #     num_list = [x for x in range(10)]
-    #     code = []
-    #     for i in range (6):
-    #         num = random.choice(num_list)
-    #         code.append(num)
-    #     code_str = "".join(str(n) for n in code)
-    #     self.verification_code = code_str
-    #     super().save(*args, **kwargs)
 
 
 class NetworkManager(models.Manager):
@@ -205,6 +194,8 @@ class Discussion(models.Model):
     poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE)
     space = models.ForeignKey(Space, related_name = "discussion_posts", on_delete = models.CASCADE)
     saved_users = models.ManyToManyField(User, related_name = "saved_discussions")
+    duration = models.CharField(max_length = 20)
+    participants = models.ManyToManyField(User, through='ParticipantInDiscussion', related_name = "discussions_participated_in")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
@@ -236,6 +227,7 @@ class Response(models.Model):
     discussion = models.ForeignKey(Discussion, related_name = "response_posts", on_delete = models.CASCADE)
     link = models.CharField(max_length = 200, blank = True)
     link_title = models.CharField(max_length = 255, blank = True)
+    duration = models.CharField(max_length = 20)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     
@@ -243,3 +235,9 @@ class Response(models.Model):
 
     def __str__(self):
         return "Response to " + str(self.discussion) + " by " + str(self.poster)
+
+class ParticipantInDiscussion(models.Model):
+    participant = models.ForeignKey(User, on_delete=models.CASCADE)
+    discussion = models.ForeignKey(Discussion, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
