@@ -251,6 +251,15 @@ $(document).ready(function(){
                         $('.discussion_banner').html(data);
                         $('.response_banner').html('');
                         $('.response_posts_block').html('');
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost:8000/display_spaces',
+                            success: function (data) {
+                                $('.spaces_block').html(data)
+                            },
+                            error: function(data) {
+                            }
+                        });
                     },
                     error: function(data) {
                     }
@@ -414,6 +423,24 @@ $(document).ready(function(){
             Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
         }
     });
+
+    $(document).on('input', '#space_search_input', function(){
+        $('#space_search_form').submit();
+    })
+
+    $(document).on('submit', '#space_search_form', function(){
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (data) {
+                $('.spaces_block').html(data)
+            },
+            error: function(data) {
+            }
+        });
+        return false;
+    })
 })
 
 

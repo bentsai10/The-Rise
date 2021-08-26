@@ -80,10 +80,11 @@
         <div class="main_block">
             <div class="public_panel">
                 <div class="main_banner">
-                    <div  class="search_space_block w-form">
-                        <form id="email-form-3" name="email-form-3" data-name="Email Form 3" class="search_form">
-                            <input type="text" class="search_text_field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="Search" id="name-3">
-                            <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" data-w-id="77552425-143d-95e3-5d10-f1450f000108" alt="blue x symbol icon" class="sidebar sidebar_close_small">
+                    <div  class="search_space_block">
+                        <form id="space_search_form" name="space_search_form" class="search_form" method = "POST" action = "http://localhost:8000/process_space_search">
+                            {% csrf_token %}
+                            <input type="text" class="search_text_field w-input" maxlength="256" name="space_query" placeholder="Search" id="space_search_input">
+                            <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small">
                         </form>
                     </div>
                     <div class="main_banner_block discussion_banner">

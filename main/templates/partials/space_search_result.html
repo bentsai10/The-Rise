@@ -1,0 +1,8 @@
+{% load static %}
+<div class="all_spaces_block">
+    <div class="all_spaces">
+        {% for space in resulting_spaces %}
+        <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+        {% endfor %}
+    </div>
+</div>

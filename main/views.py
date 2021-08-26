@@ -3,6 +3,7 @@ from .models import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from django.db.models import Q
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import phonenumbers, bcrypt, dotenv, os
@@ -629,6 +630,27 @@ def process_save_discussion(request, num):
         'discussions': space.discussion_posts.all().order_by('-created_at'),
     }
     return render(request, 'partials/discussion_posts.html', context)
+
+
+def process_space_search(request):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    query = request.POST['space_query'].strip().title()
+
+    context = {
+        'resulting_spaces': Space.objects.filter(Q(name__startswith = query)| Q(name__icontains = query)) .all(),
+    }
+    return render(request, 'partials/space_search_result.html', context)
+
+def display_spaces(request):
+    if 'logged_user' not in request.session:
+        return redirect('/login')
+    user = User.objects.get(id = request.session['logged_user'])
+    context = {
+        'spaces': Space.objects.all(),
+        'favorite_spaces': user.favorite_spaces.all()
+    }
+    return render(request, 'partials/spaces_block.html', context)
     
 
 
