@@ -189,7 +189,7 @@ class Discussion(models.Model):
     link = models.CharField(max_length = 200)
     link_title = models.CharField(max_length = 255)
     participant_cap = models.IntegerField()
-    participants = models.IntegerField(default = 1)
+    participant_count = models.IntegerField(default = 1)
     audio = models.FileField(upload_to = discussion_upload_to)
     poster = models.ForeignKey(User, related_name = "discussion_posts",on_delete = models.CASCADE)
     space = models.ForeignKey(Space, related_name = "discussion_posts", on_delete = models.CASCADE)

@@ -30,7 +30,7 @@
     </div>
     <div class="discussion_buttons">
         <div class="participant_cap">
-            <h2 class="cap_heading">{{discussion.participants}}/{{discussion.participant_cap}}</h2>
+            <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
             <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
         </div>
         <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
@@ -47,8 +47,6 @@
 
 <script type = "text/JavaScript">
     try{
-        console.log(prevActiveIndex);
-        console.log(prevActivePlaylist);
         var discussions = [];
         {% for discussion in discussions %}
         songs.push({
@@ -75,28 +73,8 @@
                  * Function to handle the event of a song change
                  */
                 song_change: function(){
-                    console.log('changed called');
                     let activeID = Amplitude.getActiveSongMetadata().index;
                     let playlist_id = Amplitude.getActivePlaylist();
-                    console.log('active song index', activeID);
-                    console.log('playlist id', playlist_id);
-                    // let prev_song_element;
-                    // let current_song_element;
-                    // /**
-                    //  * If song changed to is not the active song in Amplitude
-                    //  */
-                    // if(prevActiveIndex != activeID){
-                    //     prev_song_element = ".duration-" +  prevActivePlaylist + "-" + prevActiveIndex;
-                    //     $(prev_song_element).css("display", "flex");
-                    //     prev_song_element = ".current-time-" +  prevActivePlaylist + "-" + prevActiveIndex;
-                    //     $(prev_song_element).css("display", "none");
-                    //     prev_song_element = ".play-" +  prevActivePlaylist + "-" + prevActiveIndex;
-                    //     $(prev_song_element).css("display", "flex");
-                    //     prev_song_element = ".pause-" +  prevActivePlaylist + "-" + prevActiveIndex;
-                    //     $(prev_song_element).css("display", "none");
-                    // }
-                    // prevActiveIndex = activeID;
-                    // prevActivePlaylist = playlist_id;
                 },
                 /**
                  * Function to handle the event of a song jumping to the next song

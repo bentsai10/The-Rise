@@ -373,16 +373,6 @@ $(document).ready(function(){
          * Hide DURATION, display CURRENT-TIME
          */
         if(Amplitude.getPlayerState() == "playing"){
-            /**
-             * If the song clicked is not our current song, play that new song from the beginning
-             * Otherwise, just resume playing
-             */
-            // if(Amplitude.getActiveSongMetadata().index != song_id && Amplitude.getActivePlaylist() != playlist_id){
-            //     Amplitude.playPlaylistSongAtIndex( song_id, playlist_id );
-            // }else{
-            //     Amplitude.play();
-            // }
-            console.log('here');
             current_song_element = ".duration-" + playlist_id + "-" + song_id;
             $(current_song_element).css("display", "none");
             current_song_element = ".current-time-" + playlist_id + "-" + song_id;
@@ -398,8 +388,6 @@ $(document).ready(function(){
          * Hide PLAY, display PAUSE
          */
         else{
-            console.log('there');
-            // Amplitude.pause();
             current_song_element = ".play-" + playlist_id + "-" + song_id;
             $(current_song_element).css("display", "flex");
             current_song_element = ".pause-" + playlist_id + "-" + song_id;
