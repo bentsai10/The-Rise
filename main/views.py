@@ -463,7 +463,8 @@ def process_discussion_post (request):
             participant_cap = request.POST['participant_cap']
             link = request.POST['link'].strip()
             user = User.objects.get(id = request.session['logged_user'])
-            
+            duration = request.POST['duration'].strip()
+
             # Get title of link to display rather than raw url, if unable, then display raw_url
             # Saved in database to reduce conversion time
             try:
@@ -474,7 +475,7 @@ def process_discussion_post (request):
                 link_title = link
             # Create Discussion w/ cleaned data in currently selected space
             space = Space.objects.get(id = request.session['current_space'])
-            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space)
+            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
             return render(request, 'partials/post_discussion.html')
 
 # Render discussions of selected space dynamically via AJAX
@@ -556,7 +557,8 @@ def process_response_post(request):
             # Create Response w/ cleaned data within currently selected Discussion
             user = User.objects.get(id = request.session['logged_user'])
             discussion = Discussion.objects.get(id = request.session['current_discussion'])
-            Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion)
+            duration = request.POST['duration'].strip()
+            Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion, duration = duration)
             return render(request, 'partials/post_response.html')
 
 # Render responses associated w/ currently selected discussion dyanmically via AJAX

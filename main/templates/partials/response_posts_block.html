@@ -9,8 +9,8 @@
             <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress>
             <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter}} " style = "display:none;">
                 <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
-            </h3>
-            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter}} "><span class="amplitude-duration-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-duration-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span></h3>
+            </h4>
+            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter}} ">{{response.duration}}</h4>
         </div>
         <div class="reponse_banner_right w-clearfix">
             <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>

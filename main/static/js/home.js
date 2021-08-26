@@ -124,6 +124,7 @@ $(document).ready(function(){
         }
         $('.recorded_audio').css('display', 'flex');
         $('.clear_recording_button').css('display', 'flex');
+        $('.duration_input').val($('.elapsed_duration_display').html());
     }
 
     /**
@@ -144,6 +145,7 @@ $(document).ready(function(){
         }
         $('.recorded_audio').css('display', 'flex');
         $('.clear_recording_button').css('display', 'flex');
+        $('.duration_input').val($('.elapsed_duration_display').html());
         $('.record_button').off('click');
     }
 
@@ -153,6 +155,7 @@ $(document).ready(function(){
     var clear_recording = function(){
         audio_snippets = [];
         $('.elapsed_duration_display').html('00:00');
+        $('.duration_input').val('00:00');
         $('.recorded_audio').css('display', 'none');
         $('.clear_recording_button').css('display', 'none');
         $('.recording_progress').css('width', '0%');

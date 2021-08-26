@@ -8,7 +8,10 @@
     <h1 class="song-title banner_song_title">{{current_discussion.title}}</h1>
     <h2 class="song-artist banner_song_artist">{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}</h2>
     <progress class="amplitude-song-played-progress progress-{{current_discussion_index}}-0" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></progress>
-
+    <h3 class="current-time current-time-{{current_discussion_index}}-0" style = "display:none;">
+        <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>
+    </h3>
+    <h3 class="duration banner_duration duration-{{current_discussion_index}}-0" >{{current_discussion.duration}}</h3>
     <a href="{{current_discussion.link}}" class="discussion_link response_banner_link">{{current_discussion.link_title}}</a>
 </div>
 <div class="reponse_banner_right w-clearfix">

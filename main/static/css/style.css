@@ -797,7 +797,7 @@
 }
 
     .discussion_link.response_banner_link {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
     }
 
     .discussion_link.response_text {
@@ -2537,7 +2537,7 @@
   }
 
   .discussion_link.response_banner_link {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
     font-size: 0.7rem;
     line-height: 0.7rem;
   }
