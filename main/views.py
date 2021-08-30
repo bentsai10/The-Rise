@@ -433,12 +433,7 @@ def process_add_space(request):
     if request.method == "GET":
         return redirect('/spaces')
     # Clean submitted data, then create a new Space object
-    name = ""
-    name_raw = request.POST['name'].strip().split(' ')
-    for i in range(len(name_raw)):
-        name += name_raw[i][0].upper() + name_raw[i][1:].lower()
-        if i != len(name_raw) - 1:
-            name += " "
+    name = request.POST['name'].strip().title()
     Space.objects.create(name = name, network = Network.objects.get(id = 1))
     return redirect('/home')
 

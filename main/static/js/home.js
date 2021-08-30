@@ -424,10 +424,16 @@ $(document).ready(function(){
         }
     });
 
+    /**
+     * Process input to space search bar
+     */
     $(document).on('input', '#space_search_input', function(){
         $('#space_search_form').submit();
     })
 
+    /**
+     * Process submit of space search query
+     */
     $(document).on('submit', '#space_search_form', function(){
         $.ajax({
             type: $(this).attr('method'),
