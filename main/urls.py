@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('home', views.home),
-    path('login', views.placeholder),
+    path('login', views.login),
     path('process_login', views.process_login),
     path('apply', views.apply),
     path('process_apply', views.process_apply),
@@ -29,7 +29,6 @@ urlpatterns = [
     path('favorite_space/<int:num>', views.process_favorite_space),
     path('<int:num>/<str:lorem>', views.discussion_button_pressed),
     path('save_discussion/<int:num>', views.process_save_discussion),
-    path('secret_login', views.login),
     path('process_space_search', views.process_space_search),
     path('display_spaces', views.display_spaces),
 ]

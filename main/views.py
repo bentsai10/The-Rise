@@ -15,9 +15,6 @@ from twilio.rest import Client
 def index(request):
     return render(request, 'index.html')
 
-def placeholder(request):
-    return render(request, 'placeholder.html')
-
 # Render home page
 def home(request):
     # If no logged in user, redirect to login page
@@ -385,13 +382,13 @@ def process_approve(request):
     # Fire off welcome email to user email
     id = request.POST['id']
     user = User.objects.get(id = id)
-    user.status = True
-    user.save()
-    subject = 'Welcome to Humanely Digital!'
-    message = f'Hi {user.first_name},\n\nWelcome to Humanely Digital! We are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and connect with people online. To complete your signup process, head over to http://localhost:8000/login. See you there!\n\nWarmly,\nThe Humanely Digital Team'
+    subject = 'Welcome to The Rise!'
+    message = f'Hi {user.first_name},\n\nWelcome to The Rise! We are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and connect with people online. To complete your signup process, head over to https://therise.online/login. See you there!\n\nWarmly,\nThe Rise Team'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [user.email,]
     send_mail(subject, message, email_from, recipient_list)
+    user.status = True
+    user.save()
     return redirect('/review')
 
 # Render profile page
