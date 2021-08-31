@@ -87,19 +87,18 @@ class UserManager(models.Manager):
 
     def edit_profile_validator(self, postData):
         errors = {}
-        valid_titles = ['student', 'professor', 'alumni', 'faculty', 'other']
-        if postData['year']:
-            if len(postData['year'].strip()) != 4:
-                errors['year'] = "Invalid class year"
-        if postData['department1']:
-            if len(postData['department1'].strip()) < 3:
-                errors['department1'] = "Department name must be at least 3 characters"
-        if postData['department2']:
-            if len(postData['department2'].strip()) < 3:
-                errors['department1'] = "Department names must be at least 3 characters"
-        if 'title' in postData:
-            if postData['title'].strip().lower() not in valid_titles:
-                errors['title'] = "Not a valid title. Please email us at humanelydigital@gmail.com if you'd like a personalized title"
+        # if postData['year']:
+        #     if len(postData['year'].strip()) != 4:
+        #         errors['year'] = "Invalid class year"
+        # if postData['department1']:
+        #     if len(postData['department1'].strip()) < 3:
+        #         errors['department1'] = "Department name must be at least 3 characters"
+        # if postData['department2']:
+        #     if len(postData['department2'].strip()) < 3:
+        #         errors['department1'] = "Department names must be at least 3 characters"
+        # if 'title' in postData:
+        #     if postData['title'].strip().lower() not in valid_titles:
+        #         errors['title'] = "Not a valid title. Please email us at humanelydigital@gmail.com if you'd like a personalized title"
         return errors
 
 class User(models.Model):

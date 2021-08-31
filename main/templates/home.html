@@ -67,7 +67,11 @@
         <div class="nav">
             <a href="https://therise.online/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
             <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
+                {% if logged_user.profile_picture %}
                 <img src="{{logged_user.profile_picture.url}}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
+                {% else %}
+                <img src="{% static '/img/globe.png' %}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
+                {% endif %}
                 <h1 class="profile_banner">{{logged_user.first_name}} {{logged_user.last_name}}</h1>
             </a>
         </div>

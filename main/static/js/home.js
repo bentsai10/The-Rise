@@ -11,10 +11,10 @@ $(document).ready(function(){
      */
     $(document).on('click', '.discussion_type_radio_button', function(){
         $('.discussion_type_radio_button').removeClass("selected");
-        $('.person_button').attr('src', "/static/img/filled_person.svg");
+        $('.person_button').attr('src', "https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/filled_person.svg");
         $(this).addClass("selected");
         let id = "#filled_person_" + $(this).attr('data-option');
-        $(id).attr('src', "/static/img/filled_person_white.svg")
+        $(id).attr('src', "https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/filled_person_white.svg")
         
         $('#discussion_participant_cap_input').attr('value', $(this).attr('data-option'));
     });
@@ -169,6 +169,10 @@ $(document).ready(function(){
         }
         remaining_time = time_limit;
         elapsed_time = null;
+        $('audio').each(function(){
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        }); 
     }
 
     var load_responses = function(){
@@ -307,10 +311,10 @@ $(document).ready(function(){
      */
     $(document).on('click', '.favorite_button', function(){
         if($(this).attr('data-active') != "favorited"){
-            $('.star').attr('src', '/static/img/filled_star.svg');
+            $('.star').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/filled_star.svg');
             $(this).attr('data-active', "favorited");
         }else{
-            $('.star').attr('src', '/static/img/star.svg');
+            $('.star').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/star.svg');
             $(this).attr('data-active', "unfavorited");
         }
         $.ajax({
@@ -348,10 +352,10 @@ $(document).ready(function(){
      */
     $(document).on('click', '.bookmark_link_block', function(){
         if($(this).attr('data-active') != "saved"){
-            $('.bookmark').attr('src', '/static/img/filled_bookmark.svg');
+            $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/filled_bookmark.svg');
             $(this).attr('data-active', "unsaved");
         }else{
-            $('.bookmark').attr('src', '/static/img/empty_bookmark.svg');
+            $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/empty_bookmark.svg');
             $(this).attr('data-active', "favorited");
         }
         $.ajax({

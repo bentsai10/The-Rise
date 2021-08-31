@@ -1147,7 +1147,7 @@
     position: static;
     width: 4em;
     height: 4em;
-    margin-right: 1.5em;
+    margin-right: .5em;
     }
 
 .link {
@@ -1784,8 +1784,8 @@
 
 .recording_input {
   position: static;
-  width: 85%;
-  height: 50%;
+  width: 80%;
+  height: 100%;
   border-style: solid;
   border-width: initial;
   border-color: #ccc;
@@ -2076,6 +2076,7 @@
   width: 40%;
   height: 100%;
   padding-right: 0em;
+  padding-bottom: 4em;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -3509,7 +3510,7 @@
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
+    display: none;
     width: 4rem;
     height: 4rem;
   }
@@ -3555,7 +3556,11 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-right: 0em;
+    margin-right: .5em;
+  }
+
+  #stop_discussion_button{
+      display:none;
   }
 
   .link {
@@ -3810,7 +3815,7 @@
   }
 
   .recording_input {
-    width: 90%;
+    width: 85%;
   }
 
   .image {
@@ -4237,7 +4242,7 @@
   }
 
   .microphone_block.discussion_form_mic_button {
-    margin-right: 1.5em;
+    margin-right: .5em;
   }
 
   .link {
@@ -4848,7 +4853,7 @@
   }
 
   .recording_input {
-    width: 80%;
+    width: 75%;
   }
 
   .image {
