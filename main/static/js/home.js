@@ -353,10 +353,10 @@ $(document).ready(function(){
     $(document).on('click', '.bookmark_link_block', function(){
         if($(this).attr('data-active') != "saved"){
             $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/filled_bookmark.svg');
-            $(this).attr('data-active', "unsaved");
+            $(this).attr('data-active', "saved");
         }else{
             $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/empty_bookmark.svg');
-            $(this).attr('data-active', "favorited");
+            $(this).attr('data-active', "unsaved");
         }
         $.ajax({
             type: 'GET',

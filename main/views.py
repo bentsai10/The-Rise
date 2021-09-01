@@ -603,7 +603,7 @@ def discussion_button_pressed(request, num, lorem):
         context['discussions'] = user.saved_discussions.all().filter(space = current_space).all().order_by('-created_at')
     else:
         context['discussions'] = current_space.discussion_posts.all().order_by('-created_at')
-
+    context['logged_user'] = user
     return render(request, 'partials/discussion_posts.html', context)
 
 # Process toggling saved button on discussion and render updated discussion posts dynamically via AJAX
@@ -620,6 +620,7 @@ def process_save_discussion(request, num):
         user.saved_discussions.add(discussion)
     user.save()
     context = {
+        'logged_user': user,
         'discussions': space.discussion_posts.all().order_by('-created_at'),
     }
     return render(request, 'partials/discussion_posts.html', context)
