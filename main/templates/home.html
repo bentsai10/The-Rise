@@ -117,7 +117,7 @@
                                 <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{current_discussion_index}}"></span>
                             </h3>
                             <h3 class="duration banner_duration duration-{{current_discussion_index}}-0" >{{current_discussion.duration}}</h3>
-                            <a href="{{current_discussion.link}}" class="discussion_link response_banner_link">{{current_discussion.link_title}}</a>
+                            <a href="{{current_discussion.link}}" target="_blank" class="discussion_link response_banner_link">{{current_discussion.link_title}}</a>
                         </div>
                         <div class="reponse_banner_right w-clearfix">
                             <h4 class="time_posted">{{current_discussion.created_at|naturaltime}}</h4>
@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="discussion_bottom" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                                         <h1 class="song-title">{{discussion.title}}</h1>
-                                        <a href="{{discussion.link}}" class="discussion_link">{{discussion.link_title}}</a>
+                                        <a href="{{discussion.link}}" target="_blank" class="discussion_link">{{discussion.link_title}}</a>
                                     </div>
                                 </div>
                                 <div class="discussion_buttons">
@@ -236,7 +236,7 @@
                                     </div>
                                     {% if response.link %}
                                     <div class="discussion_bottom">
-                                        <a href="{{response.link}}" class="discussion_link">{{response.link_title}}</a>
+                                        <a href="{{response.link}}" target="_blank" class="discussion_link">{{response.link_title}}</a>
                                     </div>
                                     {% endif %}
                                 </div>
