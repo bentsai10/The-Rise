@@ -296,7 +296,7 @@ def process_edit_profile(request):
             # If there is title data, clean it before assigning it
             if 'title' in request.POST and len(request.POST['title'].strip()) > 0:
                 title = request.POST['title'].strip()
-                title = title[0].upper() + title[1:].lower()
+                title = title.title()
                 user.title = title
             
             # If there is profile picture data, assign it to logged user
@@ -552,8 +552,15 @@ def process_response_post(request):
             # Create Response w/ cleaned data within currently selected Discussion
             user = User.objects.get(id = request.session['logged_user'])
             discussion = Discussion.objects.get(id = request.session['current_discussion'])
+            if discussion.participants.all().count() == discussion.participant_cap:
+                messages.error(request, "This discussion is at its participant cap!")
+                return render(request, 'partials/post_response.html')
             duration = request.POST['duration'].strip()
             Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion, duration = duration)
+            if user not in discussion.participants.all():
+                discussion.participants.add(user)
+                discussion.participant_count+=1
+                discussion.save()
             return render(request, 'partials/post_response.html')
 
 # Render responses associated w/ currently selected discussion dyanmically via AJAX
