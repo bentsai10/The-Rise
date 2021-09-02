@@ -79,6 +79,7 @@ $(document).ready(function(){
      * Function to start recording
      */
     var start_recording = function(){
+        Amplitude.pause();
         $('.record_button').css('display', 'none');
         $('.stop_button').css('display', 'flex');
         $('.recording_input_bar').css('display', 'block');
@@ -183,6 +184,7 @@ $(document).ready(function(){
             url: `https://therise.online/load_response/${discussion_id}/${discussion_index}`,
             success: function (data) {
                 $('.response_posts_block').html(data);
+                Amplitude.pause();
                 $.ajax({
                     type: 'GET',
                     url: "https://therise.online/load_response_banner",
@@ -248,6 +250,7 @@ $(document).ready(function(){
                 $('.discussion_posts_block').html(data);
                 prevActiveIndex = -1;
                 prevActivePlaylist = -1;
+                Amplitude.pause();
                 $.ajax({
                     type: 'GET',
                     url: "https://therise.online/load_discussion_banner",
@@ -339,6 +342,7 @@ $(document).ready(function(){
             type: 'GET',
             url: $(this).attr('href'),
             success: function (data) {
+                Amplitude.pause();
                 $('.discussion_posts_block').html(data);
             },
             error: function(data) {
@@ -358,15 +362,24 @@ $(document).ready(function(){
             $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/empty_bookmark.svg');
             $(this).attr('data-active', "unsaved");
         }
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            success: function (data) {
-                $('.discussion_posts_block').html(data);
-            },
-            error: function(data) {
-            }
-        });
+
+        if($(this).attr('data-tab') == 'top'){
+
+        }
+        else if($(this).attr('data-tab') == 'saved'){
+
+        }
+        else{
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('href'),
+                success: function (data) {
+                    $('.discussion_posts_block').html(data);
+                },
+                error: function(data) {
+                }
+            });
+        }
         return false;
     });
 

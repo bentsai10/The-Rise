@@ -3,7 +3,7 @@ from .models import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
-from django.db.models import Q
+from django.db.models import Q, Count
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import phonenumbers, bcrypt, dotenv, os
@@ -404,6 +404,7 @@ def profile(request, num):
     if num == request.session['logged_user']:
         return redirect('/my_profile')
     context = {
+        'logged_user': User.objects.get(id = request.session['logged_user']),
         'user': User.objects.get(id = num)
     }
     return render(request, 'profile.html', context)
@@ -598,7 +599,7 @@ def discussion_button_pressed(request, num, lorem):
     current_space = Space.objects.get(id = request.session['current_space'])
     user = User.objects.get(id = request.session['logged_user'])
     if lorem == "top":
-        context['discussions'] = current_space.discussion_posts.all().order_by('saved_users')
+        context['discussions'] = current_space.discussion_posts.all().annotate(q_count = Count('saved_users')).order_by('-q_count')
     elif lorem == "saved":
         context['discussions'] = user.saved_discussions.all().filter(space = current_space).all().order_by('-created_at')
     else:
