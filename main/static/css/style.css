@@ -12,7 +12,11 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-#banner_logo{
+.media-controls-container{
+    display:none;
+}
+
+   #banner_logo{
     height: 4em;
 }
 .error_list{
@@ -1072,7 +1076,8 @@
     height: auto;
     margin-right: 1em;
     margin-bottom: 1em;
-    padding: 1em;
+    flex-direction: column;
+    padding: 0em;
     clear: none;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
@@ -1085,6 +1090,13 @@
     border-radius: 20px;
     background-color: #90fcf9;
     }
+        .response_top{
+            display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.5em 1em;
+        }
 
         .response.response_profile {
         width: 100%;
@@ -1325,6 +1337,47 @@
 
 .response_middle {
   width: 68%;
+    justify-content: center;
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+}
+.response_link{
+    width: 100%;
+    margin-top: 0em;
+    margin-left: 0em;
+    font-family: 'Gothic A1', sans-serif;
+    color: #3425e9;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    font-weight: 300;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.response_bottom{
+    width:100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    padding: 1em;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    border-top: 0.1em solid rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
 .main_banner {
@@ -2641,11 +2694,11 @@
     display: -ms-flexbox;
     display: flex;
     width: 60%;
+    flex-direction: column;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
-    flex-direction: column;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -2653,7 +2706,7 @@
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
-    align-items: flex-start;
+    align-items: left;
   }
 
   .public_panel {

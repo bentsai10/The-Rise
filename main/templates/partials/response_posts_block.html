@@ -2,29 +2,32 @@
 {% load humanize %}
 {% for response in current_discussion.response_posts.all %}
 <div class="response_post">
-    <div class="response player">
-        <img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art">
-        <div class="response_middle">
-            <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
-            <!-- <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress> -->
-            <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter}} " style = "display:none;">
-                <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
-            </h4>
-            <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter}} ">{{response.duration}}</h4>
-        </div>
-        <div class="reponse_banner_right w-clearfix">
-            <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>
-            <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}">
-                <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-{{current_discussion_index}}-{{forloop.counter}}">
-                <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-{{current_discussion_index}}-{{forloop.counter}}" style = "display:none;">
+    <div class="response player" style = "display: flex; flex-direction:column">
+        <div class = "response_top">
+            <img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art">
+            <div class="response_middle">
+                <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
+                <!-- <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress> -->
+                <h4 class="response-current-time response-text current-time-{{current_discussion_index}}-{{forloop.counter}} " style = "display:none;">
+                    <span class="amplitude-current-minutes response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>:<span class="amplitude-current-seconds response_text" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}"></span>
+                </h4>
+                <h4 class="response-duration response-text duration-{{current_discussion_index}}-{{forloop.counter}} ">{{response.duration}}</h4>
+            </div>
+            <div class="reponse_banner_right w-clearfix">
+                <h5 class="time_posted response_text">{{response.created_at|naturaltime}}</h5>
+                <div class="amplitude-play-pause amplitude-paused response_play" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}">
+                    <img src="{% static 'img/cyan_play.svg' %}" loading="lazy" width="15" alt="cyan play button" class="play play_response play-{{current_discussion_index}}-{{forloop.counter}}">
+                    <img src="{% static 'img/cyan_pause.svg' %}" loading="lazy" width="15" alt="cyan pause button" class="pause pause-{{current_discussion_index}}-{{forloop.counter}}" style = "display:none;">
+                </div>
             </div>
         </div>
         {% if response.link %}
-        <div class="discussion_bottom">
-            <a href="{{response.link}}" class="discussion_link">{{response.link_title}}</a>
+        <div class="response_bottom">
+            <a href="{{response.link}}" class="response_link">{{response.link_title}}</a>
         </div>
         {% endif %}
     </div>
+    
 </div>
 {% endfor %}
 
