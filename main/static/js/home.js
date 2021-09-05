@@ -181,13 +181,13 @@ $(document).ready(function(){
         let discussion_index = $(this).attr('data-discussion-index');
         $.ajax({
             type: 'GET',
-            url: `https://therise.online/load_response/${discussion_id}/${discussion_index}`,
+            url: `http://localhost:8000/load_response/${discussion_id}/${discussion_index}`,
             success: function (data) {
                 $('.response_posts_block').html(data);
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "https://therise.online/load_response_banner",
+                    url: "http://localhost:8000/load_response_banner",
                     success: function (data) {
                         $('.response_banner').html(data);
                         $('.response_banner').css('display', 'flex');
@@ -253,14 +253,14 @@ $(document).ready(function(){
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "https://therise.online/load_discussion_banner",
+                    url: "http://localhost:8000/load_discussion_banner",
                     success: function (data) {
                         $('.discussion_banner').html(data);
                         $('.response_banner').html('');
                         $('.response_posts_block').html('');
                         $.ajax({
                             type: 'GET',
-                            url: 'https://therise.online/display_spaces',
+                            url: 'http://localhost:8000/display_spaces',
                             success: function (data) {
                                 $('.spaces_block').html(data)
                             },
@@ -390,10 +390,22 @@ $(document).ready(function(){
         /**
          * Get index of song in playlist and playlist id
          */
+        console.log(prevActiveIndex, prevActivePlaylist);
         let song_id = $(this).attr('data-amplitude-song-index');
         let playlist_id = $(this).attr("data-amplitude-playlist");
        
         let current_song_element;
+
+        if(prevActiveIndex != song_id || prevActivePlaylist != playlist_id){
+            let prev_song_element = ".duration-" + prevActivePlaylist + "-" + prevActiveIndex;
+            $(prev_song_element).css("display", "flex");
+            prev_song_element = ".current-time-" + prevActivePlaylist + "-" + prevActiveIndex;
+            $(prev_song_element).css("display", "none");
+            prev_song_element = ".play-" +  + prevActivePlaylist + "-" + prevActiveIndex;
+            $(prev_song_element).css("display", "flex");
+            prev_song_element = ".pause-" + prevActivePlaylist + "-" + prevActiveIndex;
+            $(prev_song_element).css("display", "none");
+        }
         /**
          * Confusing b/c once amplitude-play-pause is clicked, state changes, so
          * this is run when PLAY button is pressed
@@ -422,24 +434,26 @@ $(document).ready(function(){
             current_song_element = ".pause-" + playlist_id + "-" + song_id;
             $(current_song_element).css("display", "none");
         }
+
+        
         /**
          * Save current playlist and index so when we change songs we can change visual elements of current song
          */
-        prevActiveIndex = Amplitude.getActiveSongMetadata().index
+        prevActiveIndex = Amplitude.getActiveSongMetadata().index;
         prevActivePlaylist = Amplitude.getActivePlaylist();
     });
 
     /**
      * Function to make progress bar interactive for the active song
      */
-    $(document).on('click', '.amplitude-song-played-progress', function(e){
-        if( Amplitude.getActiveSongMetadata().index == ($(this).attr('data-amplitude-song-index')) ){
-            var offset = this.getBoundingClientRect();
-            var x = e.pageX - offset.left;
+    // $(document).on('click', '.amplitude-song-played-progress', function(e){
+    //     if( Amplitude.getActiveSongMetadata().index == ($(this).attr('data-amplitude-song-index')) ){
+    //         var offset = this.getBoundingClientRect();
+    //         var x = e.pageX - offset.left;
 
-            Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
-        }
-    });
+    //         Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
+    //     }
+    // });
 
     /**
      * Process input to space search bar

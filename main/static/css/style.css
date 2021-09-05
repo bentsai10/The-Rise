@@ -810,7 +810,7 @@
   font-family: 'Gothic A1', sans-serif;
   color: #fff;
   font-size: .9rem;
-  line-height: 1rem;
+  line-height: 1.1rem;
   font-weight: 300;
   width:100%;
   height:auto;
@@ -1770,7 +1770,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 8%;
+  height: 12%;
   margin-bottom: 3em;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -2184,13 +2184,13 @@
   }
 
   .song-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     line-height: 1.3rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: .9rem;
+    line-height: 1.2rem;
   }
   .amplitude-play-pause.response_banner_play {
     width: 3em;
@@ -2209,8 +2209,8 @@
   .plus_discussion_button {
     left: auto;
     right: 40.5%;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .microphone_block {
@@ -2309,8 +2309,8 @@
 
   .plus_response_button {
     left: auto;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .post_button_block {
@@ -2544,12 +2544,12 @@
   }
 
   .song-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.5rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.2rem;
   }
 
@@ -2864,12 +2864,12 @@
   }
 
   .song-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.5rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1rem;
+    font-size: .9rem;
     line-height: 1rem;
   }
 
@@ -3395,12 +3395,12 @@
   }
 
   .song-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.5rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.2rem;
   }
 
@@ -4179,12 +4179,12 @@
   }
 
   .song-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     line-height: 1.4rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.2rem;
   }
 
@@ -4638,13 +4638,13 @@
   }
 
   .song-title {
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: .9rem;
+    line-height: 1.1rem;
   }
 
   .song-title.banner_song_title {
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: .9rem;
+    line-height: 1.1rem;
   }
 
   .amplitude-play-pause.amplitude-paused {

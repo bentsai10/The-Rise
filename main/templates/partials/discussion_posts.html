@@ -9,7 +9,7 @@
             <img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">
             <div class="discussion_top_middle" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                 <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
-                <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress>
+                <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
                 <h3 class="current-time current-time-{{forloop.counter0}}-0" style = "display:none;">
                     <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>
                 </h3>
@@ -33,7 +33,7 @@
             <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
             <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
         </div>
-        <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+        <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
             {% if discussion in logged_user.saved_discussions.all %}
             <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
             {% else %}
@@ -73,8 +73,31 @@
                  * Function to handle the event of a song change
                  */
                 song_change: function(){
-                    let activeID = Amplitude.getActiveSongMetadata().index;
+                    let song_id = Amplitude.getActiveSongMetadata().index;
                     let playlist_id = Amplitude.getActivePlaylist();
+                    if(prevActiveIndex != song_id || prevActivePlaylist != playlist_id){
+                        let prev_song_element = ".duration-" + prevActivePlaylist + "-" + prevActiveIndex;
+                        $(prev_song_element).css("display", "flex");
+                        prev_song_element = ".current-time-" + prevActivePlaylist + "-" + prevActiveIndex;
+                        $(prev_song_element).css("display", "none");
+                        prev_song_element = ".play-" +  + prevActivePlaylist + "-" + prevActiveIndex;
+                        $(prev_song_element).css("display", "flex");
+                        prev_song_element = ".pause-" + prevActivePlaylist + "-" + prevActiveIndex;
+                        $(prev_song_element).css("display", "none");
+                    }
+                    if(prevActiveIndex != -1 || prevActivePlaylist != -1){
+                        console.log(here);
+                        let current_song_element = ".duration-" + playlist_id + "-" + song_id;
+                        $(current_song_element).css("display", "none");
+                        current_song_element = ".current-time-" + playlist_id + "-" + song_id;
+                        $(current_song_element).css("display", "flex");
+                        current_song_element = ".play-" +  + playlist_id + "-" + song_id;
+                        $(current_song_element).css("display", "none");
+                        current_song_element = ".pause-" + playlist_id + "-" + song_id;
+                        $(current_song_element).css("display", "flex");
+                    }
+                    prevActiveIndex = song_id;
+                    prevActivePlaylist = playlist_id;
                 },
                 /**
                  * Function to handle the event of a song jumping to the next song
@@ -98,6 +121,9 @@
                         prevActivePlaylist = Amplitude.getActivePlaylist();
                     }
                 },
+                init: function(){
+                    console.log(Amplitude.getConfig());
+                }
             }
         });
     }catch(e){

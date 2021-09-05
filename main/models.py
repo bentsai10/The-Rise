@@ -163,8 +163,8 @@ class Space(models.Model):
 class DiscussionManager(models.Manager):
     def post_validator(self, postData, fileData):
         errors = {}
-        if len(postData['title'].strip()) < 2:
-            errors['title'] = "Discussion titles need to be at least 2 characters"
+        if len(postData['title'].strip()) < 2 or len(postData['title'].strip()) > 50:
+            errors['title'] = "Discussion titles need to be between 2-50 characters"
         valid_caps = ['2', '10', '100']
         if postData['participant_cap'] not in valid_caps:
             errors['participant_cap'] = 'Invalid participant cap: Choose from 2, 10, 100'

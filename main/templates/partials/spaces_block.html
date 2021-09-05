@@ -5,7 +5,7 @@
     <h1 class="spaces_heading">Favorite Spaces</h1>
     <div class="favorite_spaces">
         {% for space in favorite_spaces %}
-        <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+        <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
         {% endfor %}
     </div>
 </div>
@@ -13,7 +13,7 @@
     <h1 class="spaces_heading">All Spaces</h1>
     <div class="all_spaces">
         {% for space in spaces %}
-        <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
+        <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading sidebar_close_small">{{space.name}}</a>
         {% endfor %}
     </div>
 </div>

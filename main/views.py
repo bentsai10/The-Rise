@@ -471,7 +471,10 @@ def process_discussion_post (request):
             # Create Discussion w/ cleaned data in currently selected space
             space = Space.objects.get(id = request.session['current_space'])
             Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
-            return render(request, 'partials/post_discussion.html')
+            context = {
+                'discussions': space.discussion_posts.all().order_by('-created_at')
+            }
+            return render(request, 'partials/post_discussion.html', context)
 
 # Render discussions of selected space dynamically via AJAX
 def space(request, network, space):
@@ -494,6 +497,8 @@ def space(request, network, space):
     else:
         request.session['current_discussion'] = None
         request.session['current_discussion_index'] = 0
+
+    print(context['discussions'])
     return render(request, 'partials/discussion_posts.html', context)
 
 # Render corresponding discussion banner for selected space
