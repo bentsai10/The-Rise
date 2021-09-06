@@ -3091,6 +3091,12 @@
 }
 
 @media screen and (max-width: 991px) {
+    #placeholder_title{
+        font-size: 6rem;
+    }
+    #placeholder_descrip{
+        margin-top: 1.5em;
+    }
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }
@@ -4020,6 +4026,13 @@
 }
 
 @media screen and (max-width: 767px) {
+    #placeholder_title{
+        font-size: 3rem;
+    }
+    #placeholder_descrip{
+        font-size: 1.5rem;
+        margin-top: .5em;
+    }
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }
@@ -4516,6 +4529,13 @@
 }
 
 @media screen and (max-width: 479px) {
+    #placeholder_title{
+        font-size: 2.5rem;
+    }
+    #placeholder_descrip{
+        font-size: 1.2rem;
+        margin-top: .5em;
+    }
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }

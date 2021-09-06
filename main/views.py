@@ -23,7 +23,7 @@ def home(request):
 
     # Since there is a user, let's provide the context for the profile section in the upper right and the spaces for 'all spaces'
     context = {
-        'spaces': Space.objects.all(),
+        'spaces': Space.objects.all().order_by('name'),
         'logged_user': User.objects.get(id = request.session['logged_user']),
     }
 
@@ -380,7 +380,7 @@ def process_approve(request):
     id = request.POST['id']
     user = User.objects.get(id = id)
     subject = 'Your Application to Join The Rise'
-    message = f'Hi {user.first_name},\n\nThank you for applying to join The Rise (previously Humanely Digital). Your application has been reviewed and accepted for our beta testing period!\n\nThe Rise is an audio-based news platform built for communities by communities. Our mission is to design an online environment where information is more democratized, truthful, valuable and diverse, in order to instigate real world impact. Therefore, we do not uphold toxic behaviour or low-quality entertainment based content.\n\nWe are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and people online.  To complete your signup process, head over to https://therise.online/login. Once your account has been created, please refer to ‘The Rise’ space so you can learn more about the platform and how to best engage with it.\n\nEscape the attention economy and discuss what matters.\n\nWarmly,\nThe Rise Team'
+    message = f'Hi {user.first_name},\n\nThank you for applying to join The Rise (previously Humanely Digital). Your application has been reviewed and accepted for our beta testing period!\n\nThe Rise is a platform where audio-based news is produced for communities by communities. Our mission is to design an online environment where information is more democratized, truthful, valuable and diverse, in order to instigate real world impact. Therefore, we do not uphold toxic behaviour or low-quality entertainment based content.\n\nWe are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and people online.  To complete your signup process, head over to https://therise.online/login. Make sure you access the platform via the Chrome browser, the Safari version is coming soon. Once your account has been created, please refer to ‘The Rise’ onboarding space.\n\nEscape the attention economy and discuss what matters.\n\nWarmly,\nThe Rise Team'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [user.email,]
     send_mail(subject, message, 'The Rise (previously Humanely Digital) <team@therise.online>', recipient_list)
