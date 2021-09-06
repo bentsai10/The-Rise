@@ -553,7 +553,7 @@ def process_response_post(request):
             # Create Response w/ cleaned data within currently selected Discussion
             user = User.objects.get(id = request.session['logged_user'])
             discussion = Discussion.objects.get(id = request.session['current_discussion'])
-            if discussion.participants.all().count() == discussion.participant_cap:
+            if discussion.participants.all().count() == discussion.participant_cap and user not in discussion.participants.all():
                 messages.error(request, "This discussion is at its participant cap!")
                 return render(request, 'partials/post_response.html')
             duration = request.POST['duration'].strip()
