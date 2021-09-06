@@ -356,7 +356,7 @@
     
       .space_heading.sidebar_close_small {
       font-family: 'Gothic A1', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1rem;
       line-height: 1.5rem;
       font-weight: 300;
       }
@@ -991,7 +991,7 @@
   font-family: 'Gothic A1', sans-serif;
   color: #fff;
   font-size: 2rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
   font-weight: 300;
   overflow: hidden;
   white-space: nowrap;
@@ -2504,7 +2504,7 @@
   }
 
   .space_heading.sidebar_close_small {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     line-height: 2rem;
   }
 
@@ -2672,8 +2672,8 @@
 
   .plus_discussion_button {
     left: auto;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .response_post {
@@ -3312,7 +3312,7 @@
   }
 
   .space_heading.sidebar_close_small {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.8rem;
   }
 

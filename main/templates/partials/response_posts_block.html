@@ -30,6 +30,14 @@
     
 </div>
 {% endfor %}
+{% if current_discussion != -1 %}
+<a class="plus_response_button w-inline-block" id = "plus_response_button_big">
+    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
+</a>
+<a class="plus_response_button small w-inline-block" id = "plus_response_button_small">
+    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue plus symbol icon" class="plus">
+</a>
+{% endif %}
 
 <script type = "text/JavaScript">
     var playlist_len = Amplitude.getSongsInPlaylist( "{{current_discussion_index}}").length;

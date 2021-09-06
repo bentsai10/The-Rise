@@ -77,7 +77,7 @@
             </div>
             {% if applicant %}
             <div class="access-form-block">
-                <h1 class = "applicant_name">{{applicant.first_name}} {{applicant.last_name}}</h1>
+                <h1 class = "applicant_name">{{applicant.first_name}} {{applicant.last_name}} ({{applicant.email}})</h1>
                 <form autocomplete = "off" id="review_form" name="review_form" class="access_form" action = "https://therise.online/process_approve" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
