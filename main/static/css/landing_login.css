@@ -24,6 +24,30 @@
    #file{
     display:none;
 }
+#placeholder_title{
+    color: #3425e9; 
+    font-family: 'Cormorant'; 
+    font-weight: 500;
+    font-size: 8rem;
+}
+#placeholder_descrip{
+    color: #3425e9;
+    font-family: 'Gothic A1';
+    font-weight: 300;
+    font-size: 2rem;
+    margin-top: 2.5em;
+    line-height: 3rem;
+}
+.mobile_coming_soon{
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    display:none;
+}
 
 #profile_picture_field{
     display:flex;
@@ -870,6 +894,12 @@ textarea{
     #placeholder_descrip{
         margin-top: 1.5em;
     }
+    .mobile_coming_soon{
+        display:flex;
+    }
+    .main_login_block{
+        display:none;
+    }
   .body {
     border: 5px solid #000;
   }
@@ -1040,6 +1070,12 @@ textarea{
 }
 
 @media screen and (max-width: 767px) {
+    .mobile_coming_soon{
+        display:flex;
+    }
+    .main_login_block{
+        display:none;
+    }
     #placeholder_title{
         font-size: 3rem;
     }
@@ -1140,6 +1176,12 @@ textarea{
 }
 
 @media screen and (max-width: 479px) {
+    .mobile_coming_soon{
+        display:flex;
+    }
+    .main_login_block{
+        display:none;
+    }
     #placeholder_title{
         font-size: 2.5rem;
     }

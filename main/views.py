@@ -30,13 +30,9 @@ def home(request):
     user = context['logged_user']
 
     # If no space is currently selected, 
-    # We assign the id of the most recent space in user's favorite spaces as the current space
-    # If user does not have any favorite space, we assign the id of the most recent space in all spaces
+    # We assign the id of The Rise space
     if 'current_space' not in request.session:
-        if user.favorite_spaces.all().count() > 0:
-            request.session['current_space'] = user.favorite_spaces.all().order_by('-created_at').first().id
-        else:
-            request.session['current_space'] = Space.objects.all().order_by('-created_at').first().id
+        request.session['current_space'] = 2
     
     # Now that we have the id of the current space, let's supply it to context
     # We will also supply all of the discussions within that space to context

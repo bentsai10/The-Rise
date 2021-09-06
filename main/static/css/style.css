@@ -12,7 +12,31 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-.media-controls-container{
+   #placeholder_title{
+    color: #3425e9; 
+    font-family: 'Cormorant'; 
+    font-weight: 500;
+    font-size: 8rem;
+}
+#placeholder_descrip{
+    color: #3425e9;
+    font-family: 'Gothic A1';
+    font-weight: 300;
+    font-size: 2rem;
+    margin-top: 2.5em;
+    line-height: 3rem;
+}
+.mobile_coming_soon{
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    display:none;
+}
+   .media-controls-container{
     display:none;
 }
 
@@ -3067,6 +3091,12 @@
 }
 
 @media screen and (max-width: 991px) {
+    .nav, .network_block, .main_block, .spotlight_block{
+        display:none;
+    }
+    .mobile_coming_soon{
+        display:flex;
+    }
   .nav {
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -3990,6 +4020,12 @@
 }
 
 @media screen and (max-width: 767px) {
+    .nav, .network_block, .main_block, .spotlight_block{
+        display:none;
+    }
+    .mobile_coming_soon{
+        display:flex;
+    }
   .nav {
     padding-right: 1em;
     padding-left: 1em;
@@ -4480,6 +4516,12 @@
 }
 
 @media screen and (max-width: 479px) {
+    .nav, .network_block, .main_block, .spotlight_block{
+        display:none;
+    }
+    .mobile_coming_soon{
+        display:flex;
+    }
   .nav {
     padding: 1em;
   }

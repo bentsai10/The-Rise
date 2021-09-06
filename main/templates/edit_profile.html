@@ -64,10 +64,14 @@
         
     </head>
     <body class="body">
+        <div class = "mobile_coming_soon">
+            <h1 id = "placeholder_title">Coming Soon</h1>
+            <h3 id = "placeholder_descrip">The Rise is not yet Accessible via Mobile Devices.<br>Partake in the Conversation from your Computer! </h3>
+        </div>
         <div class="main_login_block">
             <h1 class = "applicant_name">Edit Your Profile</h1>
             <div class="form-block">
-                <form id=" edit-profile-form" name="edit_profile_form" class="login_form" method = "POST" action = "http://localhost:8000/process_edit_profile" enctype="multipart/form-data">
+                <form id=" edit-profile-form" name="edit_profile_form" class="login_form" method = "POST" action = "https://therise.online/process_edit_profile" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">

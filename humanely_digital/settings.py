@@ -160,7 +160,7 @@ MEDIA_URL = '/media/'
 # STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
 
 
-# COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
+COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
 #Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
