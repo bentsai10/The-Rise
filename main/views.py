@@ -594,7 +594,7 @@ def process_favorite_space(request, num):
         user.favorite_spaces.add(space)
     user.save()
     context = {
-        'spaces': Space.objects.all(),
+        'spaces': Space.objects.all().order_by('name'),
         'favorite_spaces': user.favorite_spaces.all()
     }
     return render(request, 'partials/spaces_block.html', context)
@@ -643,7 +643,7 @@ def process_space_search(request):
     if query == "":
         user = User.objects.get(id = request.session['logged_user'])
         context = {
-            'spaces': Space.objects.all(),
+            'spaces': Space.objects.all().order_by('name'),
             'favorite_spaces': user.favorite_spaces.all()
         }
         return render(request, 'partials/spaces_block.html', context)
@@ -658,7 +658,7 @@ def display_spaces(request):
         return redirect('/login')
     user = User.objects.get(id = request.session['logged_user'])
     context = {
-        'spaces': Space.objects.all(),
+        'spaces': Space.objects.all().order_by('name'),
         'favorite_spaces': user.favorite_spaces.all()
     }
     return render(request, 'partials/spaces_block.html', context)
