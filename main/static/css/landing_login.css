@@ -900,6 +900,9 @@ textarea{
     .main_login_block{
         display:none;
     }
+    #apply_for_access{
+        display:flex;
+    }
   .body {
     border: 5px solid #000;
   }
@@ -1076,6 +1079,9 @@ textarea{
     .main_login_block{
         display:none;
     }
+    #apply_for_access{
+        display:flex;
+    }
     #placeholder_title{
         font-size: 3rem;
     }
@@ -1181,6 +1187,9 @@ textarea{
     }
     .main_login_block{
         display:none;
+    }
+    #apply_for_access{
+        display:flex;
     }
     #placeholder_title{
         font-size: 2.5rem;

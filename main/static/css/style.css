@@ -3100,9 +3100,7 @@
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }
-    #apply_for_access{
-        display:flex;
-    }
+    
     .mobile_coming_soon{
         display:flex;
     }
@@ -4039,9 +4037,7 @@
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }
-    #apply_for_access{
-        display:flex;
-    }
+    
     .mobile_coming_soon{
         display:flex;
     }
@@ -4545,9 +4541,7 @@
     .nav, .network_block, .main_block, .spotlight_block{
         display:none;
     }
-    #apply_for_access{
-        display:flex;
-    }
+    
     .mobile_coming_soon{
         display:flex;
     }
