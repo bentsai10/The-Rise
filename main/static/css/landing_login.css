@@ -890,6 +890,7 @@ textarea{
 @media screen and (max-width: 991px) {
     #placeholder_title{
         font-size: 6rem;
+        line-height: 7rem;
     }
     #placeholder_descrip{
         margin-top: 1.5em;
