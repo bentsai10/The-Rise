@@ -36,7 +36,10 @@ def home(request):
     
     # Now that we have the id of the current space, let's supply it to context
     # We will also supply all of the discussions within that space to context
-    context['current_space'] = Space.objects.get(id = request.session['current_space'])
+    if Space.objects.filter(id = request.session['current_space']).count() < 1:
+        context['current_space'] = Space.objects.all().first()
+    else:
+        context['current_space'] = Space.objects.get(id = request.session['current_space'])
     context['discussions'] = context['current_space'].discussion_posts.all().order_by('-created_at')
 
     # If no discussion is currently selected,
@@ -49,9 +52,11 @@ def home(request):
             request.session['current_discussion'] = -1
     if request.session['current_discussion'] == -1:
         context['current_discussion'] = -1
-    else:        
-        print(request.session['current_discussion'])
-        context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
+    else:
+        if Discussion.objects.filter(id = request.session['current_discussion']).count() < 1:
+            context['current_discussion'] = -1
+        else:       
+            context['current_discussion'] = Discussion.objects.get(id = request.session['current_discussion'])
     # Current discussion index resembles the playlist name of the current discussion for integration w/ Amplitude JS
     # If no discussion is currently selected, we assign -1, which will never match a playlist in Amplitude JS
     if 'current_discussion_index' not in request.session:
@@ -663,7 +668,10 @@ def display_spaces(request):
     }
     return render(request, 'partials/spaces_block.html', context)
     
-
+# def handler404(request):
+#     return render(request, '404.html', status=404)
+def handler500(request):
+    return render(request, '500.html', status=500)
 
 
 

@@ -32,3 +32,6 @@ urlpatterns = [
     path('process_space_search', views.process_space_search),
     path('display_spaces', views.display_spaces),
 ]
+
+# handler404 = views.handler404
+handler500 = views.handler500
