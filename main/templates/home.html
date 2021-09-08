@@ -198,7 +198,7 @@
                                         <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
-                                    <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" data-tab = "recent" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                    <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
                                         {% if discussion in logged_user.saved_discussions.all %}
                                         <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                         {% else %}
@@ -470,6 +470,9 @@
                         success: function (data) {
                             $('#post_discussion_block').html(data);
                             $('.clear_recording_button').click();
+                            $(document).on("click", '.post_discussion_button', function(){
+                                $('#discussion_form').submit();
+                            });
                             $.ajax({
                                 type: 'GET',
                                 url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",
@@ -497,6 +500,9 @@
                         success: function (data) {
                             $('#post_response_block').html(data);
                             $('.clear_recording_button').click();
+                            $(document).on("click", '.post_response_button', function(){
+                                $('#response_form').submit();
+                            });
                             $.ajax({
                                 type: 'GET',
                                 url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",

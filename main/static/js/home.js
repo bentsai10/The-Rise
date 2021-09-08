@@ -229,6 +229,7 @@ $(document).ready(function(){
      * Process post button click for discussions
      */
     $(document).on('click', '.post_discussion_button', function(){
+        $('.post_discussion_button').off('click');
         $('#discussion_form').submit();
     });
 
@@ -236,6 +237,7 @@ $(document).ready(function(){
      * Process post button click for responses
      */
     $(document).on('click', '.post_response_button', function(){
+        $('.post_response_button').off('click');
         $('#response_form').submit();
     });
 
@@ -248,6 +250,7 @@ $(document).ready(function(){
             url: $(this).attr('href'),
             success: function (data) {
                 $('.discussion_posts_block').html(data);
+                $('.search_text_field').val('');
                 prevActiveIndex = -1;
                 prevActivePlaylist = -1;
                 Amplitude.pause();
@@ -362,24 +365,15 @@ $(document).ready(function(){
             $('.bookmark').attr('src', 'https://the-rise-online-bucket.s3.us-east-2.amazonaws.com/img/empty_bookmark.svg');
             $(this).attr('data-active', "unsaved");
         }
-
-        if($(this).attr('data-tab') == 'top'){
-
-        }
-        else if($(this).attr('data-tab') == 'saved'){
-
-        }
-        else{
-            $.ajax({
-                type: 'GET',
-                url: $(this).attr('href'),
-                success: function (data) {
-                    $('.discussion_posts_block').html(data);
-                },
-                error: function(data) {
-                }
-            });
-        }
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.discussion_posts_block').html(data);
+            },
+            error: function(data) {
+            }
+        });
         return false;
     });
 
