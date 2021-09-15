@@ -467,15 +467,19 @@ def process_discussion_post (request):
 
             # Get title of link to display rather than raw url, if unable, then display raw_url
             # Saved in database to reduce conversion time
-            try:
-                link_html = urlopen(link).read()
-                soup = BeautifulSoup(link_html)
-                link_title = soup.title.string
-            except:
-                link_title = link
+            
             # Create Discussion w/ cleaned data in currently selected space
             space = Space.objects.get(id = request.session['current_space'])
-            Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
+            if len(link) > 0:
+                try:
+                    link_html = urlopen(link).read()
+                    soup = BeautifulSoup(link_html)
+                    link_title = soup.title.string
+                except:
+                    link_title = link
+                Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
+            else:
+                Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
             context = {
                 'discussions': space.discussion_posts.all().order_by('-created_at')
             }

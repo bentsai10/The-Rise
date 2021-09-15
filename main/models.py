@@ -38,7 +38,7 @@ class UserManager(models.Manager):
             return errors
         if not user.password:
             if postData['password'] != postData['confirm_password']:
-                errors['password'] = "Your passwords do not match!"
+                errors['password'] = "Your passwords don't match"
             if len(postData['password']) < 8:
                 errors['password'] = "Password must be at least 8 characters"
         if user.password:
@@ -170,9 +170,7 @@ class DiscussionManager(models.Manager):
         valid_caps = ['2', '10', '100']
         if postData['participant_cap'] not in valid_caps:
             errors['participant_cap'] = 'Invalid participant cap: Choose from 2, 10, 100'
-        if len(postData['link'].strip()) < 2:
-            errors['link'] = "Links need to be at least 2 characters"
-        else:
+        if len(postData['link'].strip()) > 0:
             try:
                 validate = URLValidator()
                 validate(postData['link'].strip())
@@ -187,8 +185,8 @@ class Discussion(models.Model):
     class Meta:
         db_table = 'discussion_posts'
     title = models.CharField(max_length = 255)
-    link = models.CharField(max_length = 200)
-    link_title = models.CharField(max_length = 255)
+    link = models.CharField(max_length = 200, blank=True)
+    link_title = models.CharField(max_length = 255, blank=True)
     participant_cap = models.IntegerField()
     participant_count = models.IntegerField(default = 1)
     audio = models.FileField(upload_to = discussion_upload_to)

@@ -6,7 +6,7 @@
 <div class="discussion_post" >
     <div class="discussion player">
         <div class="discussion_top">
-            <a href="https://therise.online/profile/{{user.id}}"><img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art"></a>
+            <a href="https://therise.online/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
             <div class="discussion_top_middle" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                 <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
                 <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
@@ -25,7 +25,9 @@
         </div>
         <div class="discussion_bottom" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
             <h1 class="song-title">{{discussion.title}}</h1>
+            {% if discussion.link %}
             <a href="{{discussion.link}}" target="_blank" class="discussion_link">{{discussion.link_title}}</a>
+            {% endif %}
         </div>
     </div>
     <div class="discussion_buttons">
