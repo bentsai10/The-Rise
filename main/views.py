@@ -78,33 +78,39 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+
+# Twilio setup for 2-step verification
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
+
 # Render application page
-def apply(request):
-    return render(request, 'apply_for_access.html')
+def register(request):
+    return render(request, 'register.html')
 
 # Processing a submitted application
-def process_apply(request):
+def process_register(request):
     # if request not sent from a form submission, redirect them back to the application page
     if request.method == "GET":
-        return redirect('/apply')
+        return redirect('/register')
     else:
         # Validate submitted data using the appropriate validator for the User object in models.py
-        errors = User.objects.apply_validator(request.POST)
+        errors = User.objects.register_validator(request.POST)
 
         # If there are errors, redirect them to apply page with error messages
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/apply')
+            return redirect('/register')
         else:
             # Clean up post data for readability and data uniformity
             first_name = request.POST['first_name'].strip()
-            first_name = first_name[0].upper() + first_name[1:].lower()
+            first_name = first_name.title()
             last_name = request.POST['last_name'].strip()
-            last_name = last_name[0].upper() + last_name[1:].lower()
+            last_name = last_name.title()
             email = request.POST['email'].strip().lower()
             phone_number = request.POST['phone_number'].strip()
-            essay = request.POST['essay'].strip()
+            password = request.POST['password']
             referral = request.POST['referral'].strip()
 
             # Use phonenumbers module to parse phone number from response and convert it to E164 format for Twilio
@@ -113,18 +119,21 @@ def process_apply(request):
                 phone_number = phonenumbers.format_number(phone_number, phonenumbers.PhoneNumberFormat.E164)
             except:
                 messages.error(request, "Please provide your phone number in a valid format")
-                return redirect('/apply')
+                return redirect('/register')
             
+            pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
             # If everything works, create User in database with cleaned values + converted phone number
-            User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, essay = essay, referral = referral)
+            User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, password = pw_hash, referral = referral)
 
+            verification = client.verify \
+                        .services(os.environ['TWILIO_SERVICE_ID']) \
+                        .verifications \
+                        .create(to=phone_number, channel='sms')
+            request.session['hold_id'] = User.objects.get(phone_number = phone_number).id       
             # Redirect them to landing page, b/c they're not yet approved for login
-            return redirect('/')
+            return redirect('/verification')
 
-# Twilio setup for 2-step verification
-account_sid = os.environ['TWILIO_ACCOUNT_SID']
-auth_token = os.environ['TWILIO_AUTH_TOKEN']
-client = Client(account_sid, auth_token)
+
 
 # Render page for entering 2-step code
 def verify(request):
@@ -164,7 +173,7 @@ def process_verification(request):
         else:
             del request.session['hold_id']
             request.session['logged_user'] = user.id
-            if 'first' in request.session:
+            if user.status == False:
                 return redirect('/edit_profile')
             else:
                 return redirect('/home')
@@ -216,14 +225,6 @@ def process_login(request):
                 if not user:
                     messages.error(request, "No user with this phone number")
                     return redirect('/login')
-
-                # If no password associated w/ user, encode their entered passcode and enter it into the database
-                # Store in the session that this is their first time ever logging in
-                if not user.password:
-                    pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-                    user.password = pw_hash
-                    request.session['first'] = "yes"
-                user.save() 
                 # Hold user's id in session to indicate successful login, but pending verification
                 request.session['hold_id'] = user.id
 
@@ -266,38 +267,6 @@ def process_edit_profile(request):
             # Get user object associated with logged in user
             user = User.objects.get(id = request.session['logged_user'])
 
-            # Since we are making it possible that users can leave certain fields blank,
-            # We need if statements to check if they have entered something for each field
-
-            # if request.POST['year']:
-            #     user.year = request.POST['year'].strip()
-            # else:
-            #     user.year = ""
-
-            # # If there is department data, clean it before assigning it
-            # if request.POST['department1']:
-            #     department1 = ""
-            #     department1_raw = request.POST['department1'].strip().split(' ')
-            #     for i in range(len(department1_raw)):
-            #         department1 += department1_raw[i][0].upper() + department1_raw[i][1:].lower()
-            #         if i != len(department1_raw) - 1:
-            #             department1 += " "
-            #     user.department1 = department1
-
-            # if request.POST['department2']:
-            #     department2 = ""
-            #     department2_raw = request.POST['department2'].strip().split(' ')
-            #     for i in range(len(department2_raw)):
-            #         department2 += department2_raw[i][0].upper() + department2_raw[i][1:].lower()
-            #         if i != len(department2_raw) - 1:
-            #             department2 += " "
-            #     user.department2 = department2
-
-            # # If user entered a department2 but not a department1, then make department1 = department2 and clear department2
-            # if request.POST['department2'] and not request.POST['department1']:
-            #     user.department1 = user.department2
-            #     user.department2 = ""
-
             # If there is title data, clean it before assigning it
             if 'title' in request.POST and len(request.POST['title'].strip()) > 0:
                 title = request.POST['title'].strip()
@@ -314,8 +283,9 @@ def process_edit_profile(request):
 
             # If it was their first time logging in, delete session variable indicating that and take them to homepage
             # Otherwise, take them back to their profile page
-            if 'first' in request.session:
-                del request.session['first']
+            if user.status == False:
+                user.status = True
+                user.save()
                 return redirect('/home')
             return redirect('/my_profile')
 

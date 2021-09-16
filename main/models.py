@@ -30,35 +30,18 @@ class UserManager(models.Manager):
             return errors
         phone_number = phonenumbers.format_number(phone_number, phonenumbers.PhoneNumberFormat.E164)
         if User.objects.filter(phone_number = phone_number).all().count() <= 0:
-            errors['phone_number'] = "You have yet to apply for access to our platform. Head on over to humanelydigital.com/apply!"
+            errors['phone_number'] = "You have yet to register an account with us! Head on over to therise.online/register!"
             return errors
         user = User.objects.filter(phone_number = phone_number)[0]
-        if user and user.status == False:
-            errors['phone_number'] = "Please be patient while we continue to review applications to our platform. Feel free to contact us at humanelydigital@gmail.com"
-            return errors
-        if not user.password:
-            if postData['password'] != postData['confirm_password']:
-                errors['password'] = "Your passwords don't match"
-            if len(postData['password']) < 8:
-                errors['password'] = "Password must be at least 8 characters"
-        if user.password:
-            if not bcrypt.checkpw(postData['password'].encode(), user.password.encode()):
-                errors["password"] = "Incorrect password!"
+        if not bcrypt.checkpw(postData['password'].encode(), user.password.encode()):
+            errors["password"] = "Incorrect password!"
         return errors
+
 
     def register_validator(self, postData):
         errors = {}
-        permitted_email_endings = ['bc.edu', ]
-        email_ending = postData['email'].split('@')[-1]
-
-        if email_ending not in permitted_email_endings:
-            errors['email'] = ("Please register with your school/work email! Check our platform availability for your school/company at humanelydigital.com")
-            return errors
-        return errors
-
-    def apply_validator(self, postData):
-        errors = {}
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        permitted_email_endings = ['bc.edu']
 
         if len(postData['first_name'].strip()) < 2:
             errors['first_name'] = "First name must be 2+ characters"
@@ -67,8 +50,13 @@ class UserManager(models.Manager):
         if not EMAIL_REGEX.match(postData['email'].strip()):
             errors['email'] = ("Invalid email address!")
             return errors
+        
+        email_ending = postData['email'].strip().split('@')[-1]
+        if email_ending not in permitted_email_endings:
+            errors['email'] = ("The Rise is not yet open to your school/company. Contact us if you'd like your school/company to join The Rise!")
+            return errors
         if User.objects.filter(email = postData['email'].lower()).all().count() > 0:
-            errors['email'] = "An application has already been submitted with this email"
+            errors['email'] = "An account is already registered with this email"
             return errors
         try: 
             phone_number = phonenumbers.parse(postData['phone_number'].strip())
@@ -79,10 +67,13 @@ class UserManager(models.Manager):
             errors['phone_number'] = ("Country dialing code is required (+1 for U.S)")
             return errors
         if User.objects.filter(phone_number = postData['phone_number']).all().count() > 0:
-            errors['phone_number'] = "An application has already been submitted with this phone number"
+            errors['phone_number'] = "An account is already registered with this phone number"
             return errors
-        if len(postData['essay'].strip()) < 50:
-            errors['essay'] = "Please be thoughtful in your response (50+ characters)"
+
+        if len(postData['password']) < 8:
+                errors['password'] = "Password must be at least 8 characters"
+        if postData['password'] != postData['confirm_password']:
+            errors['password'] = "Your passwords don't match"
         if len(postData['referral'].strip()) < 2:
             errors['referral'] = "Please let us know what brought you here (2+ characters)"
         return errors
@@ -111,7 +102,7 @@ class User(models.Model):
     last_name = models.CharField(max_length = 255)
     email = models.CharField(max_length = 255)
     phone_number = models.CharField(max_length = 17)
-    essay = models.TextField() #response to application question
+    essay = models.TextField(blank=True) #response to application question
     referral = models.CharField(max_length = 255) #track referral person
     password = models.CharField(max_length = 255, blank = True)
     year = models.CharField(max_length = 4, blank = True) #e.g. 2022
@@ -120,7 +111,7 @@ class User(models.Model):
     title = models.CharField(max_length = 255, blank = True) #e.g. Student, Account Executive, etc.
     profile_picture = models.ImageField(upload_to = upload_to, blank = True)
     permissions = models.IntegerField(default = 0) #only admin permissions can view certain pages/perform certain actions
-    status = models.BooleanField(default = False) #not accepted to begin with
+    status = models.BooleanField(default = False)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
