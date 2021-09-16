@@ -46,11 +46,12 @@
 .error_list{
     list-style-type: circle; 
     margin-left: -20px;
+    margin-bottom: 1.5em;
 }
 
 .error_item{
-    color: #ccc; 
-    font-size: .8rem; 
+    color: #ff3b3b; 
+    font-size: 1rem; 
     font-weight: 1rem;
     font-family: 'Gothic A1', sans-serif;
     font-weight: 300;
