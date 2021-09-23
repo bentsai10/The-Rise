@@ -1,5 +1,5 @@
 {% load static %}
-<form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "https://therise.online/process_discussion_post" enctype="multipart/form-data">
+<form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
     {% csrf_token %}
     {% if messages %}
     <ul class = "error_list">
@@ -38,3 +38,12 @@
     <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="discussion_audio_input">
     <input type="hidden" name = "duration" class = "duration_input" id = "discussion_duration_input">
 </form>
+
+<script type = "text/JavaScript">
+    // {% if new_post == True%}
+    // $('.clear_recording_button').click();
+    // {% endif %}
+    // $(document).on("click", '.post_discussion_button', function(){
+    //     $('#discussion_form').submit();
+    // });
+</script>

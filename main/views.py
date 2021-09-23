@@ -6,10 +6,10 @@ from django.core.mail import send_mail
 from django.db.models import Q, Count
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import phonenumbers, bcrypt, dotenv, os
+import phonenumbers, bcrypt, dotenv, os, datetime
 from twilio.rest import Client
 
-
+newPost = False
 
 # Render landing page
 def index(request):
@@ -421,6 +421,7 @@ def process_discussion_post (request):
     else:
         # Validate submitted data using the appropriate validator for the Discussion object in models.py
         errors = Discussion.objects.post_validator(request.POST, request.FILES)
+        newPost = False
 
          # If there are errors, re-render the discussion form with error messages
         if len(errors) > 0:
@@ -440,16 +441,22 @@ def process_discussion_post (request):
             
             # Create Discussion w/ cleaned data in currently selected space
             space = Space.objects.get(id = request.session['current_space'])
-            if len(link) > 0:
-                try:
-                    link_html = urlopen(link).read()
-                    soup = BeautifulSoup(link_html)
-                    link_title = soup.title.string
-                except:
-                    link_title = link
-                Discussion.objects.create(title = title, participant_cap =  participant_cap, link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
-            else:
-                Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
+            created_time = datetime.datetime.now() - datetime.timedelta(seconds=15)
+            same_post_filter = Discussion.objects.filter(poster = user, created_at__gte=created_time).all()
+            if same_post_filter.count() < 1:
+                new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
+
+                if len(link) > 0:
+                    try:
+                        link_html = urlopen(link).read()
+                        soup = BeautifulSoup(link_html)
+                        link_title = soup.title.string
+                    except:
+                        link_title = link
+                    new_disc.link = link
+                    new_disc.link_title = link_title
+                    new_disc.save()
+                newPost = True
             context = {
                 'discussions': space.discussion_posts.all().order_by('-created_at')
             }
@@ -477,7 +484,7 @@ def space(request, network, space):
         request.session['current_discussion'] = None
         request.session['current_discussion_index'] = 0
 
-    print(context['discussions'])
+    context['new_post'] = newPost
     return render(request, 'partials/discussion_posts.html', context)
 
 # Render corresponding discussion banner for selected space

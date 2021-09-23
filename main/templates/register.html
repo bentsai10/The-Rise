@@ -65,9 +65,9 @@
     </head>
     <body class="body access">
         <div class="main_login_block access" id = "apply_for_access">
-            <a href="https://therise.online/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
+            <a href="http://localhost:8000/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
             <div class="access-form-block">
-                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "https://therise.online/process_register" method = "POST">
+                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "http://localhost:8000/process_register" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
@@ -90,7 +90,7 @@
                     <input type="password" class="login_text_field w-input" maxlength="256" name="confirm_password" id="confirm_password">
                     <label for="referral" class="login_label w-textarea">Who referred you?</label>
                     <input type="text" autocomplete = "off"class="login_text_field w-input" maxlength="256" name="referral" id="referral" required>
-                    <input type="submit" value="Apply" class="submit-button w-button">
+                    <input type="submit" value="Register" class="submit-button w-button">
                 </form>
             </div>
         </div>

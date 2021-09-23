@@ -31,7 +31,7 @@ $(document).ready(function(){
         rec.ondataavailable = e => {
             audio_snippets.push(e.data);
             if (rec.state == "inactive"){
-                let blob = new Blob(audio_snippets, {type:'audio/mp3'});
+                let blob = new Blob(audio_snippets, {type:'audio/mp4'});
                 let recorded_audio = $('.recorded_audio');
                 recorded_audio.attr('src', URL.createObjectURL(blob));
                 sendData(blob);
@@ -48,7 +48,7 @@ $(document).ready(function(){
         const d = new Date();
         let file_name = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}-${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}-${d.getMilliseconds()}.mp3`
 
-        let file = new File([data], file_name, {type: "audio/mp3", lastModified: d.getTime()});
+        let file = new File([data], file_name, {type: "audio/mp4", lastModified: d.getTime()});
         container.items.add(file);
         for(let i = 0; i < file_input.length; i++){
             file_input[i].files = container.files;
@@ -181,13 +181,13 @@ $(document).ready(function(){
         let discussion_index = $(this).attr('data-discussion-index');
         $.ajax({
             type: 'GET',
-            url: `https://therise.online/load_response/${discussion_id}/${discussion_index}`,
+            url: `http://localhost:8000/load_response/${discussion_id}/${discussion_index}`,
             success: function (data) {
                 $('.response_posts_block').html(data);
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "https://therise.online/load_response_banner",
+                    url: "http://localhost:8000/load_response_banner",
                     success: function (data) {
                         $('.response_banner').html(data);
                         $('.response_banner').css('display', 'flex');
@@ -229,7 +229,6 @@ $(document).ready(function(){
      * Process post button click for discussions
      */
     $(document).on('click', '.post_discussion_button', function(){
-        $('.post_discussion_button').off('click');
         $('#discussion_form').submit();
     });
 
@@ -256,14 +255,14 @@ $(document).ready(function(){
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "https://therise.online/load_discussion_banner",
+                    url: "http://localhost:8000/load_discussion_banner",
                     success: function (data) {
                         $('.discussion_banner').html(data);
                         $('.response_banner').html('');
                         $('.response_posts_block').html('');
                         $.ajax({
                             type: 'GET',
-                            url: 'https://therise.online/display_spaces',
+                            url: 'http://localhost:8000/display_spaces',
                             success: function (data) {
                                 $('.spaces_block').html(data)
                             },

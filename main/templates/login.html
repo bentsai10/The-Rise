@@ -64,14 +64,10 @@
         
     </head>
     <body class="body">
-        <div class = "mobile_coming_soon">
-            <h1 id = "placeholder_title">Coming Soon</h1>
-            <h3 id = "placeholder_descrip">The Rise is not yet accessible via mobile devices.<br>Please join us from your computer!</h3>
-        </div>
         <div class="main_login_block">
             <img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo">
             <div class="form-block">
-                <form id="login_form" name="login_form" class="login_form" action = "https://therise.online/process_login" method = "POST">
+                <form id="login_form" name="login_form" class="login_form" action = "http://localhost:8000/process_login" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
