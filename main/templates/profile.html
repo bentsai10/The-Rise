@@ -59,8 +59,8 @@
     </head>
     <body class="body">
         <div class="nav">
-            <a href="http://localhost:8000/home" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
-            <a href="http://localhost:8000/my_profile" class="profile_banner_link_block w-inline-block">
+            <a href="https://therise.online/home" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
+            <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
                 {% if user.profile_picture %}
                 <img src="{{user.profile_picture.url}}" loading="lazy" alt="profile picture" class="profile_thumbnail">
                 {% else %}
@@ -70,7 +70,7 @@
             </a>
         </div>
         <div class="network_block">
-            <a href="http://localhost:8000/home" class="network_link_block w-inline-block">
+            <a href="https://therise.online/home" class="network_link_block w-inline-block">
                 <h1 class="network_heading">Boston College</h1>
             </a>
         </div>
@@ -86,7 +86,7 @@
             <h2 class="heading">{{user.title}}</h2>
             {% endif %}
             {% if user.id == request.session.logged_user %}
-            <a href="http://localhost:8000/edit_profile" class="edit-profile-button w-button">Edit Profile</a>
+            <a href="https://therise.online/edit_profile" class="edit-profile-button w-button">Edit Profile</a>
             {% endif %}
         </div>
         <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

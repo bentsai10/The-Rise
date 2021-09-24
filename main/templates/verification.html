@@ -66,7 +66,7 @@
         <div class="main_login_block">
             <img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo">
             <div class="form-block">
-                <form id="verification_form" name="verification_form" class="login_form" method = "POST" action = "http://localhost:8000/process_verification">
+                <form id="verification_form" name="verification_form" class="login_form" method = "POST" action = "https://therise.online/process_verification">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">
