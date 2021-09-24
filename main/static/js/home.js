@@ -489,6 +489,17 @@ $(document).ready(function(){
         $('.discussions_block').css('display', 'flex');
         $('.discussion_banner').css('display', 'flex');
     })
+    $(document).on('click', '.space_heading.small ', function(){
+        $('.spaces_block').css('display', 'none');
+        $('.search_space_block').css('display', 'none');
+        $('.responses_block').css('display', 'none');
+        $('.response_banner').css('display', 'none');
+        $('#discussion_form_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
+        $('#response_form_block').css('display', 'none');
+        $('.discussions_block').css('display', 'flex');
+        $('.discussion_banner').css('display', 'flex');
+    })
 
     $(document).on('click', '.discussion_top_middle.small', function(){
         console.log('clicked');
