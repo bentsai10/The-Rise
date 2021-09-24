@@ -33,17 +33,11 @@
         <div class = "recording_input_bar recording_input" ><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
         <audio class="recording_input recorded_audio" id = "recorded_discussion_audio" controls = "true"></audio>
         <label class = "elapsed_duration_display" id = "discussion_elapsed_duration">00:00</label>
-        <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button">
+        <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="clear_recording_button">
     </div>
     <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="discussion_audio_input">
     <input type="hidden" name = "duration" class = "duration_input" id = "discussion_duration_input">
 </form>
 
 <script type = "text/JavaScript">
-    // {% if new_post == True%}
-    // $('.clear_recording_button').click();
-    // {% endif %}
-    // $(document).on("click", '.post_discussion_button', function(){
-    //     $('#discussion_form').submit();
-    // });
 </script>

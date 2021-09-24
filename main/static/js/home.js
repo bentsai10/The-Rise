@@ -195,7 +195,6 @@ $(document).ready(function(){
                         $('.post_discussion_banner').css('display', 'none');
                         $('.discussion_form_block').css('display', 'none');
                         $('#plus_discussion_button_big').css('display', 'flex');
-                        $('#plus_response_button_big').css('display', 'flex');
                         $('.error_list').css('display', 'none');
                     },
                     error: function(data) {
@@ -471,6 +470,84 @@ $(document).ready(function(){
         });
         return false;
     })
+
+    $(document).on('click', '.network_link_block.small ', function(){
+        $('.spaces_block').css('display', 'flex');
+        $('.search_space_block').css('display', 'flex');
+        $('.discussions_block').css('display', 'none');
+        $('.discussion_banner').css('display', 'none');
+    })
+
+    $(document).on('click', '.sidebar_close_small ', function(){
+        $('.spaces_block').css('display', 'none');
+        $('.search_space_block').css('display', 'none');
+        $('.responses_block').css('display', 'none');
+        $('.response_banner').css('display', 'none');
+        $('#discussion_form_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
+        $('#response_form_block').css('display', 'none');
+        $('.discussions_block').css('display', 'flex');
+        $('.discussion_banner').css('display', 'flex');
+    })
+
+    $(document).on('click', '.discussion_top_middle.small', function(){
+        $('.discussions_block').css('display', 'none');
+        $('.discussion_banner').css('display', 'none');
+        $('.responses_block').css('display', 'flex');
+        $('.response_banner').css('display', 'flex');
+        $('#plus_discussion_button_big').css('display', 'none');
+    })
+
+    $(document).on('click', '.discussion_top_right.small', function(){
+        $('.discussions_block').css('display', 'none');
+        $('.discussion_banner').css('display', 'none');
+        $('.responses_block').css('display', 'flex');
+        $('.response_banner').css('display', 'flex');
+        $('#plus_discussion_button_big').css('display', 'none');
+        
+        
+    })
+    $(document).on('click', '.back_arrow_link_block', function(){
+        $('.discussions_block').css('display', 'flex');
+        $('.discussion_banner').css('display', 'flex');
+        $('.responses_block').css('display', 'none');
+        $('.response_banner').css('display', 'none');
+        
+    })
+
+    $(document).on('click', '#plus_discussion_button_small', function(){
+        $('.discussions_block').css('display', 'none');
+        $('.discussion_banner').css('display', 'none');
+        $('#discussion_form_block').css('display', 'flex');
+        $('.post_discussion_banner').css('display', 'flex');
+        
+    })
+    $(document).on('click', '#plus_response_button_small', function(){
+        $('.responses_block').css('display', 'none');
+        $('.response_banner').css('display', 'none');
+        $('#response_form_block').css('display', 'flex');
+        $('.post_discussion_banner').css('display', 'flex');
+        
+    })
+    
+
+    $(document).on('click', '.post_discussion_button.small', function(){
+        $('.discussions_block').css('display', 'flex');
+        $('.discussion_banner').css('display', 'flex');
+        $('#discussion_form_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
+        
+    })
+
+    $(document).on('click', '.post_response_button.small', function(){
+        $('.responses_block').css('display', 'flex');
+        $('.response_banner').css('display', 'flex');
+        $('#response_form_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
+        
+    })
+    
+
 })
 
 

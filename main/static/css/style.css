@@ -186,6 +186,9 @@
     font-family: Mulish, sans-serif;
     text-decoration: none;
     }
+        .network_link_block.small{
+            display:none;
+        }
 
     .network_button {
     margin-right: 1vw;
@@ -3092,18 +3095,23 @@
 }
 
 @media screen and (max-width: 991px) {
+    .recording_input{
+        height: 80%;
+    }
+    .input_block{
+        height:8%;
+    }
+    .discussion_post{
+        display:none;
+    }
+    .discussion_post.small{
+        display:flex;
+    }
     #placeholder_title{
         font-size: 6rem;
     }
     #placeholder_descrip{
         margin-top: 1.5em;
-    }
-    .nav, .network_block, .main_block, .spotlight_block{
-        display:none;
-    }
-    
-    .mobile_coming_soon{
-        display:flex;
     }
   .nav {
     -webkit-box-align: center;
@@ -3122,13 +3130,13 @@
   }
 
   .profile_banner {
-    font-size: 1.25rem;
-    line-height: 1.25rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
   }
 
   .profile_thumbnail {
-    width: 2.75em;
-    height: 2.75em;
+    width: 3.5em;
+    height: 3.5em;
   }
 
   .network_block {
@@ -3230,8 +3238,8 @@
     width: 100%;
     height: 40%;
     padding: 0.25em 0.5em;
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
 
   .search_form {
@@ -3289,8 +3297,8 @@
   }
 
   .spaces_heading {
-    font-size: 1.8rem;
-    line-height: 1.8rem;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
   }
 
   .favorite_spaces {
@@ -3305,6 +3313,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    text-align:center;
   }
 
   .space_heading {
@@ -3314,8 +3323,8 @@
   }
 
   .space_heading.sidebar_close_small {
-    font-size: 1.3rem;
-    line-height: 1.8rem;
+    font-size: 1.8rem;
+    line-height: 3rem;
   }
 
   .main_banner_block {
@@ -3601,7 +3610,7 @@
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: none;
+    display: flex;
     width: 4rem;
     height: 4rem;
   }
@@ -3956,16 +3965,18 @@
 
   .plus_response_button {
     left: auto;
-    right: 1em;
+    right: 40px;
+    bottom: 2em;
     z-index: 1;
     display: none;
     width: 5em;
     height: 5em;
+    margin-top: 0vw;
   }
 
   .plus_response_button.small {
-    left: auto;
-    z-index: 5;
+    right: 1em;
+    bottom: 2em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -4018,6 +4029,7 @@
 
   .discussion_form_block {
     display: none;
+    padding: 1em;
     width: 100%;
   }
   .person_button{
@@ -4025,22 +4037,28 @@
     padding-bottom: 0.125em;
     margin-left: .5em;
     }
+    .network_link_block {
+        margin-right: 1em;
+        display: none;
+    }
+        .network_link_block.small {
+            display: flex;
+        }
 }
 
 @media screen and (max-width: 767px) {
+    .discussion_post{
+        display:none;
+    }
+    .discussion_post.small{
+        display:flex;
+    }
     #placeholder_title{
         font-size: 3rem;
     }
     #placeholder_descrip{
         font-size: 1.5rem;
         margin-top: .5em;
-    }
-    .nav, .network_block, .main_block, .spotlight_block{
-        display:none;
-    }
-    
-    .mobile_coming_soon{
-        display:flex;
     }
   .nav {
     padding-right: 1em;
@@ -4167,8 +4185,8 @@
   }
 
   .spaces_heading {
-    font-size: 1.6rem;
-    line-height: 1.2rem;
+    font-size: 2rem;
+    line-height: 1.5rem;
   }
 
   .favorite_spaces {
@@ -4183,6 +4201,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    text-align: center;
   }
 
   .space_heading {
@@ -4502,11 +4521,14 @@
   .plus_response_button {
     left: auto;
     right: 40px;
-    z-index: 5;
+    width: 5em;
+    height: 5em;
+    display:none;
   }
 
   .plus_response_button.small {
     left: auto;
+    display:flex;
   }
 
   .search_space_block {
@@ -4532,19 +4554,19 @@
 }
 
 @media screen and (max-width: 479px) {
+
+    .discussion_post{
+        display:none;
+    }
+    .discussion_post.small{
+        display:flex;
+    }
     #placeholder_title{
         font-size: 2.5rem;
     }
     #placeholder_descrip{
         font-size: 1.2rem;
         margin-top: .5em;
-    }
-    .nav, .network_block, .main_block, .spotlight_block{
-        display:none;
-    }
-    
-    .mobile_coming_soon{
-        display:flex;
     }
   .nav {
     padding: 1em;
@@ -4557,8 +4579,8 @@
   }
 
   .profile_thumbnail {
-    width: 2.25em;
-    height: 2.25em;
+    width: 3.5em;
+    height: 3.5em;
   }
 
   .network_block {
@@ -4571,8 +4593,8 @@
   }
 
   .network_heading.public {
-    font-size: 1.2rem;
-    line-height: 1.2rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
   }
 
   .network_heading.private {
@@ -4635,10 +4657,13 @@
   .all_spaces_block {
     overflow: visible;
     height: auto;
+    text-align: center;
   }
 
   .space_heading.sidebar_close_small {
     margin-top: 1.5em;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
   }
 
   .main_banner_block {
@@ -5006,12 +5031,14 @@
     left: auto;
     right: 30px;
     z-index: 5;
+    display:none;
   }
 
   .plus_response_button.small {
     right: 1em;
     width: 3.5rem;
     height: 3.5rem;
+    display:flex;
   }
 
   .search_space_block {

@@ -64,10 +64,6 @@
         
     </head>
     <body class="body">
-        <div class = "mobile_coming_soon">
-            <h1 id = "placeholder_title">Coming Soon</h1>
-            <h3 id = "placeholder_descrip">The Rise is not yet accessible via mobile devices.<br>Please join us from your computer!</h3>
-        </div>
         <div class="nav">
             <a href="http://localhost:8000/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
             <a href="http://localhost:8000/my_profile" class="profile_banner_link_block w-inline-block">
@@ -80,10 +76,12 @@
             </a>
         </div>
         <div class="network_block">
-            <a href="http://localhost:8000/home" class="network_link_block w-inline-block">
+            <a class="network_link_block w-inline-block">
                 <h1 data-w-id="ee46b548-7cad-c835-5ba7-fee04a006c78" class="network_heading public">Boston College</h1>
             </a>
-
+            <a class="network_link_block small w-inline-block">
+                <h1 data-w-id="ee46b548-7cad-c835-5ba7-fee04a006c78" class="network_heading public">Boston College</h1>
+            </a>
         </div>
         <div class="main_block">
             <div class="public_panel">
@@ -108,8 +106,8 @@
                         </div>
                     </div>
                     <div class="main_banner_block response_banner player w-clearfix">
-                        <a href="http://localhost:8000/home" class="back_arrow_link_block w-inline-block">
-                            <img src="{% static 'img/arrow.svg' %}" loading="lazy" data-w-id="7c90edb3-18b8-7a8f-86fe-52c6ca6c0385" alt="white arrow icon" class="arrow">
+                        <a class="back_arrow_link_block w-inline-block">
+                            <img src="{% static 'img/arrow.svg' %}" loading="lazy" alt="white arrow icon" class="arrow">
                         </a>
                         {% if current_discussion != -1%}
                         <a href="http://localhost:8000/profile/{{current_discussion.poster.id}}"><img src="{{current_discussion.poster.profile_picture.url}}" loading="lazy" width="60" alt="{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}'s profile picture" class="album_art"></a>
@@ -181,6 +179,47 @@
                                             <h3 class="duration duration-{{forloop.counter0}}-0">{{discussion.duration}}</h3>
                                         </div>
                                         <div class="discussion_top_right w-clearfix">
+                                            <h4 class="time_posted">{{discussion.created_at|naturaltime}}</h4>
+                                            <div class=" amplitude-play-pause "  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
+                                                <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-{{forloop.counter0}}-0">
+                                                <img src="{% static 'img/blue_pause.svg' %}" loading="lazy" width="15" alt="blue pause button" class="pause pause-{{forloop.counter0}}-0" style = "display:none;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="discussion_bottom" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
+                                        <h1 class="song-title">{{discussion.title}}</h1>
+                                        {% if discussion.link %}
+                                        <a href="{{discussion.link}}" target="_blank" class="discussion_link">{{discussion.link_title}}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="discussion_buttons">
+                                    <div class="participant_cap">
+                                        <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
+                                        <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
+                                    </div>
+                                    <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                        {% if discussion in logged_user.saved_discussions.all %}
+                                        <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        {% else %}
+                                        <img src="{% static 'img/empty_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div> 
+                            <div class="discussion_post small" >
+                                <div class="discussion player">
+                                    <div class="discussion_top">
+                                        <a href="http://localhost:8000/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+                                        <div class="discussion_top_middle small" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
+                                            <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
+                                            <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
+                                            <h3 class="current-time current-time-{{forloop.counter0}}-0" style = "display:none;">
+                                                <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>
+                                            </h3>
+                                            <h3 class="duration duration-{{forloop.counter0}}-0">{{discussion.duration}}</h3>
+                                        </div>
+                                        <div class="discussion_top_right small w-clearfix">
                                             <h4 class="time_posted">{{discussion.created_at|naturaltime}}</h4>
                                             <div class=" amplitude-play-pause "  data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}">
                                                 <img src="{% static 'img/blue_play.svg' %}" loading="lazy" width="15" alt="blue play button" class="play play-{{forloop.counter0}}-0">
@@ -297,7 +336,7 @@
                                     <div class = "recording_input_bar recording_input" ><div class = "recording_input recording_progress" id = "recording_progress_dicussion"></div></div>
                                     <audio class="recording_input recorded_audio" id = "recorded_discussion_audio" controls = "true"></audio>
                                     <label class = "elapsed_duration_display" id = "discussion_elapsed_duration">00:00</label>
-                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button">
+                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="clear_recording_button">
                                 </div>
                                 <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="discussion_audio_input">
                                 <input type="hidden" name = "duration" class = "duration_input" id = "discussion_duration_input">
@@ -338,7 +377,7 @@
                                     <div class = "recording_input_bar recording_input"><div class = "recording_input recording_progress" id = "recording_progress_response"></div></div>
                                     <audio class="recording_input recorded_audio" id = "recorded_response_audio" controls = "true"></audio>
                                     <label class = "elapsed_duration_display" id = "response_elapsed_duration">00:00</label>
-                                    <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small clear_recording_button" >
+                                    
                                 </div>
                                 <input type="file"  accept="audio/*" name="audio_recording" class = "audio_input" id="response_audio_input">
                                 <input type="hidden" name = "duration" class = "duration_input" id = "response_duration_input">
@@ -525,3 +564,6 @@
         <loom-shadow classname="resolved"></loom-shadow>
     </loom-container>
 </html>
+
+
+
