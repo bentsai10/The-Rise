@@ -194,7 +194,7 @@ $(document).ready(function(){
                         $('.responses_block').css('display', 'flex');
                         $('.post_discussion_banner').css('display', 'none');
                         $('.discussion_form_block').css('display', 'none');
-                        $('#plus_discussion_button_big').css('display', 'flex');
+                        
                         $('.error_list').css('display', 'none');
                     },
                     error: function(data) {
@@ -491,6 +491,7 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.discussion_top_middle.small', function(){
+        console.log('clicked');
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
@@ -499,6 +500,7 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.discussion_top_right.small', function(){
+        console.log('twat clicked');
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
@@ -524,9 +526,7 @@ $(document).ready(function(){
     })
     $(document).on('click', '#plus_response_button_small', function(){
         $('.responses_block').css('display', 'none');
-        $('.response_banner').css('display', 'none');
         $('#response_form_block').css('display', 'flex');
-        $('.post_discussion_banner').css('display', 'flex');
         
     })
     
@@ -543,7 +543,6 @@ $(document).ready(function(){
         $('.responses_block').css('display', 'flex');
         $('.response_banner').css('display', 'flex');
         $('#response_form_block').css('display', 'none');
-        $('.post_discussion_banner').css('display', 'none');
         
     })
     

@@ -346,24 +346,20 @@
         margin-top: 1em;
         margin-bottom: 0em;
         direction: ltr;
-        font-family: Mulish, sans-serif;
         color: #000;
-        font-size: 1.5rem;
-        line-height: 1.75rem;
-        font-weight: 400;
         text-decoration: none;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         width: 100%;
+        font-family: 'Gothic A1', sans-serif;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 300;
     }
-    
-      .space_heading.sidebar_close_small {
-      font-family: 'Gothic A1', sans-serif;
-      font-size: 1rem;
-      line-height: 1.5rem;
-      font-weight: 300;
-      }
+        .space_heading.small{
+            display:none;
+        }
 
     .favorite_spaces_block {
         overflow: visible;
@@ -512,6 +508,9 @@
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
+        }
+        .discussion_post.small{
+            display:none;
         }
   
             .discussion {
@@ -3095,6 +3094,12 @@
 }
 
 @media screen and (max-width: 991px) {
+    .discussion_post{
+        display:none;
+    }
+    .discussion_post.small{
+        display:flex;
+    }
     .recording_input{
         height: 80%;
     }
@@ -3320,11 +3325,14 @@
     margin-top: 0.75em;
     font-size: 1.25rem;
     line-height: 1.5rem;
+    display:none;
   }
 
-  .space_heading.sidebar_close_small {
+  .space_heading.small {
     font-size: 1.8rem;
     line-height: 3rem;
+    display:flex;
+    justify-content: center;
   }
 
   .main_banner_block {
