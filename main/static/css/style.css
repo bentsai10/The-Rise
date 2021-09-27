@@ -521,7 +521,7 @@
             border-radius: 20px;
             background-color: #3425e9;
             opacity: 1;
-            cursor: pointer;
+            /* cursor: pointer; */
             }
   
                 .discussion_top {
@@ -848,6 +848,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .amplitude-play-pause {
@@ -3415,7 +3416,7 @@
 
   .discussion {
     width: 80%;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 
 
