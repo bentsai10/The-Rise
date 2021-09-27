@@ -502,7 +502,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.discussion_top_middle.small', function(){
-        console.log('clicked');
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
@@ -510,8 +509,7 @@ $(document).ready(function(){
         $('#plus_discussion_button_big').css('display', 'none');
     })
 
-    $(document).on('click', '.discussion_top_right.small', function(){
-        console.log('twat clicked');
+    $(document).on('click', '.song-title.discussion.small"', function(){
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
