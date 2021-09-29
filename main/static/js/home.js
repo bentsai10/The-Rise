@@ -509,7 +509,7 @@ $(document).ready(function(){
         $('#plus_discussion_button_big').css('display', 'none');
     })
 
-    $(document).on('click', '.song-title.discussion.small"', function(){
+    $(document).on('click', '.song-title.discussion"', function(){
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');

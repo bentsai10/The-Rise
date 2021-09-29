@@ -233,7 +233,6 @@ def process_login(request):
                         .services(os.environ['TWILIO_SERVICE_ID']) \
                         .verifications \
                         .create(to=phone_number, channel='sms')
-                
                 # Take user to verification page
                 return redirect('/verification')          
 
