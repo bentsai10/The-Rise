@@ -12,7 +12,16 @@
 /* ==========================================================================
    Start of custom Webflow CSS
    ========================================================================== */
-  #user_stat{
+   .disclaimer{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #3425e9c2;
+    margin-top: 0em;
+    margin-bottom: 1.5em;
+}
+
+   #user_stat{
     color: #3425e9;
     font-family: 'Gothic A1';
     font-weight: 300;
@@ -1035,6 +1044,15 @@ textarea{
     font-size: 1.8rem;
     line-height: 2.5rem;
   }
+  .disclaimer{
+    font-size: 2rem;
+    line-height: 2.5rem;
+    text-align: center;
+    color: #3425e9c2;
+    margin-top: 0em;
+    margin-bottom: 1.5em;
+
+}
 
   .login_text_field {
     width: 100%;
@@ -1149,6 +1167,16 @@ textarea{
     font-size: 1.8rem;
     line-height: 2.5rem;
   }
+
+  .disclaimer{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #3425e9c2;
+    margin-top: 0em;
+    margin-bottom: 1.5em;
+
+}
 
   .login_text_field {
     width: 100%;
@@ -1421,6 +1449,15 @@ textarea{
     font-size: 1.5rem;
     line-height: 2.5rem;
   }
+
+  .disclaimer{
+    font-size: .95rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #3425e9c2;
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
 
   .login_text_field {
     width: 100%;
