@@ -18,6 +18,15 @@
     font-weight: 500;
     font-size: 8rem;
 }
+
+.disclaimer{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #3425e9c2;
+    margin-top: 0em;
+    margin-bottom: 1.5em;
+}
 #placeholder_descrip{
     color: #3425e9;
     font-family: 'Gothic A1';
@@ -3095,6 +3104,17 @@
 }
 
 @media screen and (max-width: 991px) {
+
+    .disclaimer{
+        font-size: 2rem;
+        line-height: 2.5rem;
+        text-align: center;
+        color: #3425e9c2;
+        margin-top: 0em;
+        margin-bottom: 1.5em;
+
+    }
+
     .discussion_post{
         display:none;
     }
@@ -4060,6 +4080,15 @@
 }
 
 @media screen and (max-width: 767px) {
+    .disclaimer{
+        font-size: 1.5rem;
+        line-height: 2rem;
+        text-align: center;
+        color: #3425e9c2;
+        margin-top: 0em;
+        margin-bottom: 1.5em;
+
+    }
     .discussion_post{
         display:none;
     }
@@ -4567,7 +4596,15 @@
 }
 
 @media screen and (max-width: 479px) {
-
+    .disclaimer{
+        font-size: .95rem;
+        line-height: 2rem;
+        text-align: center;
+        color: #3425e9c2;
+        margin-top: -1em;
+        margin-bottom: 1em;
+    }
+    
     .discussion_post{
         display:none;
     }
