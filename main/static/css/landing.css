@@ -1574,6 +1574,7 @@
     padding-left: 10vw;
     font-size: 1.4em;
     line-height: 1.3em;
+    text-align: center;
   }
 
   .loop_text_smallest {
@@ -1655,6 +1656,7 @@
 
   .inhumane_section_description {
     padding-left: 0vw;
+    text-align: center;
   }
 
   .learn_more_link {
@@ -1880,6 +1882,7 @@
     padding-left: 9vw;
     font-size: 1.3em;
     line-height: 1.3em;
+    text-align:center;
   }
 
   .loop_text_smallest {
@@ -1967,6 +1970,7 @@
   .inhumane_section_description {
     font-size: 1.3em;
     line-height: 1.3em;
+    text-align: center;
   }
 
   .wellbeing_block {
