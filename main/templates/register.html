@@ -65,10 +65,10 @@
     </head>
     <body class="body access">
         <div class="main_login_block access" id = "apply_for_access">
-            <a href="http://localhost:8000/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
+            <a href="https://therise.online/"><img src="{% static 'img/logo.png' %}" loading="lazy" sizes="(max-width: 479px) 210px, (max-width: 991px) 280px, 350px" alt="the rise logo" class="login_logo"></a>
             <h1 class = "login_label disclaimer">For the best experience, use The Rise on Chrome</h1>
             <div class="access-form-block">
-                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "http://localhost:8000/process_register" method = "POST">
+                <form autocomplete = "off" id="access_form" name="access_form" class="access_form" action = "https://therise.online/process_register" method = "POST">
                     {% csrf_token %}
                     {% if messages %}
                     <ul class = "error_list">

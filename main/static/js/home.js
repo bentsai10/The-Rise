@@ -182,13 +182,13 @@ $(document).ready(function(){
         let discussion_index = $(this).attr('data-discussion-index');
         $.ajax({
             type: 'GET',
-            url: `http://localhost:8000/load_response/${discussion_id}/${discussion_index}`,
+            url: `https://therise.online/load_response/${discussion_id}/${discussion_index}`,
             success: function (data) {
                 $('.response_posts_block').html(data);
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "http://localhost:8000/load_response_banner",
+                    url: "https://therise.online/load_response_banner",
                     success: function (data) {
                         $('.response_banner').html(data);
                         $('.response_banner').css('display', 'flex');
@@ -255,14 +255,14 @@ $(document).ready(function(){
                 Amplitude.pause();
                 $.ajax({
                     type: 'GET',
-                    url: "http://localhost:8000/load_discussion_banner",
+                    url: "https://therise.online/load_discussion_banner",
                     success: function (data) {
                         $('.discussion_banner').html(data);
                         $('.response_banner').html('');
                         $('.response_posts_block').html('');
                         $.ajax({
                             type: 'GET',
-                            url: 'http://localhost:8000/display_spaces',
+                            url: 'https://therise.online/display_spaces',
                             success: function (data) {
                                 $('.spaces_block').html(data)
                             },

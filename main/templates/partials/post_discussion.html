@@ -1,5 +1,5 @@
 {% load static %}
-<form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
+<form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "https://therise.online/process_discussion_post" enctype="multipart/form-data">
     {% csrf_token %}
     {% if messages %}
     <ul class = "error_list">
