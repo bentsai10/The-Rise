@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.conf import settings
+
+
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.files.storage import default_storage
 from django.db.models import Q, Count
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import ffmpeg
 import phonenumbers, bcrypt, dotenv, os, datetime
 from twilio.rest import Client
 
@@ -443,8 +448,24 @@ def process_discussion_post (request):
             created_time = datetime.datetime.now() - datetime.timedelta(seconds=15)
             same_post_filter = Discussion.objects.filter(poster = user, created_at__gte=created_time).all()
             if same_post_filter.count() < 1:
-                new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = request.FILES.getlist('audio_recording')[0], poster = user, space = space, duration = duration)
+                
 
+                filename = request.FILES.getlist('audio_recording')[0].name# received file name
+                file_obj = request.FILES.getlist('audio_recording')[0]
+
+                with default_storage.open('audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
+                    for chunk in file_obj.chunks():
+                        destination.write(chunk)
+                try:
+                    new_filename = filename[:-4]
+                    stream = ffmpeg.input(settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + filename)
+                    stream = ffmpeg.output(stream, settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3")
+                    za = ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
+                    print(za[0])
+                    print(za[1])
+                except Exception as e:
+                    print(e.stderr)
+                new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3", poster = user, space = space, duration = duration)
                 if len(link) > 0:
                     try:
                         link_html = urlopen(link).read()

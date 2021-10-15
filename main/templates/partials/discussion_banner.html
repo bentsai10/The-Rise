@@ -1,7 +1,7 @@
 {% load static %}
 <div class="main_banner_block_left w-clearfix">
     <h2 class="space_header">{{current_space.name}}</h2>
-    <!-- <a href="https://therise.online/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %}class="favorite_button w-inline-block">
+    <!-- <a href="http://localhost:8000/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %}class="favorite_button w-inline-block">
         {% if current_space in favorite_spaces %}
         <img src="{% static 'img/filled_star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
         {% else %}

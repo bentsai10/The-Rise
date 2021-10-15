@@ -6,7 +6,7 @@
 <div class="discussion_post" >
     <div class="discussion player">
         <div class="discussion_top">
-            <a href="https://therise.online/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+            <a href="http://localhost:8000/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
             <div class="discussion_top_middle" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                 <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
                 <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
@@ -35,7 +35,7 @@
             <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
             <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
         </div>
-        <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+        <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
             {% if discussion in logged_user.saved_discussions.all %}
             <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
             {% else %}
@@ -47,7 +47,7 @@
 <div class="discussion_post small" >
     <div class="discussion player">
         <div class="discussion_top">
-            <a href="https://therise.online/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+            <a href="http://localhost:8000/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
             <div class="discussion_top_middle small" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                 <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
                 <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
@@ -76,7 +76,7 @@
             <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
             <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
         </div>
-        <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+        <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
             {% if discussion in logged_user.saved_discussions.all %}
             <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
             {% else %}

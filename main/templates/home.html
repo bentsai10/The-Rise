@@ -65,8 +65,8 @@
     </head>
     <body class="body">
         <div class="nav">
-            <a href="https://therise.online/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
-            <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
+            <a href="http://localhost:8000/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
+            <a href="http://localhost:8000/my_profile" class="profile_banner_link_block w-inline-block">
                 {% if logged_user.profile_picture %}
                 <img src="{{logged_user.profile_picture.url}}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
                 {% else %}
@@ -87,7 +87,7 @@
             <div class="public_panel">
                 <div class="main_banner">
                     <div  class="search_space_block">
-                        <form id="space_search_form" name="space_search_form" class="search_form" method = "POST" action = "https://therise.online/process_space_search">
+                        <form id="space_search_form" name="space_search_form" class="search_form" method = "POST" action = "http://localhost:8000/process_space_search">
                             {% csrf_token %}
                             <input type="text" class="search_text_field w-input" maxlength="256" name="space_query" placeholder="Search" id="space_search_input">
                             <img src="{% static 'img/blue_plus.svg' %}" loading="lazy" alt="blue x symbol icon" class="sidebar sidebar_close_small">
@@ -96,7 +96,7 @@
                     <div class="main_banner_block discussion_banner">
                         <div class="main_banner_block_left w-clearfix">
                             <h2 class="space_header">{{current_space.name}}</h2>
-                            <!-- <a href="https://therise.online/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
+                            <!-- <a href="http://localhost:8000/favorite_space/{{current_space.id}}" {% if current_space in favorite_spaces %} data-active = "favorited" {% else %}data-active = "unfavorited"{% endif %} class="favorite_button w-inline-block">
                                 {% if current_space in favorite_spaces %}
                                 <img src="{% static 'img/filled_star.svg' %}" loading="lazy" width="22" alt="star icon" class="star">
                                 {% else %}
@@ -110,7 +110,7 @@
                             <img src="{% static 'img/arrow.svg' %}" loading="lazy" alt="white arrow icon" class="arrow">
                         </a>
                         {% if current_discussion != -1%}
-                        <a href="https://therise.online/profile/{{current_discussion.poster.id}}">{% if current_discussion.poster.profile_picture %}<img src="{{current_discussion.poster.profile_picture.url}}" loading="lazy" width="60" alt="{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}'s profile picture" class="album_art">{% else %}<img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+                        <a href="http://localhost:8000/profile/{{current_discussion.poster.id}}">{% if current_discussion.poster.profile_picture %}<img src="{{current_discussion.poster.profile_picture.url}}" loading="lazy" width="60" alt="{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}'s profile picture" class="album_art">{% else %}<img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}'s profile picture" class="album_art">{% endif %}</a>
                         <div class="response_banner_middle player">
                             <h1 class="song-title banner_song_title">{{current_discussion.title}}</h1>
                             <h2 class="song-artist banner_song_artist">{{current_discussion.poster.first_name}} {{current_discussion.poster.last_name}}</h2>
@@ -144,7 +144,7 @@
                             <h1 class="spaces_heading">Favorite Spaces</h1>
                             <div class="favorite_spaces">
                                 {% for space in favorite_spaces %}
-                                <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading">{{space.name}}</a>
+                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading">{{space.name}}</a>
                                 {% endfor %}
                             </div>
                         </div> -->
@@ -152,17 +152,17 @@
                             <h1 class="spaces_heading">Spaces</h1>
                             <div class="all_spaces">
                                 {% for space in spaces %}
-                                <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading">{{space.name}}</a>
-                                <a href="https://therise.online/{{space.network.id}}/{{space.id}}" class="space_heading small">{{space.name}}</a>
+                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading">{{space.name}}</a>
+                                <a href="http://localhost:8000/{{space.network.id}}/{{space.id}}" class="space_heading small">{{space.name}}</a>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="discussions_block w-clearfix">
                         <div class="discussion_button_block">
-                            <a href="https://therise.online/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
-                            <a href="https://therise.online/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
-                            <a href="https://therise.online/{{current_space.id}}/saved" class="discussion_tab_button saved_button w-button">Saved</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/top" class="discussion_tab_button w-button">Top</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/recent" class="discussion_tab_button selected_discussion_button w-button">Recent</a>
+                            <a href="http://localhost:8000/{{current_space.id}}/saved" class="discussion_tab_button saved_button w-button">Saved</a>
                         </div>
                         <div class="discussion_posts_block">
                             {% for discussion in discussions %}
@@ -170,7 +170,7 @@
                             <div class="discussion_post" >
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <a href="https://therise.online/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+                                        <a href="http://localhost:8000/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
                                         <div class="discussion_top_middle" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
                                             <h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2>
                                             <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
@@ -199,7 +199,7 @@
                                         <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
-                                    <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                    <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
                                         {% if discussion in logged_user.saved_discussions.all %}
                                         <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                         {% else %}
@@ -211,9 +211,9 @@
                             <div class="discussion_post small" >
                                 <div class="discussion player">
                                     <div class="discussion_top">
-                                        <a href="https://therise.online/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
+                                        <a href="http://localhost:8000/profile/{{user.id}}">{% if user.profile_picture %}<img src="{{user.profile_picture.url}}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% else %} <img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt="{{user.first_name}} {{user.last_name}}'s profile picture" class="album_art">{% endif %}</a>
                                         <div class="discussion_top_middle" data-discussion-id = "{{discussion.id}}" data-discussion-index = "{{forloop.counter0}}">
-                                            <a href="https://therise.online/profile/{{user.id}}"><h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2></a>
+                                            <a href="http://localhost:8000/profile/{{user.id}}"><h2 class="song-artist">{{user.first_name}} {{user.last_name}}</h2></a>
                                             <!-- <progress class="amplitude-song-played-progress progress-{{forloop.counter0}}-0" data-amplitude-song-index="0" data-amplitude-playlist = "{{forloop.counter0}}"></progress> -->
                                             <h3 class="current-time current-time-{{forloop.counter0}}-0" style = "display:none;">
                                                 <span class="amplitude-current-minutes" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0" data-amplitude-playlist="{{forloop.counter0}}"></span>
@@ -240,7 +240,7 @@
                                         <h2 class="cap_heading">{{discussion.participant_count}}/{{discussion.participant_cap}}</h2>
                                         <img src="{% static 'img/filled_person.svg' %}" loading="lazy" width="11" alt="blue person icon" class="person">
                                     </div>
-                                    <a href="https://therise.online/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
+                                    <a href="http://localhost:8000/save_discussion/{{discussion.id}}" class="bookmark_link_block w-inline-block" {% if discussion in user.saved_discussions %} data-active = "saved" {% else %} data-active = "unsaved" {% endif %}>
                                         {% if discussion in logged_user.saved_discussions.all %}
                                         <img src="{% static 'img/filled_bookmark.svg' %}" loading="lazy" width="30" alt="blue bookmark icon" class="bookmark">
                                         {% else %}
@@ -265,7 +265,7 @@
                             <div class="response_post">
                                 <div class="response player" style = "display: flex; flex-direction:column">
                                     <div class = "response_top">
-                                        <a href="https://therise.online/profile/{{response.poster.id}}">{% if response.poster.profile_picture %}<img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% else %}<img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% endif %}</a>
+                                        <a href="http://localhost:8000/profile/{{response.poster.id}}">{% if response.poster.profile_picture %}<img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% else %}<img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% endif %}</a>
                                         <div class="response_middle">
                                             <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
                                             <!-- <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress> -->
@@ -303,7 +303,7 @@
                     </div>
                     <div class="discussion_form_block" id = "discussion_form_block">
                         <div class="post_discussion_block" id = "post_discussion_block">
-                            <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "https://therise.online/process_discussion_post" enctype="multipart/form-data">
+                            <form id="discussion_form" name="discussion_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_discussion_post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if messages %}
                                 <ul class = "error_list">
@@ -352,7 +352,7 @@
                     </div>
                     <div class="discussion_form_block" id = "response_form_block">
                         <div class="post_discussion_block" id = "post_response_block">
-                            <form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "https://therise.online/process_response_post" enctype="multipart/form-data">
+                            <form id="response_form" name="response_form" class="discussion_form" method = "POST" action = "http://localhost:8000/process_response_post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if messages %}
                                 <ul class = "error_list">
@@ -514,7 +514,7 @@
                             $('.clear_recording_button').click();
                             $.ajax({
                                 type: 'GET',
-                                url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",
+                                url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
                                 success: function (data) {
                                     $('.discussion_posts_block').html(data);
                                 },
@@ -544,7 +544,7 @@
                             });
                             $.ajax({
                                 type: 'GET',
-                                url: "https://therise.online/{{current_space.network.id}}/{{current_space.id}}",
+                                url: "http://localhost:8000/{{current_space.network.id}}/{{current_space.id}}",
                                 success: function (data) {
                                     $('.response_posts_block').html(data);
                                 },
