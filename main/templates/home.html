@@ -261,6 +261,7 @@
                     </div>
                     <div class="responses_block">
                         <div class="response_posts_block">
+                            {% if current_discussion != -1 %}
                             {% for response in current_discussion.response_posts.all %}
                             <div class="response_post">
                                 <div class="response player" style = "display: flex; flex-direction:column">
@@ -291,6 +292,7 @@
                                 
                             </div>
                             {% endfor %}
+                            {% endif %}
                         </div>
                         {% if current_discussion != -1 %}
                         <a class="plus_response_button w-inline-block" id = "plus_response_button_big">
@@ -485,6 +487,7 @@
                 
 
                 load_songs();
+                {% if current_discussion != -1 %}
                 {% for response in current_discussion.response_posts.all %}
                 var current_response_audio = {
                         "name": "",
@@ -497,6 +500,7 @@
                 Amplitude.addSongToPlaylist(current_response_audio, "{{current_discussion_index}}");
                 Amplitude.bindNewElements();
                 {% endfor %}
+                {% endif %}
 
                 $(document).on('submit', '#discussion_form', function() {
                     $('#discussion_title').val("");
