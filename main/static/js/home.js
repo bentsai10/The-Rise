@@ -553,6 +553,18 @@ $(document).ready(function(){
         $('.response_banner').css('display', 'flex');
         $('#response_form_block').css('display', 'none');
     })
+
+    $(document).on('click', '#post_response_button_big', function(){
+        $('.spaces_block').css('display', 'flex');
+        $('.search_space_block').css('display', 'flex');
+        $('.responses_block').css('display', 'flex');
+        $('.response_banner').css('display', 'flex');
+        $('#discussion_form_block').css('display', 'none');
+        $('.post_discussion_banner').css('display', 'none');
+        $('#response_form_block').css('display', 'none');
+        $('.discussions_block').css('display', 'flex');
+        $('.discussion_banner').css('display', 'flex');
+    })
     
 
 })
