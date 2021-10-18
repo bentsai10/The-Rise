@@ -457,8 +457,16 @@ def process_discussion_post (request):
                 logger = logging.getLogger("django")
                 home_dir = os.system("cd " + path)
                 logger.debug("`cd ~` ran with exit code %d" % home_dir)
-                za = os.system("sudo mkdir discussions/" + str(user.id))
+                za = os.system("sudo mkdir discussions")
                 logger.debug("`cd ~` ran with exit code %d" % za)
+                boof = os.system("cd discussions")
+                logger.debug("`cd ~` ran with exit code %d" % boof)
+                candace = os.system("sudo mkdir " + str(user.id))
+                logger.debug("`cd ~` ran with exit code %d" % candace)
+                joe = os.system("cd " + str(user.id))
+                logger.debug("`cd ~` ran with exit code %d" % joe)
+                deez = os.system("sudo touch test.txt")
+                logger.debug("`cd ~` ran with exit code %d" % deez)
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
                     
                     logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename +'\n\n\n\n')
