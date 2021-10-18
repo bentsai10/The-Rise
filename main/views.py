@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import ffmpeg
 import phonenumbers, bcrypt, dotenv, os, datetime
 from twilio.rest import Client
-import os
+import subprocess, os
 
 newPost = False
 
@@ -455,6 +455,9 @@ def process_discussion_post (request):
                 
                 path = '/var/app/current/media/'
                 logger = logging.getLogger("django")
+                os.chdir("/var/app/current/media/discussions/")
+                cool = subprocess.Popen("ls")
+                logger.debug(cool)
                 za = os.system("sudo mkdir -p /var/app/current/media/discussions/" + str(user.id) + " && cd /var/app/current/media/discussions/" + str(user.id) + " && sudo touch test.txt")
                 logger.debug("`cd ~` ran with exit code %d" % za)
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
