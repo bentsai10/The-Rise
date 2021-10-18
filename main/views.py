@@ -453,11 +453,14 @@ def process_discussion_post (request):
                 filename = request.FILES.getlist('audio_recording')[0].name# received file name
                 file_obj = request.FILES.getlist('audio_recording')[0]
                 
-                path = '/var/app/current/media/discussions/' + str(user.id)
+                path = '/var/app/current/media/'
+                logger = logging.getLogger("django")
                 home_dir = os.system("cd " + path)
-                za = os.system("touch test.txt")
+                logger.debug("`cd ~` ran with exit code %d" % home_dir)
+                za = os.system("sudo mkdir discussions/" + str(user.id))
+                logger.debug("`cd ~` ran with exit code %d" % za)
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
-                    logger = logging.getLogger("django")
+                    
                     logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename +'\n\n\n\n')
                     
                     for chunk in file_obj.chunks():
