@@ -455,7 +455,8 @@ def process_discussion_post (request):
                 
                 path = '/var/app/current/media/'
                 logger = logging.getLogger("django")
-                os.chdir("/var/app/current/media/discussions/")
+                os.mkdir("/var/app/current/media/discussions/" + str(user.id))
+                os.chdir("/var/app/current/media/discussions/" + str(user.id))
                 cool = subprocess.Popen("ls")
                 logger.debug(cool)
                 za = os.system("sudo mkdir -p /var/app/current/media/discussions/" + str(user.id) + " && cd /var/app/current/media/discussions/" + str(user.id) + " && sudo touch test.txt")
