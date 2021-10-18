@@ -10,9 +10,10 @@ from django.db.models import Q, Count
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import ffmpeg
-import phonenumbers, bcrypt, dotenv, os, datetime
+import phonenumbers, bcrypt, dotenv, datetime
 from twilio.rest import Client
 import subprocess, os
+from django.core.files import File
 
 newPost = False
 
@@ -447,36 +448,48 @@ def process_discussion_post (request):
             space = Space.objects.get(id = request.session['current_space'])
             created_time = datetime.datetime.now() - datetime.timedelta(seconds=15)
             same_post_filter = Discussion.objects.filter(poster = user, created_at__gte=created_time).all()
-            if same_post_filter.count() < 1:
-                
 
+            if same_post_filter.count() < 1:
+                logger = logging.getLogger("django")
+                
                 filename = request.FILES.getlist('audio_recording')[0].name# received file name
                 file_obj = request.FILES.getlist('audio_recording')[0]
+            
+                try:
+                    original_audio = open(filename, "xb+")
+                except:
+                    original_audio = open(filename, 'wb+')
+                for chunk in file_obj.chunks():
+                    original_audio.write(chunk)
+                original_audio.close()
                 
-                path = '/var/app/current/media/'
-                logger = logging.getLogger("django")
-                os.mkdir("/var/app/current/media/discussions/" + str(user.id))
-                os.chdir("/var/app/current/media/discussions/" + str(user.id))
-                cool = subprocess.Popen("ls")
-                logger.debug(cool)
-                za = os.system("sudo mkdir -p /var/app/current/media/discussions/" + str(user.id) + " && cd /var/app/current/media/discussions/" + str(user.id) + " && sudo touch test.txt")
-                logger.debug("`cd ~` ran with exit code %d" % za)
-                with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
-                    
-                    logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename +'\n\n\n\n')
-                    
-                    for chunk in file_obj.chunks():
-                        destination.write(chunk)
-                # try:
-                #     new_filename = filename[:-4]
-                #     stream = ffmpeg.input(settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + filename)
-                #     logger = logging.getLogger("django")
-                #     logger.debug('\n\n\n\n' + settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3" +'\n\n\n\n')
-                #     stream = ffmpeg.output(stream, settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3")
-                #     ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
-                #     new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3", poster = user, space = space, duration = duration)
-                # except Exception as e:
-                #     logger.debug(e.stderr)
+                try:
+                    stream = ffmpeg.input(filename)
+                    now = datetime.datetime.now() # current date and time
+
+                    date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+                    new_filename = date_time + '.mp3'
+                    stream = ffmpeg.output(stream, new_filename)
+                    ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
+                    cmd = "ls"
+                    push=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                    logger.debug(push.communicate()[0])
+                    logger.debug(push.communicate()[1])
+                    logger.debug(push.returncode)
+                    logger.debug(str(user.id))
+                    local_file = open(new_filename, 'rb')
+                    djangofile = File(local_file)
+                    new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = djangofile, poster = user, space = space, duration = duration)
+                    local_file.close()
+                    cmd = "rm {}.mp3".format(filename)
+                    remove_input=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                    cmd = "rm {}.mp3".format(new_filename)
+                    remove_output=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                    # logger.debug(remove_output.communicate()[0])
+                    # logger.debug(remove_output.communicate()[1])
+                    # logger.debug(remove_output.returncode)
+                except Exception as e:
+                    logger.debug(e.stderr)
                 
                 if len(link) > 0:
                     try:
@@ -580,7 +593,48 @@ def process_response_post(request):
                 messages.error(request, "This discussion is at its participant cap!")
                 return render(request, 'partials/post_response.html')
             duration = request.POST['duration'].strip()
-            Response.objects.create(link = link, link_title = link_title, audio = request.FILES.getlist('audio_recording')[0], poster = user, discussion = discussion, duration = duration)
+
+            logger = logging.getLogger("django")
+                
+            filename = request.FILES.getlist('audio_recording')[0].name
+            file_obj = request.FILES.getlist('audio_recording')[0]
+
+            try:
+                original_audio = open(filename, "xb+")
+            except:
+                original_audio = open(filename, 'wb+')
+            for chunk in file_obj.chunks():
+                original_audio.write(chunk)
+            original_audio.close()
+            
+            try:
+                stream = ffmpeg.input(filename)
+                now = datetime.datetime.now() # current date and time
+
+                date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+                new_filename = date_time + '.mp3'
+                stream = ffmpeg.output(stream, new_filename)
+                ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
+                cmd = "ls"
+                push=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                logger.debug(push.communicate()[0])
+                logger.debug(push.communicate()[1])
+                logger.debug(push.returncode)
+                logger.debug(str(user.id))
+                local_file = open(new_filename, 'rb')
+                djangofile = File(local_file)
+                Response.objects.create(link = link, link_title = link_title, audio = djangofile, poster = user, discussion = discussion, duration = duration)
+                local_file.close()
+                cmd = "rm {}.mp3".format(filename)
+                remove_input=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                cmd = "rm {}.mp3".format(new_filename)
+                remove_output=subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                # logger.debug(remove_output.communicate()[0])
+                # logger.debug(remove_output.communicate()[1])
+                # logger.debug(remove_output.returncode)
+            except Exception as e:
+                logger.debug(e.stderr)
+            
             if user not in discussion.participants.all():
                 discussion.participants.add(user)
                 discussion.participant_count+=1
