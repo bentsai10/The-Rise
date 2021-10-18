@@ -454,7 +454,7 @@ def process_discussion_post (request):
 
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
                     logger = logging.getLogger("django")
-                    logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename  + "0.mp3" +'\n\n\n\n')
+                    logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename +'\n\n\n\n')
                     
                     for chunk in file_obj.chunks():
                         destination.write(chunk)
