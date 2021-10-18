@@ -519,10 +519,12 @@
                                     $('.discussion_posts_block').html(data);
                                 },
                                 error: function(data) {
+                                    console.log(data)
                                 }
                             });
                         },
                         error: function(data) {
+                            console.log(data)
                         }
                     });
                     return false;

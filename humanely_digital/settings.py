@@ -27,7 +27,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -148,19 +148,19 @@ MEDIA_URL = '/media/'
 
 #S3 buckets config
 # if 'AWS_ACCESS_KEY_ID' in os.environ:
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-# AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
-# MEDIA_URL = '/https://{}.s3.{}.amazonaws.com/media/'.format(os.environ['AWS_MEDIA_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
-# DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
-# STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+STATIC_URL = '/https://{}.s3.{}.amazonaws.com/static/'.format(os.environ['AWS_STORAGE_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
+MEDIA_URL = '/https://{}.s3.{}.amazonaws.com/media/'.format(os.environ['AWS_MEDIA_BUCKET_NAME'], os.environ['AWS_BUCKET_REGION'])
+DEFAULT_FILE_STORAGE = 'main.custom_storage.MediaStorage'
+STATICFILES_STORAGE = 'main.custom_storage.StaticStorage'
 
 
-# COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
+COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
 #Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -171,3 +171,23 @@ DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
 EMAIL_PORT=465
 EMAIL_USE_SSL=True 
 EMAIL_USE_TLS=False
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/app-logs/django.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
