@@ -503,6 +503,7 @@ def space(request, network, space):
         request.session['current_discussion_index'] = 0
 
     context['new_post'] = newPost
+    context['logged_user'] = User.objects.get(id = request.session['logged_user'])
     return render(request, 'partials/discussion_posts.html', context)
 
 # Render corresponding discussion banner for selected space
