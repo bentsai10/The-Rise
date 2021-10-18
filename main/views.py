@@ -459,6 +459,7 @@ def process_discussion_post (request):
                 try:
                     new_filename = filename[:-4]
                     stream = ffmpeg.input(settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + filename)
+                    print('\n\n\n\n' + settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3" +'\n\n\n\n')
                     stream = ffmpeg.output(stream, settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3")
                     ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
                 except Exception as e:
