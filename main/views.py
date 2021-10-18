@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 import ffmpeg
 import phonenumbers, bcrypt, dotenv, os, datetime
 from twilio.rest import Client
+import os
 
 newPost = False
 
@@ -451,7 +452,10 @@ def process_discussion_post (request):
 
                 filename = request.FILES.getlist('audio_recording')[0].name# received file name
                 file_obj = request.FILES.getlist('audio_recording')[0]
-
+                
+                path = '/var/app/current/media/discussions/' + str(user.id)
+                home_dir = os.system("cd " + path)
+                za = os.system("touch test.txt")
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
                     logger = logging.getLogger("django")
                     logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename +'\n\n\n\n')
