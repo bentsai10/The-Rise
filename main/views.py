@@ -453,18 +453,21 @@ def process_discussion_post (request):
                 file_obj = request.FILES.getlist('audio_recording')[0]
 
                 with default_storage.open(settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename, 'wb+') as destination:
+                    logger = logging.getLogger("django")
+                    logger.debug('\n\n\n\n' + settings.MEDIA_ROOT+ '/audio/discussions/'+ str(user.id) + '/' + filename  + "0.mp3" +'\n\n\n\n')
+                    
                     for chunk in file_obj.chunks():
                         destination.write(chunk)
-                try:
-                    new_filename = filename[:-4]
-                    stream = ffmpeg.input(settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + filename)
-                    logger = logging.getLogger("django")
-                    logger.debug('\n\n\n\n' + settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3" +'\n\n\n\n')
-                    stream = ffmpeg.output(stream, settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3")
-                    ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
-                    new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3", poster = user, space = space, duration = duration)
-                except Exception as e:
-                    logger.debug(e.stderr)
+                # try:
+                #     new_filename = filename[:-4]
+                #     stream = ffmpeg.input(settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + filename)
+                #     logger = logging.getLogger("django")
+                #     logger.debug('\n\n\n\n' + settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3" +'\n\n\n\n')
+                #     stream = ffmpeg.output(stream, settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3")
+                #     ffmpeg.run(stream, capture_stdout=True, capture_stderr=True)
+                #     new_disc = Discussion.objects.create(title = title, participant_cap =  participant_cap, audio = settings.MEDIA_ROOT + '/audio/discussions/'+ str(user.id) + '/' + new_filename  + "0.mp3", poster = user, space = space, duration = duration)
+                # except Exception as e:
+                #     logger.debug(e.stderr)
                 
                 if len(link) > 0:
                     try:
