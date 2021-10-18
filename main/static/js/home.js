@@ -236,7 +236,6 @@ $(document).ready(function(){
      * Process post button click for responses
      */
     $(document).on('click', '.post_response_button', function(){
-        $('.post_response_button').off('click');
         $('#response_form').submit();
     });
 
@@ -541,7 +540,7 @@ $(document).ready(function(){
     })
     
 
-    $(document).on('click', '.post_discussion_button.small', function(){
+    $(document).on('click', '#post_discussion_button_small', function(){
         $('.discussions_block').css('display', 'flex');
         $('.discussion_banner').css('display', 'flex');
         $('#discussion_form_block').css('display', 'none');
@@ -549,11 +548,10 @@ $(document).ready(function(){
         
     })
 
-    $(document).on('click', '.post_response_button.small', function(){
+    $(document).on('click', '#post_response_button_small', function(){
         $('.responses_block').css('display', 'flex');
         $('.response_banner').css('display', 'flex');
         $('#response_form_block').css('display', 'none');
-        
     })
     
 
