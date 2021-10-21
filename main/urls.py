@@ -10,6 +10,7 @@ urlpatterns = [
     path('process_register', views.process_register),
     path('verification', views.verify),
     path('process_verification', views.process_verification),
+    path('resend_verification', views.resend_verification),
     path('edit_profile', views.edit_profile),
     path('process_edit_profile', views.process_edit_profile),
     path('logout', views.logout), 

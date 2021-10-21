@@ -14,6 +14,13 @@
         <meta content="Login" property="twitter:title">
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <meta content="Webflow" name="generator">
+        <meta name="title" property="og:title" content="The Rise">
+        <meta name="image" property="og:image" content="{% static 'img/purple_logo.png' %}">
+        <meta name="description" property="og:description" content='Reimagining the way we interact with information and people online'>
+        <meta property=’og:url’ content='https://therise.online'/>
+        <meta property='og:image:width' content='1274'/>
+        <meta property='og:image:height' content='1274'/>
+        <meta property="og:type" content="website">
         <style>.wf-force-outline-none[tabindex="-1"]:focus{outline:none;}</style>
         <link href = "{% static 'css/landing_login.css' %}" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href= "{% static 'css/css' %}" media="all">
@@ -60,6 +67,8 @@
             !function(o,c){var n=c.documentElement,t=" w-mod-";
             n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'js/verification.js' %}"></script>
         
     </head>
     <body class="body">
@@ -77,12 +86,13 @@
                     {% endif %}
                     <label for="verification_code" class="login_label">Verification Code</label>
                     <input type="text" class="login_text_field w-input" maxlength="6" name="verification_code" id="verification_code" required>
+                    <a class="submit-button w-button" style = "float: left;" id = "resend_button">Resend Code</a>
                     <input type="submit" value="Verify" class="submit-button w-button">
                 </form>
             </div>
         </div>
         <script src="{% static 'js/jquery3.5.1.js' %}" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script>
+        <!-- <script src="{% static 'js/webflow.js' %}" type="text/javascript"></script> -->
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
     </body>
     <loom-container id="lo-engage-ext-container">

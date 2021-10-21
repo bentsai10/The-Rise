@@ -129,7 +129,6 @@ def process_register(request):
             
             pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
             # If everything works, create User in database with cleaned values + converted phone number
-            User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, password = pw_hash, referral = referral)
             try:
                 verification = client.verify \
                         .services(os.environ['TWILIO_SERVICE_ID']) \
@@ -138,7 +137,7 @@ def process_register(request):
             except:
                 messages.error(request, "Verification system not supported for landlines!\nIf your number is not a landline number, please send us an email!")
                 return redirect('/register')
-
+            User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, password = pw_hash, referral = referral)
             request.session['hold_id'] = User.objects.get(phone_number = phone_number).id
 
             user = User.objects.get(id = request.session['hold_id'])
@@ -194,6 +193,25 @@ def process_verification(request):
                 return redirect('/edit_profile')
             else:
                 return redirect('/home')
+
+def resend_verification(request):
+    logger = logging.getLogger("django")
+    logger.debug('oh za')
+    if 'hold_id' not in request.session:
+        return redirect('/login')
+    if 'logged_user' in request.session:
+        return redirect('/home')
+    else:
+        logger.debug('oh zuzu')
+        user = User.objects.get(id = request.session['hold_id'])
+        phone_number = user.phone_number
+        logger.debug(user.first_name, str(phone_number))
+        verification = client.verify \
+                .services(os.environ['TWILIO_SERVICE_ID']) \
+                .verifications \
+                .create(to=phone_number, channel='sms')
+
+        return redirect('/verification')
 
 # Render the login page
 # If already a logged in user, redirect to home page
