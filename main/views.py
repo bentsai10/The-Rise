@@ -195,17 +195,13 @@ def process_verification(request):
                 return redirect('/home')
 
 def resend_verification(request):
-    logger = logging.getLogger("django")
-    logger.debug('oh za')
     if 'hold_id' not in request.session:
         return redirect('/login')
     if 'logged_user' in request.session:
         return redirect('/home')
     else:
-        logger.debug('oh zuzu')
         user = User.objects.get(id = request.session['hold_id'])
         phone_number = user.phone_number
-        logger.debug(user.first_name, str(phone_number))
         verification = client.verify \
                 .services(os.environ['TWILIO_SERVICE_ID']) \
                 .verifications \
