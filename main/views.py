@@ -130,11 +130,14 @@ def process_register(request):
             pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
             # If everything works, create User in database with cleaned values + converted phone number
             User.objects.create(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, password = pw_hash, referral = referral)
-
-            verification = client.verify \
+            try:
+                verification = client.verify \
                         .services(os.environ['TWILIO_SERVICE_ID']) \
                         .verifications \
                         .create(to=phone_number, channel='sms')
+            except:
+                messages.error(request, "Verification system not supported for landlines!\nIf your number is not a landline number, please send us an email!")
+                return redirect('/register')
             request.session['hold_id'] = User.objects.get(phone_number = phone_number).id       
             # Redirect them to landing page, b/c they're not yet approved for login
             return redirect('/verification')
