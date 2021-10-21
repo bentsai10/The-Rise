@@ -138,7 +138,15 @@ def process_register(request):
             except:
                 messages.error(request, "Verification system not supported for landlines!\nIf your number is not a landline number, please send us an email!")
                 return redirect('/register')
-            request.session['hold_id'] = User.objects.get(phone_number = phone_number).id       
+
+            request.session['hold_id'] = User.objects.get(phone_number = phone_number).id
+
+            user = User.objects.get(id = request.session['hold_id'])
+            subject = 'Welcome to The Rise'
+            message = f'Hi {user.first_name},\n\nThank you signing up to join The Rise!\n\nThe Rise is a platform where audio-based news is produced for communities by communities. Our mission is to design an online environment where information is more democratized, truthful, valuable and diverse, in order to instigate real world impact. Therefore, we do not uphold toxic behaviour or low-quality entertainment based content.\n\nWe are so excited to welcome you into our community as we continue to build a new way to engage with high quality information and people online.\n\n To get started, please refer to ‘The Rise’ onboarding space to get a sense of how the platform is organized.\n\nEscape the attention economy and discuss what matters.\n\nWarmly,\nThe Rise Team'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email,]
+            send_mail(subject, message, 'The Rise <team@therise.online>', recipient_list)       
             # Redirect them to landing page, b/c they're not yet approved for login
             return redirect('/verification')
 
