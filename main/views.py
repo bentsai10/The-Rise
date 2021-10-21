@@ -304,7 +304,6 @@ def process_edit_profile(request):
             # If there is title data, clean it before assigning it
             if 'title' in request.POST and len(request.POST['title'].strip()) > 0:
                 title = request.POST['title'].strip()
-                title = title.title()
                 user.title = title
             
             # If there is profile picture data, assign it to logged user
