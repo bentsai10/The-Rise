@@ -71,7 +71,7 @@
     </head>
     <body class="body">
         <div class="nav">
-            <a href="https://therise.online/logout" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
+            <a href="https://therise.online" id = "logo_link"><img src="{% static 'img/logo_white.png' %}" alt="white the rise logo" id = "banner_logo"></a>
             <a href="https://therise.online/my_profile" class="profile_banner_link_block w-inline-block">
                 {% if logged_user.profile_picture %}
                 <img src="{{logged_user.profile_picture.url}}" loading="lazy" width="113" alt="placeholder profile picture" class="profile_thumbnail">
