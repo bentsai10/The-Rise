@@ -244,6 +244,7 @@ $(document).ready(function(){
      * Process a click on a link for a space
      */
     $(document).on('click', '.space_heading', function(){
+        Amplitude.stop();
         $.ajax({
             type: 'GET',
             url: $(this).attr('href'),
@@ -252,7 +253,7 @@ $(document).ready(function(){
                 $('.search_text_field').val('');
                 prevActiveIndex = -1;
                 prevActivePlaylist = -1;
-                Amplitude.pause();
+                
                 $.ajax({
                     type: 'GET',
                     url: "https://therise.online/load_discussion_banner",
@@ -385,7 +386,6 @@ $(document).ready(function(){
         /**
          * Get index of song in playlist and playlist id
          */
-        console.log(prevActiveIndex, prevActivePlaylist);
         let song_id = $(this).attr('data-amplitude-song-index');
         let playlist_id = $(this).attr("data-amplitude-playlist");
        
@@ -475,7 +475,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.network_link_block.small ', function(){
-        console.log('j');
         $('.spaces_block').css('display', 'flex');
         $('.search_space_block').css('display', 'flex');
         $('.discussions_block').css('display', 'none');
@@ -483,7 +482,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.sidebar_close_small ', function(){
-        console.log('i');
         $('.spaces_block').css('display', 'none');
         $('.search_space_block').css('display', 'none');
         $('.responses_block').css('display', 'none');
@@ -495,7 +493,6 @@ $(document).ready(function(){
         $('.discussion_banner').css('display', 'flex');
     })
     $(document).on('click', '.space_heading.small ', function(){
-        console.log('h');
         $('.spaces_block').css('display', 'none');
         $('.search_space_block').css('display', 'none');
         $('.responses_block').css('display', 'none');
@@ -508,7 +505,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '.discussion_top_middle.small', function(){
-        console.log('g');
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
@@ -516,8 +512,7 @@ $(document).ready(function(){
         $('#plus_discussion_button_big').css('display', 'none');
     })
 
-    $(document).on('click', '.song-title.discussion"', function(){
-        console.log('f');
+    $(document).on('click', '.song-title.discussion', function(){
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('.responses_block').css('display', 'flex');
@@ -527,7 +522,6 @@ $(document).ready(function(){
         
     })
     $(document).on('click', '.back_arrow_link_block', function(){
-        console.log('e');
         $('.discussions_block').css('display', 'flex');
         $('.discussion_banner').css('display', 'flex');
         $('.responses_block').css('display', 'none');
@@ -536,7 +530,6 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#plus_discussion_button_small', function(){
-        console.log('d');
         $('.discussions_block').css('display', 'none');
         $('.discussion_banner').css('display', 'none');
         $('#discussion_form_block').css('display', 'flex');
@@ -544,7 +537,6 @@ $(document).ready(function(){
         
     })
     $(document).on('click', '#plus_response_button_small', function(){
-        console.log('c');
         $('.responses_block').css('display', 'none');
         $('#response_form_block').css('display', 'flex');
         
@@ -552,7 +544,6 @@ $(document).ready(function(){
     
 
     $(document).on('click', '#post_discussion_button_small', function(){
-        console.log('b');
         $('.discussions_block').css('display', 'flex');
         $('.discussion_banner').css('display', 'flex');
         $('#discussion_form_block').css('display', 'none');
@@ -561,14 +552,12 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#post_response_button_small', function(){
-        console.log('a');
         $('.responses_block').css('display', 'flex');
         $('.response_banner').css('display', 'flex');
         $('#response_form_block').css('display', 'none');
     })
 
     $(document).on('click', '#post_response_button_big', function(){
-        console.log('here');
         $('.spaces_block').css('display', 'flex');
         $('.search_space_block').css('display', 'flex');
         $('.responses_block').css('display', 'flex');
