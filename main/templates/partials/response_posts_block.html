@@ -4,7 +4,7 @@
 <div class="response_post">
     <div class="response player" style = "display: flex; flex-direction:column">
         <div class = "response_top">
-            <a href="https://therise.online/profile/{{response.poster.id}}">{% if response.poster.profile_picture %}<img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% else %}<img src="{% static 'img/logo.png' %}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% endif %}</a>
+            <a href="https://therise.online/profile/{{response.poster.id}}">{% if response.poster.profile_picture %}<img src="{{ response.poster.profile_picture.url}}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% else %}<img src="{% static 'img/globe.png' %}" loading="lazy" width="60" alt= "profile picture" class="album_art"> {% endif %}</a>
             <div class="response_middle">
                 <h3 class="song-artist response_text">{{response.poster.first_name}} {{response.poster.last_name}}</h3>
                 <!-- <progress class="amplitude-song-played-progress response_progress progress-{{current_discussion_index}}-{{forloop.counter}}" data-amplitude-song-index="{{forloop.counter}}" data-amplitude-playlist="{{current_discussion_index}}" ></progress> -->
