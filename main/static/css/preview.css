@@ -1,0 +1,29 @@
+.discussion_post{
+    width: 45%;
+    align-items: center; 
+    justify-content: center;
+}
+
+.discussion{
+    width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+    .discussion_post{
+        width: 68%;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .discussion_post{
+        width: 68%;
+    }
+}
+
+
+@media screen and (max-width: 479px) {
+    .discussion_post{
+        width: 90%;
+    }
+}

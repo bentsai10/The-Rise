@@ -763,6 +763,9 @@ def display_spaces(request):
         'favorite_spaces': user.favorite_spaces.all()
     }
     return render(request, 'partials/spaces_block.html', context)
+
+def preview(request):
+    return render(request, 'preview.html')
     
 def handler404(request, exception):
     return render(request, '404.html', status=404)

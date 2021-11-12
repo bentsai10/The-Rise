@@ -32,6 +32,7 @@ urlpatterns = [
     path('save_discussion/<int:num>', views.process_save_discussion),
     path('process_space_search', views.process_space_search),
     path('display_spaces', views.display_spaces),
+    path('preview', views.preview)
 ]
 
 handler404 = views.handler404

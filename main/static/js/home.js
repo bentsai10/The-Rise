@@ -560,11 +560,11 @@ $(document).ready(function(){
     $(document).on('click', '#post_response_button_big', function(){
         $('.spaces_block').css('display', 'flex');
         $('.search_space_block').css('display', 'flex');
-        $('.responses_block').css('display', 'flex');
+        $('.responses_block').css('display', 'none');
         $('.response_banner').css('display', 'flex');
         $('#discussion_form_block').css('display', 'none');
         $('.post_discussion_banner').css('display', 'none');
-        $('#response_form_block').css('display', 'none');
+        $('#response_form_block').css('display', 'flex');
         $('.discussions_block').css('display', 'flex');
         $('.discussion_banner').css('display', 'flex');
     })
