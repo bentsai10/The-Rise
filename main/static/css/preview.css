@@ -9,21 +9,21 @@
 }
 
 @media screen and (max-width: 991px) {
-    .discussion_post{
+    .discussion_post, .discussion_post.small{
         width: 68%;
     }
 }
 
 
 @media screen and (max-width: 767px) {
-    .discussion_post{
+    .discussion_post, .discussion_post.small{
         width: 68%;
     }
 }
 
 
 @media screen and (max-width: 479px) {
-    .discussion_post{
+    .discussion_post, .discussion_post.small{
         width: 90%;
     }
 }
